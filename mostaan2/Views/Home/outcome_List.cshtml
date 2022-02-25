@@ -1,0 +1,418 @@
+﻿@model mostaan2.ViewModel.outcomVM
+@{
+    ViewBag.Title = "check_List";
+}
+
+<link href="~/Content/persian-datepicker.css" rel="stylesheet" />
+<div class="morphism">
+    <link href="~/Content/custom.css" rel="stylesheet" />
+
+    <div class="formParent" id="removePopUp">
+        <div class="middlParent " style="">
+            <div id="formHolder">
+                <link href="~/Content/formStyle.css" rel="stylesheet" />
+                <div class="containerr">
+                    <form style="padding:2em">
+                        <p style="font-size:16px; font-weight:500;margin-bottom:20px">آیا از حذف آیتم مورد نظر اطمینان دارید</p>
+                        <div style="display:flex;margin-bottom: -40px;margin-top: 40px;">
+                            <input id="verifyRemove" type="button" value="تایید"><br>
+                            <input id="cancelRemove" type="button" value="لغو"><br>
+
+                        </div>
+
+
+                    </form>
+
+                    <div class="drops">
+                        <div class="drop drop-1"></div>
+                        <div class="drop drop-2"></div>
+                        <div class="drop drop-3"></div>
+                        <div class="drop drop-5"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="formParent" id="mainForm">
+        <div class="middlParent " style="">
+            <div id="formHolder">
+                <link href="~/Content/formStyle.css" rel="stylesheet" />
+                <div class="containerr">
+
+                    <form id="addExenceForm" method="post" action="addExenceForm" enctype="multipart/form-data">
+                        <div id="formSection">
+                            <p>افزودن چک جدید</p>
+                            <div style="display:flex">
+                                <input name="shomareSanad" id="shomareSanad" placeholder="شماره سند"><br>
+                                <input placeholder="تاریخ صدور" name="date" id="date" class="inputForm datePicker" />
+
+                            </div>
+                            <div style="display:flex">
+                                <select id="bankType" name="bankType">
+                                    <option>انتخاب نوع بانک</option>
+                                    <option value="منابع تولید">منابع تولید</option>
+                                    <option value="منابع غیر تولید">منابع غیر تولید</option>
+                                </select>
+                                <div id="bankHolder">
+                                    <input name="detailHolder" id="onvanVarizi" placeholder="بانک"><br>
+                                </div>
+
+
+
+                            </div>
+
+                            <div style="display:flex">
+                                <div id="checkHolder">
+                                    <input name="onvanVarizi" id="onvanVarizi" placeholder="چک"><br>
+                                </div>
+
+                                <input style="display:none" name="price"  placeholder="مبلغ" class="inputnumber price"><br>
+                                <input disabled name="priceee"  placeholder="مبلغ" class="inputnumber price"><br>
+
+                            </div>
+                            <div style="display:flex">
+                                <input name="taminText" id="taminText" placeholder="شماره تامین"><br>
+                                <input id="showTamin" type="button" value="لیست تامین">
+                                <input id="checkTamin" type="button" value="کنترل شماره">
+                            </div>
+                            <input type="file" name="imageInput" id="imageInput" placeholder="پیوست"><br>
+
+
+                            <input style="display:none;" id="checkID" value="0"><br>
+                            <input id="btnExpenceAdd" type="button" value="تایید">
+                        </div>
+                        <div id="listHolder" style="display:none">
+
+                        </div>
+
+
+                    </form>
+
+                    <div class="drops">
+                        <div class="drop drop-1"></div>
+                        <div class="drop drop-2"></div>
+                        <div class="drop drop-3"></div>
+                        <div class="drop drop-4"></div>
+                        <div class="drop drop-5"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div style="display:flex;height:100%">
+         @{Html.RenderAction("menu", "Home");}
+
+        <div style="width:80%;padding:20px ">
+            <div style="display:flex;align-items: center;justify-content: space-between;">
+                <h1 class="pageHeading" style="">
+                    لیست اسناد پرداختی
+                </h1>
+                <p class="showForm btn-grad">
+                    پرداختی جدید
+                </p>
+
+            </div>
+
+            <main>
+                <table>
+                    <thead>
+                        <tr>
+
+                            <th>
+                                شماره سند
+                            </th>
+                            <th>شماره تامین</th>
+                            <th>شماره چک</th>
+                            <th>
+                                بانک عامل
+                            </th>
+                            <th>عنوان شناسنامه</th>
+                            <th>
+                                جدول
+                            </th>
+                            <th>
+                                عنوان ردیف
+                            </th>
+                            <th>قیمت </th>
+                            <th>واحد </th>
+                            <th>تاریخ</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    @*<tfoot>
+                            <tr>
+                                <th colspan='3'>
+                                    Year: 2014
+                                </th>
+                            </tr>
+                        </tfoot>*@
+                    <tbody>
+                        @if (Model.outcomList != null)
+                        {
+
+                            foreach (var item in Model.outcomList)
+                            {
+                                <tr id="@item.ID">
+
+                                    <td class="shomaresanad">
+                                        @item.shomareSanad
+                                    </td>
+                                    <td>
+                                        @item.shomareTamin
+                                    </td>
+                                    <td>
+                                        @item.checkNumber
+                                    </td>
+                                    <td>
+                                        @item.bankName
+                                    </td>
+                                    <td>
+                                        @item.shnesnameTitle
+                                    </td>
+                                    <td>
+                                        @item.subject
+                                    </td>
+                                    <td>
+                                        @item.radifTitle
+                                    </td>
+                                    <td>
+                                        @String.Format("{0:n0}", @item.mablagh)
+                                      
+                                    </td>
+                                    <td>
+                                        @item.type
+                                    </td>
+                                    <td>
+                                        @item.tarikh
+                                    </td>
+
+                                    <td class="btn-grad gradBotton sanad">
+                                        مشاهده سند
+                                    </td>
+
+
+                                </tr>
+                            }
+                        }
+
+
+
+
+                    </tbody>
+                </table>
+
+            </main>
+
+
+            <div id="fartorSection" style="text-align:center; margin-top:40px">
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <style>
+        .inputForm {
+            width: 300px;
+        }
+
+        form select, form input {
+            width: 300px;
+        }
+    </style>
+</div>
+
+
+@section scripts{
+    <script src="~/js/persian-date.min.js"></script>
+    <script src="~/js/persian-datepicker.js"></script>
+    <script>
+        $(function () {
+            $(".datePicker").pDatepicker({
+                format: 'YYYY/MM/DD',
+                autoClose: true
+                // options & callbacks here
+            });
+        });
+    </script>
+    <script>
+
+        $(".remove").click(function () {
+            tobedeleted = $(this).parent().attr('id');
+            shomareSanad = $(this).parent().find(".shomaresanad").text();
+
+            $("#removePopUp").show();
+        })
+        $("#cancelRemove").click(function () {
+            $("#removePopUp").hide();
+        })
+        $("#verifyRemove").click(function () {
+
+            $.ajax({
+                url: "/home/deletTamin",
+                data: {
+                    id: tobedeleted,
+                    shomareSanad: shomareSanad
+                },
+                success: function (obj) {
+                    if (obj == "200") {
+                        window.location.reload();
+                    }
+                    else {
+                        alert("این تامین دارای فاکتور میباشد")
+                    }
+
+                }
+
+            })
+        })
+        $(".edit").click(function () {
+            var id = $(this).parent().attr('id');
+
+            $.ajax({
+                url: "/home/getcheckDetail",
+                data: {
+                    id: id
+                },
+                success: function (obj) {
+
+                    var array = jQuery.parseJSON(obj)
+                    var name = array.title
+                    var number = array.number;
+                    var type = array.type;
+
+
+                    $("#name").val(name)
+                    $("#shomareHesab").val(number);
+                    $('#checkType option[value="' + type + '"]').prop('selected', true)
+                    $("#checkID").val(id);
+                    $("#mainForm").toggle();
+
+                }
+
+            })
+
+        })
+        $(".formParent").click(function () {
+            $(this).hide();
+            //$(".formParent").toggle();
+        })
+
+
+        $(".formParent form").click(function () {
+            event.stopPropagation();
+        })
+        $(".showForm").click(function () {
+            $("#name").val("")
+            $("#shomareHesab").val("");
+            $("#checkID").val("0");
+            $("#mainForm").toggle();
+        })
+        $('.button, .close').on('click', function (e) {
+            e.preventDefault();
+            $('.detail, html, body').toggleClass('open');
+        });
+
+        $("#btnExpenceAdd").click(function () {
+            $("#addExenceForm").submit();
+
+        })
+
+
+        $(".sanad").click(function () {
+
+            var id = $(this).parent().attr('id');
+            $.ajax({
+                url: "getFactor",
+                data: {
+                    id: id,
+                },
+                success: function (data) {
+                    $("#fartorSection").html(data)
+                }
+            })
+        });
+
+
+
+        $("#bankType").on("change", function () {
+            var type = $(this).find("option:selected").text();
+
+
+            $.ajax({
+                url: "getBank",
+                data: {
+                    type: type
+                }, success: function (data) {
+                    $("#bankHolder").html(data)
+                }
+            });
+
+        })
+        $("#checkTamin").click(function () {
+            var text = $("#taminText").val();
+            $.ajax({
+                url: "/Home/checkTaminNumner",
+                data: {
+                    data: text
+                },
+                success: function (data) {
+                    if (data == "error") {
+                        toastr.options = {
+                            "debug": false,
+                            "positionClass": "toast-top-full-width",
+                            "onclick": null,
+                            "fadeIn": 300,
+                            "fadeOut": 1000,
+                            "timeOut": 1500,
+                            "extendedTimeOut": 1000,
+                        };
+                        toastr.error('شماره تامین موجود نیست');
+                       
+                    }
+                    else {
+                        toastr.options = {
+                            "debug": false,
+                            "positionClass": "toast-top-full-width",
+                            "onclick": null,
+                            "fadeIn": 300,
+                            "fadeOut": 1000,
+                            "timeOut": 1500,
+                            "extendedTimeOut": 1000,
+                        };
+                        toastr.success('شماره تامین  صحیح است');
+                        $(".price").val(data);
+                        
+                    }
+                }
+            })
+        })
+        $("#showTamin").click(function () {
+            $.ajax({
+                url: "/Home/getTaminPartial",
+                success: function (data) {
+                    $("#listHolder").html(data);
+                    $("#listHolder").show();
+                    $("#formSection").css("display","none");
+                }
+            })
+        })
+
+    </script>
+
+    <script>
+
+        $(".menuItem").each(function () {
+            $(this).removeClass("menuItemActive");
+        })
+        var elm = $("#hazine")
+        elm.addClass("menuItemActive");
+
+    </script>
+}
+
+

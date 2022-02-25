@@ -1,0 +1,1023 @@
+﻿@model mostaan2.ViewModel.showReportVM
+<div class="formsection">
+    <form id="setPersonnelMoney" action="/Home/setPersonnelMoney" style="box-shadow:none; overflow-x:scroll">
+        <input name="itemID" value="@Model.itemID" hidden />
+        <main>
+            <table class="personeliTable">
+                <thead>
+
+                    <tr class="formTr">
+                        <th></th>
+                        <th colspan="5">
+                            دکتری
+                        </th>
+                        <th colspan="5">
+                            فوق لیسانس
+                        </th>
+
+                        <th colspan="5">
+                            لیسانس
+                        </th>
+                        <th colspan="5">
+                            فوق دیپلم
+                        </th>
+                        <th colspan="5">
+                            زیر دیپلم
+                        </th>
+                        <th colspan="5">
+                            دیپلم
+                        </th>
+                        <th colspan="5">
+                            جمع
+                        </th>
+
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th>تعداد</th>
+                        <th>هزینه پیش بینی ریالی</th>
+                        <th>هزینه نهایی ریالی</th>
+                        <th>هزینه پیش بینی دلاری</th>
+                        <th>هزینه نهایی دلاری</th>
+                        <th>تعداد</th>
+                        <th>هزینه پیش بینی ریالی</th>
+                        <th>هزینه نهایی ریالی</th>
+                        <th>هزینه پیش بینی دلاری</th>
+                        <th>هزینه نهایی دلاری</th>
+                        <th>تعداد</th>
+                        <th>هزینه پیش بینی ریالی</th>
+                        <th>هزینه نهایی ریالی</th>
+                        <th>هزینه پیش بینی دلاری</th>
+                        <th>هزینه نهایی دلاری</th>
+                        <th>تعداد</th>
+                        <th>هزینه پیش بینی ریالی</th>
+                        <th>هزینه نهایی ریالی</th>
+                        <th>هزینه پیش بینی دلاری</th>
+                        <th>هزینه نهایی دلاری</th>
+                        <th>تعداد</th>
+                        <th>هزینه پیش بینی ریالی</th>
+                        <th>هزینه نهایی ریالی</th>
+                        <th>هزینه پیش بینی دلاری</th>
+                        <th>هزینه نهایی دلاری</th>
+                        <th>تعداد</th>
+                        <th>هزینه پیش بینی ریالی</th>
+                        <th>هزینه نهایی ریالی</th>
+                        <th>هزینه پیش بینی دلاری</th>
+                        <th>هزینه نهایی دلاری</th>
+                        <th>تعداد</th>
+                        <th>هزینه پیش بینی ریالی</th>
+                        <th>هزینه نهایی ریالی</th>
+                        <th>هزینه پیش بینی دلاری</th>
+                        <th>هزینه نهایی دلاری</th>
+                    </tr>
+                </thead>
+
+
+                <tbody>
+                    <tr class="formTr">
+                        <td>رسمی</td>
+
+                        <td>
+                            @Html.TextBoxFor(x => x.DrasmiT, new { @class = "inputForm" })
+                            @*<input name="DrasmiT, new { @class = "inputForm"})*@
+                            <p class="pSibling">@Model.DrasmiT</p>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.DrasmiHPR, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.DrasmiHPR</p>
+                        </td>
+                        <td>
+
+                            <p class="pSibling disabled">@Model.DrasmiHNR</p>
+
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.DrasmiHPD, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.DrasmiHPD</p>
+                        </td>
+                        <td>
+
+                            <p class="pSibling disabled">@Model.DrasmiHND</p>
+                        </td>
+
+                        <td>
+                            @Html.TextBoxFor(x => x.FLrasmiT, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.FLrasmiT</p>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.FLrasmiHPR, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.FLrasmiHPR</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.FLrasmiHNR</p>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.FLrasmiHPD, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.FLrasmiHPD</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.FLrasmiHND</p>
+                        </td>
+
+                        <td>
+                            @Html.TextBoxFor(x => x.LrasmiT, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.LrasmiT</p>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.LrasmiHPR, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.LrasmiHPR</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.LrasmiHNR</p>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.LrasmiHPD, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.LrasmiHPD</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.LrasmiHND</p>
+
+                        </td>
+
+                        <td>
+                            @Html.TextBoxFor(x => x.FDrasmiT, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.FDrasmiT</p>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.FDrasmiHPR, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.FDrasmiHPR</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.FDrasmiHNR</p>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.FDrasmiHPD, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.FDrasmiHPD</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.FDrasmiHND</p>
+
+                        </td>
+
+                        <td>
+                            @Html.TextBoxFor(x => x.DirasmiT, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.DirasmiT</p>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.DirasmiHPR, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.DirasmiHPR</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.DirasmiHNR</p>
+
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.DirasmiHPD, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.DirasmiHPD</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.DirasmiHND</p>
+
+                        </td>
+
+                        <td>
+                            @Html.TextBoxFor(x => x.ZDirasmiT, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.ZDirasmiT</p>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.ZDirasmiHPR, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.ZDirasmiHPR</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.ZDirasmiHNR</p>
+
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.ZDirasmiHPD, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.ZDirasmiHPD</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.ZDirasmiHND</p>
+
+                        </td>
+
+
+
+                        @{
+                            int rasmit = Model.DrasmiT + Model.FLrasmiT + Model.LrasmiT + Model.FDrasmiT + Model.DirasmiT + Model.ZDirasmiT;
+                            int rasmiHPR = Model.DrasmiHPR + Model.FLrasmiHPR + Model.FLrasmiHPR + Model.FDrasmiHPR + Model.DirasmiHPR + Model.ZDirasmiHPR;
+                            int rasmiHNR = Model.DrasmiHNR + Model.FLrasmiHNR + Model.FLrasmiHNR + Model.FDrasmiHNR + Model.DirasmiHNR + Model.ZDirasmiHNR;
+                            int rasmiHPD = Model.DrasmiHPD + Model.FLrasmiHPD + Model.FLrasmiHPD + Model.FDrasmiHPD + Model.DirasmiHPD + Model.ZDirasmiHPD;
+                            int rasmiHND = Model.DrasmiHND + Model.FLrasmiHND + Model.FLrasmiHND + Model.FDrasmiHND + Model.DirasmiHND + Model.ZDirasmiHND;
+                        }
+                        <td>
+
+                            <p class="pSibling disabled">@rasmit</p>
+                        </td>
+                        <td>
+
+                            <p class="pSibling disabled">@rasmiHPR</p>
+                        </td>
+                        <td>
+
+                            <p class="pSibling disabled">@rasmiHNR</p>
+                        </td>
+                        <td>
+
+                            <p class="pSibling disabled">@rasmiHPD</p>
+                        </td>
+                        <td>
+
+                            <p class="pSibling disabled">@rasmiHND</p>
+                        </td>
+
+
+                    </tr>
+                    <tr class="formTr">
+                        <td>قراردادی تمام وقت</td>
+                        <td>
+                            @Html.TextBoxFor(x => x.DgharartamamT, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.DgharartamamT</p>
+                        </td>
+
+                        <td>
+                            @Html.TextBoxFor(x => x.DgharartamamHPR, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.DgharartamamHPR</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.DgharartamamHNR</p>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.DgharartamamHPD, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.DgharartamamHPD</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.DgharartamamHND</p>
+
+                        </td>
+
+
+
+
+                        <td>
+                            @Html.TextBoxFor(x => x.FLgharartamamT, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.FLgharartamamT</p>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.FLgharartamamHPR, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.FLgharartamamHPR</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.FLgharartamamHNR</p>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.FLgharartamamHPD, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.FLgharartamamHPD</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.FLgharartamamHND</p>
+                        </td>
+
+
+                        <td>
+                            @Html.TextBoxFor(x => x.LgharartamamT, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.LgharartamamT</p>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.LgharartamamHPR, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.LgharartamamHPR</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.LgharartamamHNR</p>
+
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.LgharartamamHPD, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.LgharartamamHPD</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.LgharartamamHND</p>
+
+                        </td>
+
+                        <td>
+                            @Html.TextBoxFor(x => x.FDgharartamamT, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.FDgharartamamT</p>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.FDgharartamamHPR, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.FDgharartamamHPR</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.FDgharartamamHNR</p>
+
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.FDgharartamamHPD, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.FDgharartamamHPD</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.FDgharartamamHND</p>
+
+                        </td>
+
+                        <td>
+                            @Html.TextBoxFor(x => x.DigharartamamT, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.DigharartamamT</p>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.DigharartamamHPR, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.DigharartamamHPR</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.DigharartamamHNR</p>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.DigharartamamHPD, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.DigharartamamHPD</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.DigharartamamHND</p>
+
+                        </td>
+
+                        <td>
+                            @Html.TextBoxFor(x => x.ZDigharartamamT, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.ZDigharartamamT</p>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.ZDigharartamamHPR, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.ZDigharartamamHPR</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.ZDigharartamamHNR</p>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.ZDigharartamamHPD, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.ZDigharartamamHPD</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.ZDigharartamamHND</p>
+                        </td>
+                        @{
+                            int gharartamamt = Model.DgharartamamT + Model.FLgharartamamT + Model.LgharartamamT + Model.FDgharartamamT + Model.DigharartamamT + Model.ZDigharartamamT;
+                            int gharartamamHPR = Model.DgharartamamHPR + Model.FLgharartamamHPR + Model.FLgharartamamHPR + Model.FDgharartamamHPR + Model.DigharartamamHPR + Model.ZDigharartamamHPR;
+                            int gharartamamHNR = Model.DgharartamamHNR + Model.FLgharartamamHNR + Model.FLgharartamamHNR + Model.FDgharartamamHNR + Model.DigharartamamHNR + Model.ZDigharartamamHNR;
+                            int gharartamamHPD = Model.DgharartamamHPD + Model.FLgharartamamHPD + Model.FLgharartamamHPD + Model.FDgharartamamHPD + Model.DigharartamamHPD + Model.ZDigharartamamHPD;
+                            int gharartamamHND = Model.DgharartamamHND + Model.FLgharartamamHND + Model.FLgharartamamHND + Model.FDgharartamamHND + Model.DigharartamamHND + Model.ZDigharartamamHND;
+                        }
+
+                        <td>
+
+                            <p class="pSibling disabled">@gharartamamt</p>
+                        </td>
+                        <td>
+
+                            <p class="pSibling disabled">@gharartamamHPR</p>
+                        </td>
+                        <td>
+
+                            <p class="pSibling disabled">@gharartamamHNR</p>
+                        </td>
+                        <td>
+
+                            <p class="pSibling disabled">@gharartamamHPD</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@gharartamamHND</p>
+                        </td>
+
+
+                    </tr>
+                    <tr class="formTr">
+                        <td>قراردادی ساعتی</td>
+
+                        <td>
+                            @Html.TextBoxFor(x => x.DghararsaatT, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.DghararsaatT</p>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.DghararsaatHPR, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.DghararsaatHPR</p>
+                        </td>
+                        <td>
+
+                            <p class="pSibling disabled">@Model.DghararsaatHNR</p>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.DghararsaatHPD, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.DghararsaatHPD</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.DghararsaatHND</p>
+                        </td>
+
+                        <td>
+                            @Html.TextBoxFor(x => x.FLghararsaatT, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.FLghararsaatT</p>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.FLghararsaatHPR, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.FLghararsaatHPR</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.FLghararsaatHNR</p>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.FLghararsaatHPD, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.FLghararsaatHPD</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.FLghararsaatHND</p>
+
+                        </td>
+
+                        <td>
+                            @Html.TextBoxFor(x => x.LghararsaatT, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.LghararsaatT</p>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.LghararsaatHPR, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.LghararsaatHPR</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.LghararsaatHNR</p>
+
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.LghararsaatHPD, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.LghararsaatHPD</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.LghararsaatHND</p>
+
+                        </td>
+
+
+
+                        <td>
+                            @Html.TextBoxFor(x => x.FDghararsaatT, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.FDghararsaatT</p>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.FDghararsaatHPR, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.FDghararsaatHPR</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.FDghararsaatHNR</p>
+
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.FDghararsaatHPD, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.FDghararsaatHPD</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.FDghararsaatHND</p>
+                        </td>
+
+                        <td>
+                            @Html.TextBoxFor(x => x.DighararsaatT, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.DighararsaatT</p>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.DighararsaatHPR, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.DighararsaatHPR</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.DighararsaatHPR</p>
+
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.DighararsaatHPD, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.DighararsaatHPD</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.DighararsaatHND</p>
+                        </td>
+
+                        <td>
+                            @Html.TextBoxFor(x => x.ZDighararsaatT, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.ZDighararsaatT</p>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.ZDighararsaatHPR, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.ZDighararsaatHPR</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.ZDighararsaatHNR</p>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.ZDighararsaatHPD, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.ZDighararsaatHPD</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.ZDighararsaatHND</p>
+                        </td>
+
+                        @{
+                            int ghararsaatt = Model.DghararsaatT + Model.FLghararsaatT + Model.LghararsaatT + Model.FDghararsaatT + Model.DighararsaatT + Model.ZDighararsaatT;
+                            int ghararsaatHPR = Model.DghararsaatHPR + Model.FLghararsaatHPR + Model.FLghararsaatHPR + Model.FDghararsaatHPR + Model.DighararsaatHPR + Model.ZDighararsaatHPR;
+                            int ghararsaatHNR = Model.DghararsaatHNR + Model.FLghararsaatHNR + Model.FLghararsaatHNR + Model.FDghararsaatHNR + Model.DighararsaatHNR + Model.ZDighararsaatHNR;
+                            int ghararsaatHPD = Model.DghararsaatHPD + Model.FLghararsaatHPD + Model.FLghararsaatHPD + Model.FDghararsaatHPD + Model.DighararsaatHPD + Model.ZDighararsaatHPD;
+                            int ghararsaatHND = Model.DghararsaatHND + Model.FLghararsaatHND + Model.FLghararsaatHND + Model.FDghararsaatHND + Model.DighararsaatHND + Model.ZDighararsaatHND;
+                        }
+
+                        <td>
+                            <p class="pSibling disabled">@ghararsaatt</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@ghararsaatHPR</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@ghararsaatHNR</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@ghararsaatHPD</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@ghararsaatHND</p>
+                        </td>
+
+
+                    </tr>
+                    <tr class="formTr">
+                        <td>وظیفه</td>
+
+                        <td>
+                            @Html.TextBoxFor(x => x.DvazifeT, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.DvazifeT</p>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.DvazifeHPR, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.DvazifeHPR</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.DvazifeHNR</p>
+
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.DvazifeHPD, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.DvazifeHPD</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.DvazifeHND</p>
+
+                        </td>
+
+                        <td>
+                            @Html.TextBoxFor(x => x.FLvazifeT, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.FLvazifeT</p>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.FLvazifeHPR, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.FLvazifeHPR</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.FLvazifeHNR</p>
+
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.FLvazifeHPD, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.FLvazifeHPD</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.FLvazifeHND</p>
+                        </td>
+
+
+                        <td>
+                            @Html.TextBoxFor(x => x.LvazifeT, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.LvazifeT</p>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.LvazifeHPR, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.LvazifeHPR</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.LvazifeHNR</p>
+
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.LvazifeHPD, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.LvazifeHPD</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.LvazifeHND</p>
+
+                        </td>
+
+                        <td>
+                            @Html.TextBoxFor(x => x.FDvazifeT, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.FDvazifeT</p>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.FDvazifeHPR, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.FDvazifeHPR</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.FDvazifeHNR</p>
+
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.FDvazifeHPD, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.FDvazifeHPD</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.FDvazifeHND</p>
+
+                        </td>
+
+                        <td>
+                            @Html.TextBoxFor(x => x.DivazifeT, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.DivazifeT</p>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.DivazifeHPR, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.DivazifeHPR</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.DivazifeHNR</p>
+
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.DivazifeHPD, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.DivazifeHPD</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.DivazifeHND</p>
+
+                        </td>
+
+                        <td>
+                            @Html.TextBoxFor(x => x.ZDivazifeT, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.ZDivazifeT</p>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.ZDivazifeHPR, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.ZDivazifeHPR</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.ZDivazifeHNR</p>
+
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.ZDivazifeHPD, new { @class = "inputForm" })
+                            <p class="pSibling">@Model.ZDivazifeHPD</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@Model.ZDivazifeHND</p>
+                        </td>
+
+                        @{
+                            int vazifet = Model.DvazifeT + Model.FLvazifeT + Model.LvazifeT + Model.FDvazifeT + Model.DivazifeT + Model.ZDivazifeT;
+                            int vazifeHPR = Model.DvazifeHPR + Model.FLvazifeHPR + Model.FLvazifeHPR + Model.FDvazifeHPR + Model.DivazifeHPR + Model.ZDivazifeHPR;
+                            int vazifeHNR = Model.DvazifeHNR + Model.FLvazifeHNR + Model.FLvazifeHNR + Model.FDvazifeHNR + Model.DivazifeHNR + Model.ZDivazifeHNR;
+                            int vazifeHPD = Model.DvazifeHPD + Model.FLvazifeHPD + Model.FLvazifeHPD + Model.FDvazifeHPD + Model.DivazifeHPD + Model.ZDivazifeHPD;
+                            int vazifeHND = Model.DvazifeHND + Model.FLvazifeHND + Model.FLvazifeHND + Model.FDvazifeHND + Model.DivazifeHND + Model.ZDivazifeHND;
+                        }
+
+                        <td>
+                            <p class="pSibling disabled">@vazifet</p>
+                        </td>
+                        <td>
+
+                            <p class="pSibling disabled">@vazifeHPR</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@vazifeHNR</p>
+
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@vazifeHPD</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled">@vazifeHND</p>
+                        </td>
+
+
+                    </tr>
+
+
+                    <tr class="formTr">
+                        <td>جمع</td>
+
+                        <td>
+
+                            <p class="pSibling disabled">
+                                @{
+                                    int final = Model.DrasmiT + Model.DgharartamamT + Model.DghararsaatT + Model.DvazifeT;
+                                }
+                                @final
+                            </p>
+                        </td>
+                        <td>
+
+                            <p class="pSibling disabled">
+                                @{
+                                    final = Model.DrasmiHPR + Model.DgharartamamHPR + Model.DghararsaatHPR + Model.DvazifeHPR;
+                                }
+                                @final
+                            </p>
+                        </td>
+                        <td>
+
+                            <p class="pSibling disabled">
+                                @{
+                                    final = Model.DrasmiHNR + Model.DgharartamamHNR + Model.DghararsaatHNR + Model.DvazifeHNR;
+                                }
+                                @final
+                            </p>
+                        </td>
+                        <td>
+
+                            <p class="pSibling disabled">
+                                @{
+                                    final = Model.DrasmiHPD + Model.DgharartamamHPD + Model.DghararsaatHPD + Model.DvazifeHPD;
+                                }
+                                @final
+                            </p>
+                        </td>
+                        <td>
+
+                            <p class="pSibling disabled">
+                                @{
+                                    final = Model.DrasmiHND + Model.DgharartamamHND + Model.DghararsaatHND + Model.DvazifeHND;
+                                }
+                                @final
+                            </p>
+                        </td>
+
+                        <td>
+
+                            <p class="pSibling disabled">
+                                @{
+                                    final = Model.FLrasmiT + Model.FLgharartamamT + Model.FLghararsaatT + Model.FLvazifeT;
+                                }
+                                @final
+                            </p>
+                        </td>
+                        <td>
+
+                            <p class="pSibling disabled">
+                                @{
+                                    final = Model.FLrasmiHPR + Model.FLgharartamamHPR + Model.FLghararsaatHPR + Model.FLvazifeHPR;
+                                }
+                                @final
+                            </p>
+                        </td>
+                        <td>
+
+                            <p class="pSibling disabled">
+                                @{
+                                    final = Model.FLrasmiHNR + Model.FLgharartamamHNR + Model.FLghararsaatHNR + Model.FLvazifeHNR;
+                                }
+                                @final
+                            </p>
+                        </td>
+                        <td>
+
+                            <p class="pSibling disabled">
+                                @{
+                                    final = Model.FLrasmiHPD + Model.FLgharartamamHPD + Model.FLghararsaatHPD + Model.FLvazifeHPD;
+                                }
+                                @final
+                            </p>
+                        </td>
+                        <td>
+
+                            <p class="pSibling disabled">
+                                @{
+                                    final = Model.FLrasmiHND + Model.FLgharartamamHND + Model.FLghararsaatHND + Model.FLvazifeHND;
+                                }
+                                @final
+                            </p>
+                        </td>
+
+
+                        <td>
+
+                            <p class="pSibling disabled">
+                                @{
+                                    final = Model.LrasmiT + Model.LgharartamamT + Model.LghararsaatT + Model.LvazifeT;
+                                }
+                                @final
+                            </p>
+                        </td>
+                        <td>
+
+                            <p class="pSibling disabled">
+                                @{
+                                    final = Model.LrasmiHPR + Model.LgharartamamHPR + Model.LghararsaatHPR + Model.LvazifeHPR;
+                                }
+                                @final
+                            </p>
+                        </td>
+                        <td>
+
+                            <p class="pSibling disabled">
+                                @{
+                                    final = Model.LrasmiHNR + Model.LgharartamamHNR + Model.LghararsaatHNR + Model.LvazifeHNR;
+                                }
+                                @final
+                            </p>
+                        </td>
+                        <td>
+
+                            <p class="pSibling disabled">
+                                @{
+                                    final = Model.LrasmiHPD + Model.LgharartamamHPD + Model.LghararsaatHPD + Model.LvazifeHPD;
+                                }
+                                @final
+                            </p>
+                        </td>
+                        <td>
+
+                            <p class="pSibling disabled">
+                                @{
+                                    final = Model.LrasmiHND + Model.LgharartamamHND + Model.LghararsaatHND + Model.LvazifeHND;
+                                }
+                                @final
+                            </p>
+                        </td>
+
+
+                        <td>
+
+                            <p class="pSibling disabled">
+                                @{
+                                    final = Model.FDrasmiT + Model.FDgharartamamT + Model.FDghararsaatT + Model.FDvazifeT;
+                                }
+                                @final
+                            </p>
+                        </td>
+                        <td>
+
+                            <p class="pSibling disabled">
+                                @{
+                                    final = Model.FDrasmiHPR + Model.FDgharartamamHPR + Model.FDghararsaatHPR + Model.FDvazifeHPR;
+                                }
+                                @final
+                            </p>
+                        </td>
+                        <td>
+
+                            <p class="pSibling disabled">
+                                @{
+                                    final = Model.FDrasmiHNR + Model.FDgharartamamHNR + Model.FDghararsaatHNR + Model.FDvazifeHNR;
+                                }
+                                @final
+                            </p>
+                        </td>
+                        <td>
+
+                            <p class="pSibling disabled">
+                                @{
+                                    final = Model.FDrasmiHPD + Model.FDgharartamamHPD + Model.FDghararsaatHPD + Model.FDvazifeHPD;
+                                }
+                                @final
+                            </p>
+                        </td>
+                        <td>
+
+                            <p class="pSibling disabled">
+                                @{
+                                    final = Model.FDrasmiHND + Model.FDgharartamamHND + Model.FDghararsaatHND + Model.FDvazifeHND;
+                                }
+                                @final
+                            </p>
+                        </td>
+
+                        <td>
+
+                            <p class="pSibling disabled">
+                                @{
+                                    final = Model.DirasmiT + Model.DigharartamamT + Model.DighararsaatT + Model.DivazifeT;
+                                }
+                                @final
+                            </p>
+                        </td>
+                        <td>
+
+                            <p class="pSibling disabled">
+                                @{
+                                    final = Model.DirasmiHPR + Model.DigharartamamHPR + Model.DighararsaatHPR + Model.DivazifeHPR;
+                                }
+                                @final
+                            </p>
+                        </td>
+                        <td>
+
+                            <p class="pSibling disabled">
+                                @{
+                                    final = Model.DirasmiHNR + Model.DigharartamamHNR + Model.DighararsaatHNR + Model.DivazifeHNR;
+                                }
+                                @final
+                            </p>
+                        </td>
+                        <td>
+
+                            <p class="pSibling disabled">
+                                @{
+                                    final = Model.DirasmiHPD + Model.DigharartamamHPD + Model.DighararsaatHPD + Model.DivazifeHPD;
+                                }
+                                @final
+                            </p>
+                        </td>
+                        <td>
+
+                            <p class="pSibling disabled">
+                                @{
+                                    final = Model.DirasmiHND + Model.DigharartamamHND + Model.DighararsaatHND + Model.DivazifeHND;
+                                }
+                                @final
+                            </p>
+                        </td>
+
+
+                        <td>
+
+                            <p class="pSibling disabled">
+                                @{
+                                    final = Model.ZDirasmiT + Model.ZDigharartamamT + Model.ZDighararsaatT + Model.ZDivazifeT;
+                                }
+                                @final
+                            </p>
+                        </td>
+                        <td>
+
+                            <p class="pSibling disabled">
+                                @{
+                                    final = Model.ZDirasmiHPR + Model.ZDigharartamamHPR + Model.ZDighararsaatHPR + Model.ZDivazifeHPR;
+                                }
+                                @final
+                            </p>
+                        </td>
+                        <td>
+
+                            <p class="pSibling disabled">
+                                @{
+                                    final = Model.ZDirasmiHNR + Model.ZDigharartamamHNR + Model.ZDighararsaatHNR + Model.ZDivazifeHNR;
+                                }
+                                @final
+                            </p>
+                        </td>
+                        <td>
+
+                            <p class="pSibling disabled">
+                                @{
+                                    final = Model.ZDirasmiHPD + Model.ZDigharartamamHPD + Model.ZDighararsaatHPD + Model.ZDivazifeHPD;
+                                }
+                                @final
+                            </p>
+                        </td>
+                        <td>
+
+                            <p class="pSibling disabled">
+                                @{
+                                    final = Model.ZDirasmiHND + Model.ZDigharartamamHND + Model.ZDighararsaatHND + Model.ZDivazifeHND;
+                                }
+                                @final
+                            </p>
+                        </td>
+
+                        @{ 
+                            int tkoll = rasmit + ghararsaatt + gharartamamt + vazifet;
+                            int HPRkoll = rasmiHPR + ghararsaatHPR + gharartamamHPR + vazifeHPR;
+                            int HPDkoll = rasmiHPD + ghararsaatHPD + gharartamamHPD + vazifeHPD;
+                            int HNRkoll = rasmiHNR + ghararsaatHNR + gharartamamHNR + vazifeHNR;
+                            int HNDkoll = rasmiHND + ghararsaatHND + gharartamamHND + vazifeHND;
+                        }
+
+                        <td>
+                            <p class="pSibling disabled"> @tkoll</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled"> @HPRkoll</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled"> @HNRkoll</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled"> @HPDkoll</p>
+                        </td>
+                        <td>
+                            <p class="pSibling disabled"> @HNDkoll</p>
+                        </td>
+
+
+                    </tr>
+                </tbody>
+            </table>
+
+        </main>
+
+    </form>
+
+
+
+</div>
+<div>
+    <p id="addOersonnelInfo" class="btn-grad" style="margin:30px auto">
+        تایید
+    </p>
+</div>

@@ -1,0 +1,248 @@
+﻿@model mostaan2.ViewModel.KomiteListVM
+@{
+
+    ViewBag.Title = "";
+}
+
+
+<div class="morphism">
+    <link href="~/Content/custom.css" rel="stylesheet" />
+    <link href="~/Content/formStyle.css" rel="stylesheet" />
+    <div class="modal fade" id="deleteModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">حذف بخش مورد نظر</h5>
+                </div>
+                <div class="modal-body" style="background-color:#4d4d4d">
+                    <p style="color:white">آیا از حذف آیتم مورد نظر اطمینان دارید؟</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">لغو</button>
+                    <button id="finalDel" type="button" class="btn btn-primary" style="background-color:#4d4d4d; border-color:#4d4d4d">تایید</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">افزودن کمیته جدید</h5>
+
+                </div>
+                <div class="modal-body" style="background-color:#4d4d4d">
+                    <div class="formRow">
+                        <div class="col-lg-6">
+                            <p class="formp">عنوان کمیته</p>
+                            <input id="Title" class="form-control" />
+                            <input id="KomiteID" hidden />
+                        </div>
+                        <div class="col-lg-6">
+                            <p class="formp">مسئول کمیته</p>
+                            @Html.DropDownList("KomiteDropM", new SelectList(Model.userList, "name", "name"), new { @class = "form-control", id = "masool" })
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="col-lg-6">
+                            <p class="formp">جانشین کمیته</p>
+                            @Html.DropDownList("KomiteDropJ", new SelectList(Model.userList, "name", "name"), new { @class = "form-control", id = "janeshin" })
+
+                        </div>
+
+                        <div class="col-lg-6">
+                            <p class="formp">مرکز مورد نظر</p>
+                            @Html.DropDownList("markazDropJ", new SelectList(Model.markazList, "ID", "title"), new { @class = "form-control", id = "markaz" })
+                        </div>
+
+                    </div>
+
+
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">لغو</button>
+                    <button id="addUserButton" type="button" class="btn btn-primary" style="background-color:#4d4d4d; border-color:#4d4d4d">تایید</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div style="display:flex;height:100%">
+         @{Html.RenderAction("menu", "Home");}
+
+        <div style="width:80%;padding:20px ">
+            <div style="display:flex;align-items: center;justify-content: space-between;">
+                <h1 class="pageHeading" style="">
+                    لیست کمیته ها
+                </h1>
+                <p data-toggle="modal" data-target="#exampleModal" class="showForm btn-grad">
+                    کمیته جدید
+                </p>
+
+            </div>
+
+            <main>
+                <table>
+                    <thead>
+                        <tr>
+
+                            <th>
+                                عنوان
+                            </th>
+
+                            <th>
+                                مسئول کمیته
+                            </th>
+                            <th>
+                                جانشین کمیته
+                            </th>
+                            <th>ویرایش</th>
+                            <th>حذف</th>
+                        </tr>
+                    </thead>
+
+                    @*<tfoot>
+                            <tr>
+                                <th colspan='3'>
+                                    Year: 2014
+                                </th>
+                            </tr>
+                        </tfoot>*@
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var item in Model.komiteList)
+                            {
+                                <tr id="@item.ID">
+
+                                    <td>
+                                        @item.title
+                                    </td>
+
+                                    <td>
+                                        @item.masoul
+                                    </td>
+                                    <td>
+                                        @item.janeshin
+                                    </td>
+
+                                    <td class='edit'>
+                                        <a id="" class='button' href='#'>
+                                            ویرایش
+                                        </a>
+                                    </td>
+                                    <td class='remove'>
+                                        <a class='button' href='#'>
+                                            حذف
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+
+
+
+
+                    </tbody>
+                </table>
+
+            </main>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script>
+        var tobedeleted;
+        $('.button, .close').on('click', function (e) {
+            e.preventDefault();
+            $('.detail, html, body').toggleClass('open');
+        });
+        $(".remove").click(function () {
+            tobedeleted = $(this).parent().attr('id');
+            $("#deleteModel").modal("toggle");
+
+        })
+        $("#finalDel").click(function () {
+
+            $.ajax({
+                url: "/home/deletKomite",
+                data: {
+                    id: tobedeleted
+                },
+                success: function (obj) {
+                    window.location.reload();
+                }
+
+            })
+        })
+        $(".edit").click(function () {
+            var id = $(this).parent().attr('id');
+
+            $.ajax({
+                url: "/home/getKomiteDetail",
+                data: {
+                    id: id
+                },
+                success: function (obj) {
+
+                    var array = jQuery.parseJSON(obj)
+                    var masoul = array.masoul
+                    var janeshin = array.janeshin;
+                    var markazID = array.markazID;
+
+                    $("#Title").val(array.title)
+                    $("#KomiteID").val(array.ID);
+                    $('#masool option[value="' + masoul + '"]').prop('selected', true)
+                    $('#janeshin option[value="' + janeshin + '"]').prop('selected', true)
+                    $('#markaz option[value="' + markazID + '"]').prop('selected', true)
+                    $("#exampleModal").modal('toggle');
+
+                }
+
+            })
+
+        })
+        $("#addUserButton").click(function () {
+            var ID = $("#KomiteID").val();
+            var title = $("#Title").val();
+            var masool = $("#masool").val();
+            var janeshin = $("#janeshin").val();
+            var markaz = $("#markaz").val();
+            $.ajax({
+                url: "/Home/addKomiteForm",
+                data: {
+                    ID: ID,
+                    markaz: markaz,
+                    title: title,
+                    masool: masool,
+                    janeshin: janeshin
+                },
+                success: function (data) {
+
+                    window.location.reload();
+                }
+            })
+        })
+    </script>
+    <script>
+
+        $(".menuItem").each(function () {
+            $(this).removeClass("menuItemActive");
+        })
+        var elm = $("#komite")
+        elm.addClass("menuItemActive");
+
+    </script>
+}
+

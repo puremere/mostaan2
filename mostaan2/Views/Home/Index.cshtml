@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Educational registration form</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <style>
+        html, body {
+            min-height: 100%;
+            background: url(../../images/loginBack.jpg) no-repeat
+        }
+
+        body, div, form, input, select, p {
+            padding: 0;
+            margin: 0;
+            outline: none;
+            font-family: Roboto, Arial, sans-serif;
+            font-size: 16px;
+            color: #eee;
+        }
+
+        body {
+            background: url("/uploads/media/default/0001/01/b5edc1bad4dc8c20291c8394527cb2c5b43ee13c.jpeg") no-repeat center;
+            background-size: cover;
+        }
+
+        h1, h2 {
+            text-transform: uppercase;
+            font-weight: 400;
+        }
+
+        h2 {
+            margin: 0 0 0 8px;
+        }
+
+        .main-block {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            
+            height: 100%;
+            padding: 25px;
+            /*background: rgba(0, 0, 0, 0.5);*/
+        }
+
+        .left-part, form {
+            padding:0 25px;
+        }
+
+        .left-part {
+            text-align: right;
+        }
+
+        .fa-graduation-cap {
+            font-size: 72px;
+        }
+
+        form {
+            background: rgba( 255, 255, 255, 0.4 );
+            box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+            backdrop-filter: blur( 4.5px );
+            -webkit-backdrop-filter: blur( 4.5px );
+            border-radius: 10px;
+            border: 1px solid rgba( 255, 255, 255, 0.18 );
+        }
+
+        .title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            justify-content: center
+        }
+
+        .info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input, select {
+            padding: 5px;
+            margin-bottom: 30px;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #ddd;
+        }
+
+            input::placeholder {
+                color: #8d8d8d;
+            }
+
+        option:focus {
+            border: none;
+        }
+
+        option {
+            background: black;
+            border: none;
+        }
+
+        .checkbox input {
+            margin: 0 10px 0 0;
+            vertical-align: middle;
+        }
+
+        .checkbox a {
+            color: #26a9e0;
+        }
+
+            .checkbox a:hover {
+                color: #85d6de;
+            }
+
+        .btn-item, button {
+            padding: 15px 5px;
+            margin-top: 20px;
+            border-radius: 5px;
+            border: none;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 400;
+            color: #fff;
+            background: rgba( 255, 255, 255, 0.15 );
+            box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.10 );
+            backdrop-filter: blur( 4px );
+            -webkit-backdrop-filter: blur( 4px );
+            border-radius: 10px;
+            border: 1px solid rgba( 255, 255, 255, 0.18 );
+        }
+
+        .btn-item {
+            display: inline-block;
+            margin: 20px 5px 0;
+        }
+
+        button {
+            width: 100%;
+        }
+
+
+
+        @@media (min-width: 568px) {
+            html, body {
+                height: 100%;
+            }
+
+            .main-block {
+                flex-direction: row;
+                height: calc(100% - 50px);
+            }
+
+            .left-part, form {
+                flex: 1;
+                height: 300px;
+            }
+        }
+    </style>
+    <link href="~/Content/font.css" rel="stylesheet" />
+    <link href="~/Content/toastr.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/jquery")
+</head>
+<body>
+    <div class="main-block" style="padding-top:150px" >
+        <div class="left-part" style="padding:0">
+
+            <h1>سازمان جهاد خودکفایی</h1>
+            <p>لطفا جهت دسترسی به نرم افزار ابتدا وارد شوید</p>
+
+        </div>
+        <form action="/Home/login">
+            <div class="title">
+                <h3> ورود</h3>
+            </div>
+            <div class="info">
+
+                <input type="text" name="name" placeholder="کد پاسداری">
+                <input type="password" name="password" placeholder="رمز عبور">
+
+            </div>
+            <button type="submit" href="/">تایید</button>
+        </form>
+    </div>
+    <script src="~/Scripts/toastr.js"></script>
+    <script>
+      
+        if (@ViewBag.error != "") {
+            toastr.options = {
+                "debug": false,
+                "positionClass": "toast-top-full-width",
+                "onclick": null,
+                "fadeIn": 300,
+                "fadeOut": 1000,
+                "timeOut": 4500,
+                "extendedTimeOut": 5000,
+            };
+            toastr.error('خطا در ورود به پنل! لطفا با ادمین تماس بگیرید');
+        }
+    </script>
+
+
+</body>
+</html>

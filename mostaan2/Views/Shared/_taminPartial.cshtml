@@ -1,0 +1,88 @@
+﻿
+@model IEnumerable<mostaan2.Model.tamin>
+
+<table>
+    <thead>
+        <tr>
+
+            <th>
+                شماره سند
+            </th>
+            <th>عنوان شناسنامه</th>
+            <th>جدول</th>
+            <th>
+                عنوان ردیف
+            </th>
+            <th>عنوان گام</th>
+            <th>
+                واحد پولی
+            </th>
+            <th>
+                مبلغ
+            </th>
+            <th></th>
+
+        </tr>
+    </thead>
+
+    @*<tfoot>
+            <tr>
+                <th colspan='3'>
+                    Year: 2014
+                </th>
+            </tr>
+        </tfoot>*@
+    <tbody>
+        @if (Model != null)
+        {
+
+            foreach (var item in Model)
+            {
+                <tr id="@item.shomareSanad" price="@item.mablagh"  class="tableRow" style="cursor:pointer">
+
+                    <td class="shomaresanad">
+                        @item.shomareSanad
+                    </td>
+                    <td>
+                        @item.shnesnameTitle
+                    </td>
+                    <td>
+                        @item.subject
+                    </td>
+                    <td>
+                        @item.radifTitle
+                    </td>
+                    <td>
+                        @item.gam
+                    </td>
+                    <td>
+                        @item.type
+                    </td>
+                    <td>
+                        @item.mablagh
+                    </td>
+
+                  
+
+
+
+                </tr>
+            }
+        }
+
+
+
+
+    </tbody>
+</table>
+<script>
+    $(".tableRow").click(function () {
+
+        var id = $(this).attr('id');
+        var price = $(this).attr('price');
+        $("#taminText").val(id);
+        $(".price").val(price);
+        $("#listHolder").hide();
+        $("#formSection").show();
+    })
+</script>

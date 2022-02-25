@@ -1,0 +1,75 @@
+﻿@model IEnumerable<mostaan2.Model.gharardad>
+
+
+<div style="display:flex;align-items: center;justify-content: space-between;">
+    <h1 class="pageHeading" style="">
+        لیست  قرارداد
+    </h1>
+    <p onclick="gharardadFormbtn()" class="btn-grad">
+        مورد جدید
+    </p>
+
+</div>
+<main>
+    <table>
+        <thead>
+            <tr>
+
+                <th>
+                    شرح هزینه
+                </th>
+                <th>
+                    هزینه ریالی
+                </th>
+
+                <th>
+                    هزینه دلاری
+                </th>
+                <th>
+                   مرحله
+                </th>
+
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+            <tr name="deletGharardad" id="@item.ID">
+
+
+                <td>
+                    @item.title
+                </td>
+
+                <td>
+                    @String.Format("{0:n0}", @item.kollPR)
+
+                </td>
+                <td>
+                    @String.Format("{0:n0}", @item.kollPD)
+
+                </td>
+                <td>
+                    @item.level
+                </td>
+                <td class="btn-grad gradBotton remove" onclick="showRemoveModal(this)">
+                    حذف
+                </td>
+
+
+            </tr>
+                }
+            }
+
+
+
+
+        </tbody>
+    </table>
+
+</main>

@@ -1,0 +1,1548 @@
+﻿@model mostaan2.ViewModel.showReportVM
+@{
+    ViewBag.Title = "check_List";
+}
+<link href="~/Content/persian-datepicker.css" rel="stylesheet" />
+@{ 
+    string disable = Model.isFianl == true ? "none" : "";
+}
+
+<p style="display:none" id="isfinal">@Model.isFianl</p>
+<div class="formParent" id="gamForm">
+    <div class="middlParent " style="">
+        <div id="formHolder">
+            <link href="~/Content/formStyle.css" rel="stylesheet" />
+            <div class="containerr">
+                <form>
+                    <p>افزودن گام جدید</p>
+                    <div style="display:flex">
+                        <input id="onvan" placeholder="عنوان اصلی فعالیت"><br>
+                        <input id="gamasli" placeholder="گام اصلی"><br>
+                        <input id="sharh" placeholder="شرح فعالیت اصلی"><br>
+                    </div>
+                    <div style="display:flex">
+
+                        <input id="modat" placeholder="مدت زمان تقریبی (ماه)"><br>
+                        <input id="darsad" placeholder="درصد وزنی فعالیت"><br>
+                    </div>
+                    <div style="display:flex">
+                        <input id="dastavard" placeholder="دستاورد"><br>
+                        <input id="hazine" placeholder="هزینه" class="inputnumber"><br>
+
+                    </div>
+
+
+                    <input style="display:none;" id="checkID" value="0"><br>
+                    <input  onclick="btncheckAdd()" type="button" value="تایید"><br>
+
+                </form>
+
+                <div class="drops">
+                    <div class="drop drop-1"></div>
+                    <div class="drop drop-2"></div>
+                    <div class="drop drop-3"></div>
+                    <div class="drop drop-4"></div>
+                    <div class="drop drop-5"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="formParent" id="ejrForm">
+    <div class="middlParent " style="">
+        <div id="formHolder">
+            <link href="~/Content/formStyle.css" rel="stylesheet" />
+            <div class="containerr">
+                <form>
+                    <p>افزودن اجراییات جدید</p>
+                    <div style="display:flex">
+                        <input id="ejratitle" placeholder="عنوان "><br>
+                        <input id="ejraDollary" placeholder="هزینه دلاری" class="inputnumber"><br>
+                        <input id="ejrarially" placeholder="هزینه ریالی" class="inputnumber"><br>
+                    </div>
+
+
+                    <input onclick="btnejraiatAdd()" type="button" value="تایید"><br>
+
+                </form>
+
+                <div class="drops">
+                    <div class="drop drop-1"></div>
+                    <div class="drop drop-2"></div>
+                    <div class="drop drop-3"></div>
+                    <div class="drop drop-4"></div>
+                    <div class="drop drop-5"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="formParent" id="edariForm">
+    <div class="middlParent " style="">
+        <div id="formHolder">
+            <link href="~/Content/formStyle.css" rel="stylesheet" />
+            <div class="containerr">
+                <form>
+                    <p>افزودن اداری جدید</p>
+                    <div style="display:flex">
+                        <input id="edarititle" placeholder="عنوان "><br>
+                        <input id="edariDollary" placeholder="هزینه دلاری" class="inputnumber"><br>
+                        <input id="edaririally" placeholder="هزینه ریالی" class="inputnumber"><br>
+                    </div>
+                    <input onclick="btnEdariAdd()" type="button" value="تایید"><br>
+
+                </form>
+
+                <div class="drops">
+                    <div class="drop drop-1"></div>
+                    <div class="drop drop-2"></div>
+                    <div class="drop drop-3"></div>
+                    <div class="drop drop-4"></div>
+                    <div class="drop drop-5"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="formParent" id="sarmayeForm">
+    <div class="middlParent " style="">
+        <div id="formHolder">
+            <link href="~/Content/formStyle.css" rel="stylesheet" />
+            <div class="containerr">
+                <form>
+                    <p>افزودن سرمایه جدید</p>
+
+                    <div style="display:flex">
+                        <input id="sarmayetitle" placeholder="عنوان "><br>
+                        <input id="sarmayeCreatorCo" placeholder="شرکت تولید کننده "><br>
+                        <input id="sarmayeCount" placeholder="تعداد"><br>
+                    </div>
+                    <div style="display:flex">
+
+                        <input id="Rialysarmaye" placeholder="هزینه واحد ریالی" class="inputnumber"><br>
+                        <input id="Dollrysarmaye" placeholder="هزینه واحد دلاری" class="inputnumber"><br>
+
+
+                    </div>
+
+                    <input onclick="btnSarmayeAdd()" type="button" value="تایید"><br>
+
+                </form>
+
+                <div class="drops">
+                    <div class="drop drop-1"></div>
+                    <div class="drop drop-2"></div>
+                    <div class="drop drop-3"></div>
+                    <div class="drop drop-4"></div>
+                    <div class="drop drop-5"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="formParent" id="masrafiForm">
+    <div class="middlParent " style="">
+        <div id="formHolder">
+            <link href="~/Content/formStyle.css" rel="stylesheet" />
+            <div class="containerr">
+                <form>
+                    <p>افزودن مصرفی جدید</p>
+
+                    <div style="display:flex">
+                        <input id="masrafititle" placeholder="عنوان "><br>
+                        <input id="masrafiCreatorCo" placeholder="شرکت تولید کننده "><br>
+                        <input id="masrafiCount" placeholder="تعداد"><br>
+                    </div>
+                    <div style="display:flex">
+
+                        <input id="Rialymasrafi" placeholder="هزینه واحد ریالی" class="inputnumber"><br>
+                        <input id="Dollrymasrafi" placeholder="هزینه واحد دلاری" class="inputnumber"><br>
+
+                    </div>
+                    <input onclick="btnMasrafiAdd()" type="button" value="تایید"><br>
+
+                </form>
+
+                <div class="drops">
+                    <div class="drop drop-1"></div>
+                    <div class="drop drop-2"></div>
+                    <div class="drop drop-3"></div>
+                    <div class="drop drop-4"></div>
+                    <div class="drop drop-5"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="formParent" id="omraniForm">
+    <div class="middlParent " style="">
+        <div id="formHolder">
+            <link href="~/Content/formStyle.css" rel="stylesheet" />
+            <div class="containerr">
+                <form>
+                    <p>افزودن عمرانی جدید</p>
+
+                    <div style="display:flex">
+                        <input id="omraniSharh" placeholder="شرح ساختمان "><br>
+                        <input id="omarniRialy" placeholder="هزینه ریالی " class="inputnumber"><br>
+                        <input id="omraniDolari" placeholder="هزینه دلاری" class="inputnumber"><br>
+                    </div>
+                    <div style="display:flex">
+
+                        <input id="omarniZirbana" placeholder="زیربنا"><br>
+
+
+                    </div>
+                    <input onclick="btnOmraniAdd()" type="button" value="تایید"><br>
+
+                </form>
+
+                <div class="drops">
+                    <div class="drop drop-1"></div>
+                    <div class="drop drop-2"></div>
+                    <div class="drop drop-3"></div>
+                    <div class="drop drop-4"></div>
+                    <div class="drop drop-5"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="formParent" id="gharardadForm">
+    <div class="middlParent " style="">
+        <div id="formHolder">
+            <link href="~/Content/formStyle.css" rel="stylesheet" />
+            <div class="containerr">
+                <form>
+                    <p>افزودن قرارداد جدید</p>
+
+                    <div style="display:flex">
+                        <input id="ghararSharh" placeholder="شرح هزینه "><br>
+                        <input id="ghararRialy" placeholder="هزینه ریالی " class="inputnumber"><br>
+                        <input id="ghararDolari" placeholder="هزینه دلاری" class="inputnumber"><br>
+                    </div>
+                    <div style="display:flex">
+
+                        <input id="ghararMarhale" placeholder="مرحله"><br>
+
+
+                    </div>
+                    <input onclick="btnGharardadAdd()" type="button" value="تایید"><br>
+
+                </form>
+
+                <div class="drops">
+                    <div class="drop drop-1"></div>
+                    <div class="drop drop-2"></div>
+                    <div class="drop drop-3"></div>
+                    <div class="drop drop-4"></div>
+                    <div class="drop drop-5"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="formParent" id="mavadForm">
+    <div class="middlParent " style="">
+        <div id="formHolder">
+            <link href="~/Content/formStyle.css" rel="stylesheet" />
+            <div class="containerr">
+                <form>
+                    <p>افزودن سایر جدید</p>
+
+                    <div style="display:flex">
+                        <input id="mavadtitle" placeholder="عنوان "><br>
+                        <input id="mavadCreatorCo" placeholder="شرکت تولید کننده "><br>
+                        <input id="mavadCount" placeholder="تعداد"><br>
+                    </div>
+                    <div style="display:flex">
+
+                        <input id="Rialymavad" placeholder="هزینه واحد ریالی" class="inputnumber"><br>
+                        <input id="Dollrymavad" placeholder="هزینه واحد دلاری" class="inputnumber"><br>
+
+                    </div>
+                    <input onclick="btnMavadAdd()" type="button" value="تایید"><br>
+
+                </form>
+
+                <div class="drops">
+                    <div class="drop drop-1"></div>
+                    <div class="drop drop-2"></div>
+                    <div class="drop drop-3"></div>
+                    <div class="drop drop-4"></div>
+                    <div class="drop drop-5"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="formParent" id="sayerForm">
+    <div class="middlParent " style="">
+        <div id="formHolder">
+            <link href="~/Content/formStyle.css" rel="stylesheet" />
+            <div class="containerr">
+                <form>
+                    <p>افزودن سایر جدید</p>
+
+                    <div style="display:flex">
+                        <input id="sayertitle" placeholder="عنوان "><br>
+                        <input id="sayerCreatorCo" placeholder="شرکت تولید کننده "><br>
+                        <input id="sayerCount" placeholder="تعداد"><br>
+                    </div>
+                    <div style="display:flex">
+
+                        <input id="Rialysayer" placeholder="هزینه واحد ریالی" class="inputnumber"><br>
+                        <input id="Dollrysayer" placeholder="هزینه واحد دلاری" class="inputnumber"><br>
+
+                    </div>
+                    <input onclick="btnSayerAdd()" type="button" value="تایید"><br>
+
+                </form>
+
+                <div class="drops">
+                    <div class="drop drop-1"></div>
+                    <div class="drop drop-2"></div>
+                    <div class="drop drop-3"></div>
+                    <div class="drop drop-4"></div>
+                    <div class="drop drop-5"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="formParent" id="tashvighiForm">
+    <div class="middlParent " style="">
+        <div id="formHolder">
+            <link href="~/Content/formStyle.css" rel="stylesheet" />
+            <div class="containerr">
+                <form>
+                    <p>افزودن تشویقی جدید</p>
+
+                    <div style="display:flex">
+                        <input id="tashvighiSharh" placeholder="شرح هزینه "><br>
+                        <input id="tashvighiRialy" placeholder="هزینه ریالی " class="inputnumber"><br>
+                        <input id="tashvighiDolari" placeholder="هزینه دلاری" class="inputnumber"><br>
+                    </div>
+
+                    <input onclick="btnTashvighiAdd()" type="button" value="تایید"><br>
+
+                </form>
+
+                <div class="drops">
+                    <div class="drop drop-1"></div>
+                    <div class="drop drop-2"></div>
+                    <div class="drop drop-3"></div>
+                    <div class="drop drop-4"></div>
+                    <div class="drop drop-5"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="formParent" id="removePopUp">
+    <div class="middlParent " style="">
+        <div id="formHolder">
+            <link href="~/Content/formStyle.css" rel="stylesheet" />
+            <div class="containerr">
+                <form style="padding:2em">
+                    <p style="font-size:16px; font-weight:500;margin-bottom:20px">آیا از حذف آیتم مورد نظر اطمینان دارید</p>
+                    <div style="display:flex;margin-bottom: -40px;margin-top: 40px;">
+                        <input onclick="verifyRemove()" type="button" value="تایید"><br>
+                        <input id="cancelRemove" type="button" value="لغو"><br>
+
+                    </div>
+
+
+                </form>
+
+                <div class="drops">
+                    <div class="drop drop-1"></div>
+                    <div class="drop drop-2"></div>
+                    <div class="drop drop-3"></div>
+                    <div class="drop drop-5"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="morphism" style="">
+    <link href="~/Content/custom.css" rel="stylesheet" />
+
+
+
+
+    <div style="display:flex;height:100%">
+         @{Html.RenderAction("menu", "Home");}
+
+
+
+
+
+
+
+
+        <div style="flex:1; padding:20px ; width:80%">
+
+            <ul class="nav nav-tabs" style="display:flex; margin-bottom:30px">
+                <li style="float:none" class="active"><a data-toggle="tab" href="#home">تعریف</a></li>
+                <li style="float:none"><a data-toggle="tab" href="#newgamSection">گام های پروژه</a></li>
+                <li style="float:none"><a data-toggle="tab" href="#ejraeeatSection">اجراییات سازمان</a></li>
+                <li style="float:none"><a data-toggle="tab" href="#personeliSection">پرسنلی</a></li>
+                <li style="float:none"><a data-toggle="tab" href="#sarmayeSection">سرمایه ای</a></li>
+                <li style="float:none"><a data-toggle="tab" href="#masrafiSection">مصرفی</a></li>
+                <li style="float:none"><a data-toggle="tab" href="#edariSection">اداری و پشتیبانی</a></li>
+                <li style="float:none"><a data-toggle="tab" href="#omraniSection">عمرانی و تاسیساتی</a></li>
+                <li style="float:none"><a data-toggle="tab" href="#gharardadSection">قراردادهای جنبی</a></li>
+                <li style="float:none"><a data-toggle="tab" href="#mavadSection">مواد اولیه</a></li>
+                <li style="float:none"><a data-toggle="tab" href="#sayerSection">سایر</a></li>
+                <li style="float:none"><a data-toggle="tab" href="#tashvighiSection">تشویقی</a></li>
+                <li style="float:none"><a data-toggle="tab" href="#commentSection">نظرات</a></li>
+                <li style="float:none"><a data-toggle="tab" href="#fileSection">فایل ها</a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="home" class="tab-pane fade in active">
+                    <div class="formsection">
+                        <form id="setReportInfo" action="/Home/SetNewInfo" style="box-shadow:none">
+                            <main>
+                                <table>
+                                    <thead>
+                                        <tr class="formTr">
+
+                                            <th>
+                                                هدف
+                                            </th>
+                                            <th>
+                                                عنوان
+                                            </th>
+
+                                            <th>
+                                                پیش بینی
+                                            </th>
+                                            <th>
+                                                مرکز
+                                            </th>
+
+                                        </tr>
+                                    </thead>
+
+
+                                    <tbody>
+                                        <tr class="formTr">
+
+
+                                            <td>
+                                                <input name="hadaf" class="inputForm" value="@Model.hadaf" />
+                                            </td>
+                                            <td>
+                                                <input name="title" class="inputForm" value="@Model.title" />
+                                            </td>
+                                            <td>
+                                                <input name="datePishbini" class="inputForm" value="@Model.datePishbini" />
+                                            </td>
+
+                                            <td>
+                                                @Html.DropDownList("markazcombo", new SelectList(Model.markazList, "ID", "Title"), "انتخاب مرکز", new { @class = "inputForm", id = "markazcombo", name = "markazcombo" })
+                                            </td>
+
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+
+                            </main>
+                            <main>
+                                <table>
+                                    <thead>
+                                        <tr class="formTr">
+
+
+                                            <th>
+                                                دستگاه
+                                            </th>
+
+                                            <th>
+                                                طراح
+                                            </th>
+                                            <th>
+                                                تاریخ شروع
+                                            </th>
+                                            <th>
+                                                تاریخ پایان
+                                            </th>
+
+                                        </tr>
+                                    </thead>
+
+
+                                    <tbody>
+                                        <tr class="formTr">
+
+
+
+                                            <td>
+                                                @Html.DropDownList("dastgah", new SelectList(Model.markazList, "ID", "Title"), "انتخاب دستگاه", new { @class = "inputForm", id = "dastgah", name = "dastgah" })
+                                            </td>
+                                            <td>
+                                                @Html.DropDownList("tarah", new SelectList(Model.userlist, "ID", "name"), "طراح", new { @class = "inputForm", id = "tarah", name = "tarah" })
+                                            </td>
+                                            <td>
+                                                <input name="startDate" id="startDate" class="inputForm " value="@Model.startDate" disabled />
+                                            </td>
+                                            <td>
+                                                <input name="endDate" id="endDate" class="inputForm " value="@Model.endDate" disabled />
+                                                <input name="ID" hidden value="@Model.itemID" />
+                                            </td>
+
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+
+                            </main>
+                        </form>
+
+
+
+                    </div>
+
+
+
+                    @if (Model.isFianl == true)
+                    {
+                        <div class="moneySection" style="margin-top:50px">
+                            <main>
+                                <table>
+                                    <thead>
+                                        <tr>
+
+                                            <th>
+                                                عنوان
+                                            </th>
+                                            <th>
+                                                پیش بینی ریالی
+                                            </th>
+
+                                            <th>
+                                                هزینه نهایی ریالی
+                                            </th>
+                                            <th>
+                                                پیش بینی دلاری
+                                            </th>
+
+                                            <th>
+                                                هزینه نهایی دلاری
+                                            </th>
+
+                                        </tr>
+                                    </thead>
+
+
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                اجراییات
+                                            </td>
+                                            <td>
+                                                @Model.prejraeeyat
+                                            </td>
+                                            <td>
+                                                @Model.hrejrayiat
+                                            </td>
+                                            <td>
+                                                @Model.pdejraiat
+                                            </td>
+                                            <td>
+                                                @Model.hdejraeiat
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                سرمایه ای
+                                            </td>
+                                            <td>
+                                                @Model.prsarmaye
+                                            </td>
+                                            <td>
+                                                @Model.hrsarmaye
+                                            </td>
+                                            <td>
+                                                @Model.pdsarmaye
+                                            </td>
+                                            <td>
+                                                @Model.hdsarmaye
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                مصرفی
+                                            </td>
+                                            <td>
+                                                @Model.prmasrafi
+                                            </td>
+                                            <td>
+                                                @Model.hrmasrafi
+                                            <td>
+                                                @Model.pdmasrafi
+                                            </td>
+                                            <td>
+                                                @Model.hdmasrafi
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                اداری
+                                            </td>
+                                            <td>
+                                                @Model.predari
+                                            </td>
+                                            <td>
+                                                @Model.hredari
+                                            </td>
+                                            <td>
+                                                @Model.pdedari
+                                            </td>
+                                            <td>
+                                                @Model.hdedari
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                عمرانی
+                                            </td>
+                                            <td>
+                                                @Model.promrani
+                                            </td>
+                                            <td>
+                                                @Model.promrani
+                                            </td>
+                                            <td>
+                                                @Model.promrani
+                                            </td>
+                                            <td>
+                                                @Model.hdomrani
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                قرارداد
+                                            </td>
+                                            <td>
+                                                @Model.prgharardad
+                                            </td>
+                                            <td>
+                                                @Model.hrgharardad
+                                            </td>
+                                            <td>
+                                                @Model.pdgharardad
+                                            </td>
+                                            <td>
+                                                @Model.hdgharardad
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                مواد اولیه
+                                            </td>
+                                            <td>
+                                                @Model.pravalie
+                                            </td>
+                                            <td>
+                                                @Model.hravalie
+                                            </td>
+                                            <td>
+                                                @Model.pdavalie
+                                            </td>
+                                            <td>
+                                                @Model.hdavalie
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                سایر
+                                            </td>
+                                            <td>
+                                                @Model.prsayer
+                                            </td>
+                                            <td>
+                                                @Model.hrsayer
+                                            </td>
+                                            <td>
+                                                @Model.pdsayer
+                                            </td>
+                                            <td>
+                                                @Model.hdsayer
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                تشویقی
+                                            </td>
+                                            <td>
+                                                @Model.prtashvighi
+                                            </td>
+                                            <td>
+                                                @Model.hrtashvighi
+                                            </td>
+                                            <td>
+                                                @Model.pdtashvighi
+                                            </td>
+                                            <td>
+                                                @Model.hdtashvighi
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </main>
+                        </div>
+                    }
+
+
+                    <div>
+                        <p id="addNewForm" class="btn-grad" style="margin:30px auto">
+                            تایید
+                        </p>
+                    </div>
+
+                </div>
+
+                <div id="newgamSection" class="tab-pane fade">
+                    <div id="gamsection">
+                        @Html.Partial("/Views/Shared/_gam.cshtml", Model.shenasnameGamList)
+
+                    </div>
+                </div>
+                <div id="ejraeeatSection" class="tab-pane fade">
+
+                    @Html.Partial("/Views/Shared/_Ejra.cshtml", Model.ejraiatlist)
+
+
+                </div>
+                <div id="personeliSection" class="tab-pane fade">
+
+
+                    @Html.Partial("/Views/Shared/_personel.cshtml", Model);
+
+
+                </div>
+                <div id="sarmayeSection" class="tab-pane fade">
+                    @Html.Partial("/Views/Shared/_sarmaye.cshtml", Model.sarmayelist)
+                </div>
+                <div id="masrafiSection" class="tab-pane fade">
+                    @Html.Partial("/Views/Shared/_masrafi.cshtml", Model.masrafilist)
+
+                </div>
+                <div id="edariSection" class="tab-pane fade">
+                    @Html.Partial("/Views/Shared/_edari.cshtml", Model.edarilist)
+                </div>
+                <div id="omraniSection" class="tab-pane fade">
+                    @Html.Partial("/Views/Shared/_omrani.cshtml", Model.omranilist)
+                </div>
+                <div id="gharardadSection" class="tab-pane fade">
+                    @Html.Partial("/Views/Shared/_gharardad.cshtml", Model.gharardadlist)
+                </div>
+                <div id="mavadSection" class="tab-pane fade">
+                    @Html.Partial("/Views/Shared/_mavad.cshtml", Model.mavadlist)
+                </div>
+                <div id="sayerSection" class="tab-pane fade">
+                    @Html.Partial("/Views/Shared/_sayer.cshtml", Model.sayerlist)
+                </div>
+                <div id="tashvighiSection" class="tab-pane fade">
+                    @Html.Partial("/Views/Shared/_tashvighi.cshtml", Model.tashvighilist)
+                </div>
+
+                <div id="commentSection" class="tab-pane fade">
+
+                    <form>
+
+                        <p>نظرات</p>
+                        <textarea id="projectComment" cols="8" style="width:100%; height:300px ; border-radius:20px">@Model.comment</textarea>
+
+                    </form>
+
+                    <div>
+                        <p id="addNewComment" class="btn-grad" style="margin:30px auto">
+                            تایید
+                        </p>
+                    </div>
+                </div>
+                <div id="fileSection" class="tab-pane fade">
+                    <form id="setFileInfo" method="post" action="/Home/SetFileInfo" style="box-shadow:none" enctype="multipart/form-data">
+                        <input name="file" id="fileUplad" type="file" style="display:none" />
+                        <input name="itemID" id="itemID" type="text" value="@Model.itemID" style="display:none" />
+
+                        <main>
+                            <table>
+                                <thead>
+                                    <tr class="formTr">
+
+                                        <th>
+                                            عنوان فایل
+                                        </th>
+                                        <th>
+                                            نمایش
+                                        </th>
+                                        <th></th>
+                                        <th class="setFile">
+                                            بارگذاری
+                                        </th>
+                                        <th></th>
+                                        <th class="verifyFile">
+                                            تایید
+                                        </th>
+
+                                    </tr>
+                                </thead>
+
+
+                                <tbody>
+                                    <tr class="formTr">
+
+
+                                        <td >
+                                            <select id="catName" name="catName" style="margin: 0;font-size: 12px;height: initial;">
+                                                <option> بایگانی موارد </option>
+                                                <option> قرارداد</option>
+                                                <option>متمم </option>
+                                                <option>  پیوست متنی </option>
+                                                <option> لیست مواد </option>
+                                                <option> گانت چارت </option>
+                                                <option>  مجوز ستاد کل</option>
+                                                <option>   گزارش پیشرفت</option>
+                                            </select>
+                                        </td>
+                                        <td class="btn-grad gradBotton" onclick="showFile()">
+                                            نمایش
+                                        </td>
+                                        <td style="width:0"></td>
+                                        <td class="btn-grad gradBotton" onclick="showFileUpload()">
+                                            بارگذاری
+                                        </td>
+                                        <td style="width:0"></td>
+                                        <td class="btn-grad gradBotton" onclick="FileUploadSubmibt()">
+                                            تایید
+                                        </td>
+
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+                            <div style="margin-top:20px" class="FileParent"></div>
+                        </main>
+
+                    </form>
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+@section scripts{
+    <script>
+        var isFinal = $("#isfinal").text();
+    </script>
+    @if (ViewBag.message == "1")
+    {
+
+        <script>
+           
+           
+            toastr.options = {
+            "debug": false,
+            "positionClass": "toast-top-full-width",
+            "onclick": null,
+            "fadeIn": 300,
+            "fadeOut": 1000,
+            "timeOut": 1500,
+            "extendedTimeOut": 1000,
+            };
+            toastr.success(' تغییرات با موفقیت ثبت شد');
+        </script>
+    }
+
+    <script>
+
+        $("#markazcombo option").each(function () {
+            if ($(this).val() == '@Model.markaz')
+                $(this).attr("selected", "selected")
+        })
+        $("#dastgah option").each(function () {
+            if ($(this).val() == '@Model.dastgah')
+                $(this).attr("selected", "selected")
+        })
+         $("#tarah option").each(function () {
+            if ($(this).val() == '@Model.tarah')
+                $(this).attr("selected", "selected")
+        })
+    </script>
+    <script>
+        function showRemoveModal(el) {
+            if (isFinal == "True") {
+                return;
+            }
+            tobedeleted = $(el).parent().attr('id');
+            actionName = $(el).parent().attr('name');
+            $("#removePopUp").show();
+
+        }
+        function verifyRemove() {
+            var url = "/home/" + actionName;
+            $.ajax({
+                url: url,
+                data: {
+                    id: tobedeleted
+                },
+                success: function (data) {
+                    $("#removePopUp").hide();
+
+                    switch (actionName) {
+                        case "deletGam":
+                            $("#gamsection").html(data);
+                            return;
+                        case "deletEjra":
+                            $("#ejraeeatSection").html(data);
+                            return;
+                        case "deletEdari":
+                            $("#edariSection").html(data);
+                        case "deletSarmaye":
+                            $("#sarmayeSection").html(data);
+                            return;
+                        case "deletMasrafi":
+                            $("#masrafiSection").html(data);
+                            return;
+                        case "deletOmrani":
+                            $("#omraniSection").html(data);
+                            return;
+                        case "deletSayer":
+                            $("#sayerSection").html(data);
+                            return;
+                        case "deletMavad":
+                            $("#mavadSection").html(data);
+                            return;
+                        case "deletTashvighi":
+                            $("#tashvighiSection").html(data);
+                            return;
+                        case "deletGharardad":
+                            $("#gharardadSection").html(data);
+                            return;
+
+                        default:
+                        // code block
+                    }
+                }
+
+            })
+        }
+        let actionName = "";
+        let tobedeleted = "";
+        $(".formParent").click(function () {
+            $(this).hide();
+            //$(".formParent").toggle();
+        })
+
+        $(".formParent form").click(function () {
+            event.stopPropagation();
+        })
+
+        $("#cancelRemove").click(function () {
+            $("#removePopUp").hide();
+        })
+
+    </script>
+    <script>
+
+        function gamFormbtn() {
+            if (isFinal == "True") {
+                return;
+            }
+            $("#name").val("")
+            $("#shomareHesab").val("");
+            $("#checkID").val("0");
+            $("#gamForm").toggle();
+        };
+
+
+        function btncheckAdd() {
+
+            var onvan = $("#onvan").val();
+            var gamasli = $("#gamasli").val();
+            var sharh = $("#sharh").val();
+            var modat = $("#modat").val();
+            var darsad = $("#darsad").val();
+            var dastavard = $("#dastavard").val();
+            var hazine = $("#hazine").val();
+            var ID = '@Model.itemID';
+            $.ajax({
+
+                url: "/Home/addGam",
+                data: {
+                    ID: ID,
+                    onvan: onvan,
+                    gamasli: gamasli,
+                    sharh: sharh,
+                    modat: modat,
+                    darsad: darsad,
+                    dastavard: dastavard,
+                    hazine: hazine,
+                },
+                success: function (data) {
+                    $("#gamForm").toggle();
+                    $("#gamsection").html(data);
+                   $("#onvan").val("");
+                     $("#gamasli").val("");
+                    $("#sharh").val("");
+                    $("#modat").val("");
+                  $("#darsad").val("");
+                     $("#dastavard").val("");
+                    $("#hazine").val("");
+
+                }
+
+            })
+        }
+
+
+    </script>
+    <script>
+        function ejRaiatFormbtn() {
+            if (isFinal == "True") {
+                return;
+            }
+            $("#ejraDollary").val("")
+            $("#ejrarially").val("");
+            $("#ejratitle").val("");
+
+            $("#ejrForm").toggle();
+        }
+        function btnejraiatAdd() {
+             var dollaryP = $("#ejraDollary").val();
+            var riallyP = $("#ejrarially").val();
+            var title = $("#ejratitle").val();
+
+            var ID = '@Model.itemID';
+            $.ajax({
+
+                url: "/Home/addejraeeat",
+                data: {
+                    ID: ID,
+                    dollaryP: dollaryP,
+                    riallyP: riallyP,
+                    ejratitle: title,
+                },
+                success: function (data) {
+
+
+                    $("#ejraeeatSection").html(data);
+                    $("#ejrForm").toggle();
+                   // window.location.reload();
+                }
+
+            })
+        }
+
+    </script>
+    <script>
+       
+       
+        function edariFormbtn() {
+
+            $("#edariDollary").val("")
+            $("#edaririally").val("");
+            $("#edarititle").val("");
+            if (isFinal != "True") {
+                $("#edariForm").toggle();
+            }
+           
+        }
+        function btnEdariAdd() {
+             var dollaryP = $("#edariDollary").val();
+            var riallyP = $("#edaririally").val();
+            var title = $("#edarititle").val();
+
+            var ID = '@Model.itemID';
+            $.ajax({
+
+                url: "/Home/addedari",
+                data: {
+                    ID: ID,
+                    dollari: dollaryP,
+                    rially: riallyP,
+                    title: title,
+                },
+                success: function (data) {
+
+
+                    $("#edariSection").html(data);
+                    $("#edariForm").toggle();
+                   // window.location.reload();
+                }
+
+            })
+        }
+
+    </script>
+    <script>
+        function sarmayeFormbtn() {
+            $("#sarmayetitle").val("")
+            $("#sarmayeCreatorCo").val("");
+            $("#sarmayeCount").val("");
+            $("#Dollrysarmaye").val("");
+            $("#Rialysarmaye").val("");
+            if (isFinal != "True") {
+                $("#sarmayeForm").toggle();
+            }
+           
+
+        }
+        function btnSarmayeAdd() {
+            var sarmayetitle = $("#sarmayetitle").val();
+            var sarmayeCreatorCo = $("#sarmayeCreatorCo").val();
+            var sarmayeCount = $("#sarmayeCount").val();
+            var sarmayeRialy = $("#Rialysarmaye").val();
+            var sarmayeDollry = $("#Dollrysarmaye").val();
+
+            var ID = '@Model.itemID';
+            $.ajax({
+
+                url: "/Home/addsarmaye",
+                data: {
+                    ID: ID,
+                    title: sarmayetitle,
+                    Ctitle: sarmayeCreatorCo,
+                    count: sarmayeCount,
+                    vahedrially: sarmayeRialy,
+                    vaheddollary: sarmayeDollry,
+                },
+                success: function (data) {
+
+
+                    $("#sarmayeSection").html(data);
+                    $("#sarmayeForm").toggle();
+                   // window.location.reload();
+                }
+
+            })
+        }
+
+    </script>
+
+    <script>
+        function masrafiFormbtn() {
+            $("#masrafititle").val("")
+            $("#masrafiCreatorCo").val("");
+            $("#masrafiCount").val("");
+            $("#Dollrymasrafi").val("");
+            $("#Rialymasrafi").val("");
+            if (isFinal != "True") {
+                $("#masrafiForm").toggle();
+            }
+        
+
+        }
+        function btnMasrafiAdd() {
+            var masrafititle = $("#masrafititle").val();
+            var masrafiCreatorCo = $("#masrafiCreatorCo").val();
+            var masrafiCount = $("#masrafiCount").val();
+            var Rialymasrafi = $("#Rialymasrafi").val();
+            var Dollrymasrafi = $("#Dollrymasrafi").val();
+
+            var ID = '@Model.itemID';
+            $.ajax({
+
+                url: "/Home/addMasrafi",
+                data: {
+                    ID: ID,
+                    title: masrafititle,
+                    Ctitle: masrafiCreatorCo,
+                    count: masrafiCount,
+                    vahedrially: Rialymasrafi,
+                    vaheddollary: Dollrymasrafi,
+                },
+                success: function (data) {
+
+
+                    $("#masrafiSection").html(data);
+                    $("#masrafiForm").toggle();
+                   // window.location.reload();
+                }
+
+            })
+        }
+
+    </script>
+    <script>
+        function omraniFormbtn() {
+
+            $("#omraniSharh").val("")
+            $("#omarniRialy").val("");
+            $("#omraniDolari").val("");
+            $("#omarniZirbana").val("");
+            if (isFinal != "True") {
+                $("#omraniForm").toggle();
+            }
+           
+
+        }
+        function btnOmraniAdd() {
+            var omraniSharh = $("#omraniSharh").val();
+            var omarniRialy = $("#omarniRialy").val();
+            var omraniDolari = $("#omraniDolari").val();
+            var omarniZirbana = $("#omarniZirbana").val();
+
+
+            var ID = '@Model.itemID';
+            $.ajax({
+
+                url: "/Home/addOmrani",
+                data: {
+                    ID: ID,
+                    title: omraniSharh,
+                    rially: omarniRialy,
+                    dollari: omraniDolari,
+                    zirbana: omarniZirbana,
+
+                },
+                success: function (data) {
+
+
+                    $("#omraniSection").html(data);
+                    $("#omraniForm").toggle();
+                   // window.location.reload();
+                }
+
+            })
+        }
+
+    </script>
+
+    <script>
+        function gharardadFormbtn() {
+
+            $("#ghararSharh").val("")
+            $("#ghararRialy").val("");
+            $("#ghararDolari").val("");
+            $("#ghararMarhale").val("");
+            if (isFinal != "True") {
+                $("#gharardadForm").toggle();
+            }
+            
+
+        }
+        function btnGharardadAdd() {
+            var ghararSharh = $("#ghararSharh").val();
+            var ghararRialy = $("#ghararRialy").val();
+            var ghararDolari = $("#ghararDolari").val();
+            var ghararMarhale = $("#ghararMarhale").val();
+
+
+            var ID = '@Model.itemID';
+            $.ajax({
+
+                url: "/Home/addghrardad",
+                data: {
+                    ID: ID,
+                    title: ghararSharh,
+                    rially: ghararRialy,
+                    dollari: ghararDolari,
+                    level: ghararMarhale,
+
+                },
+                success: function (data) {
+
+
+                    $("#gharardadSection").html(data);
+                    $("#gharardadForm").toggle();
+                   // window.location.reload();
+                }
+
+            })
+        }
+
+    </script>
+    <script>
+        function mavadFormbtn() {
+
+            $("#sayertitle").val("")
+            $("#sayerCreatorCo").val("");
+            $("#sayerCount").val("");
+            $("#Rialysayer").val("");
+            $("#Dollrysayer").val("");
+            if (isFinal != "True") {
+                $("#mavadForm").toggle();
+            }
+            
+
+        }
+        function sayerFormbtn() {
+
+            $("#sayertitle").val("")
+            $("#sayerCreatorCo").val("");
+            $("#sayerCount").val("");
+            $("#Rialysayer").val("");
+            $("#Dollrysayer").val("");
+            if (isFinal != "True") {
+                $("#sayerForm").toggle();
+            }
+           
+
+        }
+        function btnMavadAdd() {
+            var mavadtitle = $("#mavadtitle").val();
+            var mavadCreatorCo = $("#mavadCreatorCo").val();
+            var mavadCount = $("#mavadCount").val();
+            var Rialymavad = $("#Rialymavad").val();
+            var Dollrymavad = $("#Dollrymavad").val();
+
+
+            var ID = '@Model.itemID';
+            $.ajax({
+
+                url: "/Home/addmavad",
+                data: {
+                    ID: ID,
+                    title: mavadtitle,
+                    Ctitle: mavadCreatorCo,
+                    count: mavadCount,
+                    vahedrially: Rialymavad,
+                    vaheddollary: Dollrymavad,
+                },
+                success: function (data) {
+
+
+                    $("#mavadSection").html(data);
+                    $("#mavadForm").toggle();
+                   // window.location.reload();
+                }
+
+            })
+        }
+        function btnSayerAdd() {
+            var sayertitle = $("#sayertitle").val();
+            var sayerCreatorCo = $("#sayerCreatorCo").val();
+            var sayerCount = $("#sayerCount").val();
+            var Rialysayer = $("#Rialysayer").val();
+            var Dollrysayer = $("#Dollrysayer").val();
+
+
+            var ID = '@Model.itemID';
+            $.ajax({
+
+                url: "/Home/addsayer",
+                data: {
+                    ID: ID,
+                    title: sayertitle,
+                    Ctitle: sayerCreatorCo,
+                    count: sayerCount,
+                    vahedrially: Rialysayer,
+                    vaheddollary: Dollrysayer,
+                },
+                success: function (data) {
+
+
+                    $("#sayerSection").html(data);
+                    $("#sayerForm").toggle();
+                   // window.location.reload();
+                }
+
+            })
+        }
+
+    </script>
+    <script>
+        function tashvighiFormbtn() {
+
+            $("#tashvighiSharh").val("")
+            $("#tashvighiRialy").val("");
+            $("#tashvighiDolari").val("");
+
+            if (isFinal != "True") {
+                $("#tashvighiForm").toggle();
+            }
+           
+
+        }
+        function btnTashvighiAdd() {
+            var tashvighiSharh = $("#tashvighiSharh").val();
+            var tashvighiRialy = $("#tashvighiRialy").val();
+            var tashvighiDolari = $("#tashvighiDolari").val();
+
+
+
+            var ID = '@Model.itemID';
+            $.ajax({
+
+                url: "/Home/addtashvighi",
+                data: {
+                    ID: ID,
+                    title: tashvighiSharh,
+                    rially: tashvighiRialy,
+                    dollari: tashvighiDolari,
+
+                },
+                success: function (data) {
+
+
+                    $("#tashvighiSection").html(data);
+                    $("#tashvighiForm").toggle();
+                   // window.location.reload();
+                }
+
+            })
+        }
+
+    </script>
+
+
+
+    <script src="~/js/persian-date.min.js"></script>
+    <script src="~/js/persian-datepicker.js"></script>
+    <script>
+        $(function () {
+            $(".datePicker").pDatepicker({
+                format: 'YYYY/MM/DD',
+                // options & callbacks here
+            });
+        });
+    </script>
+    <script>
+
+        $("#addNewComment").click(function () {
+            if (isFinal == "True") {
+                return;
+            }
+
+            let itemID = $("#itemID").val();
+            let comment = $("#projectComment").val();
+
+
+            $.ajax({
+                url: "/Home/addComment",
+                data: {
+                    comment: comment,
+                    itemID: itemID
+                },
+                success: function (data) {
+                    toastr.options = {
+                        "debug": false,
+                        "positionClass": "toast-top-full-width",
+                        "onclick": null,
+                        "fadeIn": 300,
+                        "fadeOut": 1000,
+                        "timeOut": 1500,
+                        "extendedTimeOut": 1000,
+                    };
+                    toastr.success(' تغییرات با موفقیت ثبت شد');
+                }
+            })
+            //$.ajax({
+            //    url: "/Home/addComment",
+            //    data: {
+            //        comment: comment,
+            //        itemID: itemID
+
+            //    },
+            //    //success: function (data) {
+            //    //   alert("با موفقیت ثبت شد")
+            //    //}
+            //})
+        })
+        $("#addNewForm").click(function () {
+           
+            if (isFinal == "True") {
+                return;
+            }
+            $("#setReportInfo").submit();
+        })
+        $("#addOersonnelInfo").click(function () {
+            if (isFinal == "True") {
+                return;
+            }
+            $("#setPersonnelMoney").submit();
+        })
+
+        $(".pSibling").click(function () {
+
+            if (!$(this).hasClass("disabled")) {
+                $(this).hide();
+                $(this).siblings().show();
+            }
+        })
+        $(".personeliTable tbody tr td input").focusout(function () {
+            $(this).hide();
+            $(this).siblings().text($(this).val())
+            $(this).siblings().show();
+
+        })
+    </script>
+    <script>
+        function showFileUpload() {
+            $("#fileUplad").click();
+        }
+
+        function FileUploadSubmibt() {
+            $("#setFileInfo").submit();
+        }
+
+        function showFile() {
+            let catName = $("#catName").val();
+            let itemID = $("#itemID").val();
+            $.ajax({
+                url: "/Home/showItem",
+                data: {
+                    catName: catName,
+                    itemID: itemID
+                },
+                success: function (data) {
+                    $(".FileParent").html(data);
+                }
+            })
+        }
+    </script>
+    <script>
+
+        $(".menuItem").each(function () {
+            $(this).removeClass("menuItemActive");
+        })
+        var elm = $("#shenasname")
+        elm.addClass("menuItemActive");
+
+    </script>
+}
+
+

@@ -1,0 +1,94 @@
+﻿@model IEnumerable<mostaan2.Model.sarmaye>
+
+
+<div style="display:flex;align-items: center;justify-content: space-between;">
+    <h1 class="pageHeading" style="">
+        لیست  سرمایه
+    </h1>
+    <p onclick="sarmayeFormbtn()" class="btn-grad">
+        مورد جدید
+    </p>
+
+</div>
+<main>
+    <table>
+        <thead>
+            <tr>
+
+                <th>
+                    عنوان
+                </th>
+                <th>
+                    شرکت تولید کننده
+                </th>
+
+                <th>
+                    تعداد
+                </th>
+
+                <th>
+                    هزینه واحد ریالی
+                </th>
+
+                <th>
+                    هزینه کل ریالی
+                </th>
+                <th>
+                    هزینه واحد دلاری
+                </th>
+
+                <th>
+                    هزینه کل دلاری
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                  <tr name="deletSarmaye" id="@item.ID">
+
+                <td>
+                    @item.title
+                </td>
+
+                <td>
+                    @item.creatoreCo
+                </td>
+                <td>
+                    @item.count
+                </td>
+                <td>
+                    @String.Format("{0:n0}", @item.vahedPR)
+                   
+                </td>
+                <td>
+                    @String.Format("{0:n0}", @item.kollPR)
+                   
+                </td>
+                <td>
+                    @String.Format("{0:n0}", @item.vahedPD)
+                   
+                </td>
+                <td>
+                    @String.Format("{0:n0}", @item.kollPD)
+                    
+                </td>
+                <td class="btn-grad gradBotton remove" onclick="showRemoveModal(this)">
+                    حذف
+                </td>
+
+
+            </tr>
+                }
+            }
+
+
+
+
+        </tbody>
+    </table>
+
+</main>

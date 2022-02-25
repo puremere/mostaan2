@@ -1,0 +1,22 @@
+﻿@model IEnumerable<mostaan2.ViewModel.dropDownVM>
+
+@Html.DropDownList("bankList", new SelectList(Model, "ID", "Title"), "انتخاب  بانک", new { id = "bankList", name = "bankList"})
+
+
+
+<script>
+    $("#bankList").on("change", function () {
+
+        var id = $(this).val();
+       
+        $.ajax({
+            url: "getCheck",
+            data: {
+                id: id
+            }, success: function (data) {
+                $("#checkHolder").html(data)
+            }
+        });
+
+    })
+</script>

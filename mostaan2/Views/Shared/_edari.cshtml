@@ -1,0 +1,71 @@
+﻿@model IEnumerable<mostaan2.Model.edari>
+
+
+<div style="display:flex;align-items: center;justify-content: space-between;">
+    <h1 class="pageHeading" style="">
+        لیست  اداری
+    </h1>
+    <p onclick="edariFormbtn()" class="btn-grad">
+        مورد جدید
+    </p>
+
+</div>
+<main>
+    <table>
+        <thead>
+            <tr>
+
+                <th>
+                    عنوان
+                </th>
+                <th>
+                    هزینه ریالی
+                </th>
+
+                <th>
+                    هزینه دلاری
+                </th>
+
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <tr name="deletEdari" id="@item.ID">
+
+
+                        <td>
+                            @item.title
+                        </td>
+
+                        <td>
+                            @String.Format("{0:n0}", @item.kollPR)
+                          
+                        </td>
+                        <td>
+                            @String.Format("{0:n0}", @item.kollPD)
+
+                           
+                        </td>
+                      
+                        <td class="btn-grad gradBotton remove" onclick="showRemoveModal(this)">
+                            حذف
+                        </td>
+
+
+                    </tr>
+                }
+            }
+
+
+
+
+        </tbody>
+    </table>
+
+</main>

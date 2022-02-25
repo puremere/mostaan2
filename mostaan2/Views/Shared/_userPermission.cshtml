@@ -1,0 +1,70 @@
+﻿@model mostaan2.ViewModel.permissionVM
+
+
+
+<span style="hide"></span>
+<form style="padding:2em">
+    <p style="font-size:16px; font-weight:500;margin-bottom:20px">دسترسی مورد نظر را انتخاب کنید</p>
+
+   
+
+    <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="1" /><span>درآمد</span></div>
+    <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="2" /><span>هزینه</span></div>
+    <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="3" /><span>تامین</span></div>
+    <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="4" /><span>شناسنامه</span></div>
+    <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="5" /><span>کاربر</span></div>
+    <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="6" /><span>بخش</span></div>
+    <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="7" /><span>مرکز</span></div>
+    <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="8" /><span>کمیته</span></div>
+    <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="9" /><span>شماره حساب</span></div>
+    <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="10" /><span>چک</span></div>
+
+    <div style="display:flex;margin-bottom: -40px;margin-top: 40px;">
+        <input id="verifyPermision" type="button" value="تایید"><br>
+        <input id="cancelPermision" type="button" value="لغو"><br>
+
+    </div>
+
+
+</form>
+
+
+
+<script>
+    $("#cancelPermision").click(function () {
+        $("#permisionPopUp").hide();
+    })
+    $("#verifyPermision").click(function () {
+
+
+        let id = "";
+        $(".permistionInput").each(function () {
+            if ($(this).is(':checked')) {
+                id = id + $(this).val() + ",";
+            }
+        })
+
+        if (id != "") {
+            $.ajax({
+                url: "/Home/setPermision",
+                data: {
+                    id: id,
+                    userid :'@Model.id' 
+                },
+                success: function () {
+                    window.location.reload();
+                }
+            })
+        }
+    })
+</script>
+<script>
+    var model = @Html.Raw(Json.Encode(Model.lst));
+    var i;
+    
+    for (i = 0; i < model.length; ++i) {
+        $(".permistionInput[value='" + model[i]["serctionID"] +"']").prop('checked', true)
+        
+    }
+     
+</script>

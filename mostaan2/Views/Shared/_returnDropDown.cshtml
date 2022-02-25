@@ -1,0 +1,4 @@
+﻿@model IEnumerable<mostaan2.ViewModel.dropDownVM>
+
+@Html.DropDownList("onvanNumber", new SelectList(Model, "ID", "Title"), "انتخاب  عنوان", new { id = "onvanNumber", name = "onvanNumber", onclick="handlItem("+ @Model.First().classname + ")"  })
+

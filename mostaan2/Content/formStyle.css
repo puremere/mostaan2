@@ -1,0 +1,401 @@
+﻿html{
+ 
+}
+body {
+    background: url('/images/mesh-gradient.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    /*background: rgb(0,0,0);
+background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(21,21,29,1) 34%, rgba(111,111,111,1) 100%);*/
+    /*height: 100vh;
+    font-family: "Montserrat", sans-serif;*/
+}
+.morphism {
+       min-height:100%;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    position:absolute;
+    width:100%;
+    min-height:100%;
+    left:0;
+    top:0;
+}
+.containerr {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+}
+
+form {
+    background:  rgba(255, 255, 255, 0.3);
+    padding: 1.2em;
+    
+    border-radius: 20px;
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: relative;
+    transition: all 0.2s ease-in-out;
+}
+
+    form p {
+        font-weight: 500;
+        color: #000;
+        opacity: 0.7;
+        font-size: 1.4rem;
+        margin-top: 0;
+        margin-bottom: 60px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    form a {
+        text-decoration: none;
+        color: #ddd;
+        font-size: 12px;
+    }
+
+        form a:hover {
+            text-shadow: 2px 2px 6px #00000040;
+        }
+
+        form a:active {
+            text-shadow: none;
+        }
+
+
+
+    form input, form textarea {
+        background-color:white;
+        width: 200px;
+        padding: 1em;
+        margin-bottom: 2em;
+        border: none;
+        border-left: 1px solid rgba(255, 255, 255, 0.3);
+        border-top: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 5000px;
+        -webkit-backdrop-filter: blur(5px);
+        backdrop-filter: blur(5px);
+        
+        color: #000;
+       
+        font-weight: 500;
+        transition: all 0.2s ease-in-out;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        margin-left:10px;
+        font-family: 'IRANSans';
+    }
+
+
+        form input[type=email]:focus, form input[type=password]:focus {
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 4px 4px 60px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        form input[type=button] {
+            margin-top: 10px;
+            width: 150px;
+            font-size: 1.4rem;
+            font-family: 'IRANSans';
+        }
+
+            form input[type=button]:hover {
+                cursor: pointer;
+            }
+
+            form input[type=button]:active {
+                background: rgba(255, 255, 255, 0.2);
+            }
+
+
+
+
+    form select {
+        background: transparent;
+        width: 200px;
+        padding: 0.8em;
+        margin-bottom: 2em;
+        border: none;
+        border-left: 1px solid rgba(255, 255, 255, 0.3);
+        border-top: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 5000px;
+        -webkit-backdrop-filter: blur(5px);
+        backdrop-filter: blur(5px);
+        box-shadow: 4px 4px 60px rgba(0, 0, 0, 0.05);
+        color: #000;
+        font-weight: 500;
+        transition: all 0.2s ease-in-out;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        margin-left: 10px;
+        height: 55px;
+        font-family: 'IRANSans';
+    }
+
+        form select:hover {
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 4px 4px 60px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        form select[type=email]:focus, form select[type=password]:focus {
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 4px 4px 60px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        form select[type=button] {
+            margin-top: 10px;
+            width: 150px;
+            font-size: 1rem;
+        }
+
+            form select[type=button]:hover {
+                cursor: pointer;
+            }
+
+            form select[type=button]:active {
+                background: rgba(255, 255, 255, 0.2);
+            }
+
+    form:hover {
+        margin: 4px;
+    }
+
+.inputForm {
+    background: transparent;
+    width: 200px;
+    padding: 0.3em;
+    padding-right: 15px;
+    border: none;
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5000px;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    color: #000;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    margin-left: 10px;
+    font-family: 'IRANSans';
+    box-shadow:none
+}
+
+
+::-moz-placeholder {
+   
+    font-weight: 400;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+:-ms-input-placeholder {
+   
+    font-weight: 400;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+::placeholder {
+   
+    font-weight: 400;
+    color: #4d4d4d;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+
+}
+
+.drop {
+    background: rgba(255, 255, 255, 0.3);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 10px 10px 60px -8px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    transition: all 0.2s ease;
+}
+
+.drop-1 {
+    height: 80px;
+    width: 80px;
+    top: -20px;
+    left: -40px;
+    z-index: -1;
+}
+
+.drop-2 {
+    height: 80px;
+    width: 80px;
+    bottom: -30px;
+    right: -10px;
+}
+
+.drop-3 {
+    height: 100px;
+    width: 100px;
+    bottom: 120px;
+    right: -50px;
+    z-index: -1;
+}
+
+.drop-4 {
+    height: 120px;
+    width: 120px;
+    top: -60px;
+    right: -60px;
+}
+
+.drop-5 {
+    height: 60px;
+    width: 60px;
+    bottom: 170px;
+    left: 90px;
+    z-index: -1;
+}
+
+a,
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+.menuLeft {
+    background: rgba( 255, 255, 255, 0.65 );
+    box-shadow: 0 8px 32px 0 rgba( 255, 255, 255, 0.37 );
+    backdrop-filter: blur( 3.5px );
+    -webkit-backdrop-filter: blur( 3.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+
+
+.btn-grad {
+    background-image: linear-gradient(to right, #283048 0%, #859398 51%, #283048 100%)
+}
+
+.btn-grad {
+    margin: 10px;
+    padding: 10px 30px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    /*box-shadow: 0 0 20px #eee;*/
+    border-radius: 10px;
+    display: block;
+    width: 15%;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+    .btn-grad:hover {
+        background-position: right center; /* change the direction of the change here */
+        color: #fff;
+        text-decoration: none;
+    }
+.gradBotton {
+    width: 80%;
+    padding: 5px;
+    margin: auto;
+    margin-top: 7px;
+    font-size: 11px;
+}
+.menuItem {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-right:15px
+}
+.menuItem img{
+    width:60px;
+    height:60px
+}
+.titleHolder {
+    flex: 1;
+   
+    text-align:right;
+    margin-right:5px
+
+}
+.headerTitle{
+    font-size:14px;
+    font-weight:500;
+    text-align:right;
+    margin:0
+    
+}
+.headerJob {
+    font-size: 12px;
+    font-weight: 400;
+    color: #4d4d4d;
+    text-align: right;
+    margin: 0
+}
+.menuHeader {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+.imageMenuItem {
+    width: 20px !important;
+    height: 20px !important;
+}
+.TitleMenuItem{
+    text-align:right;
+    margin:0;
+    margin-right:10px;
+    font-size:16px
+}
+.menuItem a{
+    display:flex;
+    text-decoration:none
+}
+.menuItem:hover {
+    cursor: pointer
+}
+.formTr:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+.formTr td input:hover {
+    box-shadow: 4px 4px 60px 8px rgb(0 0 0 / 5%)
+}
+.menuItemActive {
+    background: linear-gradient( 90deg, rgba(189,12,12,1) 0%, rgba(255,255,255,0.1) 0%, rgba(238,238,238,1) 100%);
+}
+.personeliTable thead tr th{
+    border : 1px solid #eee;
+    font-size:12px
+}
+.personeliTable tbody tr td {
+    border: 1px solid #eee;
+    font-size:12px
+}
+    .personeliTable tbody tr td input {
+        width: 100px;
+        display:none;
+        margin:0;
+    }
+
+
+    
+    .personeliTable tbody tr td input.disabled,p.disabled{
+        background-color:#ddd;
+    }
+
+.personeliTable tbody tr td p{
+    width: 100px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    height: 30px;
+    margin: 0;
+}

@@ -1,0 +1,15 @@
+﻿@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: normal;
+    src: url('../fonts/faNum/eot/IRANSansWeb(FaNum).eot');
+    src: url('../fonts/faNum/eot/IRANSansWeb(FaNum).eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+    url('../fonts/faNum/woff2/IRANSansWeb(FaNum).woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/
+    url('../fonts/faNum/woff/IRANSansWeb(FaNum).woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+    url('../fonts/faNum/ttf/IRANSansWeb(FaNum).ttf') format('truetype');
+}
+
+h1, h2, h3, h4, h5, h6, input, textarea, a, p, span, li, th, text, option, select, button, td, div {
+    font-family: IRANSans;
+    color: #4d4d4d;
+}

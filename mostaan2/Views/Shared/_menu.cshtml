@@ -1,0 +1,117 @@
+﻿@model   mostaan2.ViewModel.menuVM
+
+
+
+<div class="menuLeft" style="padding-left:50px">
+    <div class=" menuHeader">
+        <img src="~/images/avatar.png" />
+        <div class="titleHolder">
+            <p class="headerTitle">@Model.name</p>
+            <p class="headerJob">@Model.jaygah</p>
+        </div>
+
+    </div>
+    @if (Model.lst.Contains("1,"))
+    {
+        <div class="menuItem" id="daramad">
+            <a href="/Home/income_List">
+                <img class="imageMenuItem" src="~/images/income.png" />
+                <p class="TitleMenuItem">درآمد</p>
+            </a>
+
+        </div>
+    }
+    @if (Model.lst.Contains("2,"))
+    {
+        <div class="menuItem" id="hazine">
+            <a href="/Home/outcome_List">
+                <img class="imageMenuItem" src="~/images/expences.png" />
+                <p class="TitleMenuItem">هزینه</p>
+            </a>
+
+        </div>
+    }
+
+    @if (Model.lst.Contains("3,"))
+    {<div class="menuItem" id="tamin">
+            <a href="/Home/tamin_List">
+                <img class="imageMenuItem" src="~/images/expences.png" />
+                <p class="TitleMenuItem">تامین</p>
+            </a>
+
+        </div>
+
+    }
+
+    @if (Model.lst.Contains("4,"))
+    {
+        <div class="menuItem" id="shenasname">
+            <a href="/Home/reportList">
+                <img class="imageMenuItem" src="~/images/shenasname.png" />
+                <p class="TitleMenuItem">شناسنامه</p>
+            </a>
+
+        </div>
+    }
+
+    @if (Model.lst.Contains("5,"))
+    {
+        <div class="menuItem" id="karbar">
+            <a href="/Home/User_List">
+                <img class="imageMenuItem" src="~/images/users.png" />
+                <p class="TitleMenuItem">کاربر</p>
+            </a>
+
+        </div>}
+
+    @if (Model.lst.Contains("6,"))
+    {
+        <div class="menuItem" id="bakhsh">
+            <a href="/Home/Bakhsh_List">
+                <img class="imageMenuItem" src="~/images/bakhsh.png" />
+                <p class="TitleMenuItem">بخش</p>
+            </a>
+
+        </div>}
+
+    @if (Model.lst.Contains("7,"))
+    {<div class="menuItem" id="markaz">
+            <a href="/Home/Markaz_List">
+                <img class="imageMenuItem" src="~/images/markaz.png" />
+                <p class="TitleMenuItem">مرکز</p>
+            </a>
+
+        </div>}
+
+    @if (Model.lst.Contains("8,"))
+    {
+        <div class="menuItem" id="komite">
+            <a href="/Home/Komite_List">
+                <img class="imageMenuItem" src="~/images/commite.png" />
+                <p class="TitleMenuItem">کمیته</p>
+            </a>
+
+        </div>}
+
+    @if (Model.lst.Contains("9,"))
+    {
+        <div class="menuItem" id="hesab">
+            <a href="/Home/bank_List">
+                <img class="imageMenuItem" src="~/images/banks.png" />
+                <p class="TitleMenuItem">شماره حساب ها</p>
+            </a>
+
+        </div>}
+
+    @if (Model.lst.Contains("10,"))
+    {
+        <div class="menuItem" id="check">
+            <a href="/Home/check_List">
+                <img class="imageMenuItem" src="~/images/check.png" />
+                <p class="TitleMenuItem">چک</p>
+            </a>
+
+        </div>}
+
+
+</div>

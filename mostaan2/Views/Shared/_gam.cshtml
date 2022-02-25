@@ -1,0 +1,101 @@
+﻿@model List<mostaan2.Model.shenasnameGam>
+
+
+<div style="display:flex;align-items: center;justify-content: space-between;">
+    <h1 class="pageHeading" style="">
+        لیست گام ها
+    </h1>
+    <p  onclick="gamFormbtn()" class="btn-grad">
+        گام جدید
+    </p>
+
+</div>
+<main>
+    <table>
+        <thead>
+            <tr>
+
+                <th>
+                    عنوان اصلی فعالیت
+                </th>
+                <th>
+                    گام اصلی
+                </th>
+
+                <th>
+                    شرح فعالیت
+                </th>
+                <th>
+                    مدت زمان
+                </th>
+                <th>
+                    درصد وزنی
+                </th>
+                <th>
+                    دستاورد
+                </th>
+                <th>
+                    هزینه
+                </th>
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+
+        @*<tfoot>
+                <tr>
+                    <th colspan='3'>
+                        Year: 2014
+                    </th>
+                </tr>
+            </tfoot>*@
+        <tbody>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <tr name="deletGam" id="@item.ID">
+
+
+                        <td>
+                            @item.title
+                        </td>
+
+                        <td>
+                            @item.gamAsli
+                        </td>
+                        <td>
+                            @item.description
+                        </td>
+                        <td>
+                            @item.duration
+                        </td>
+                        <td>
+                            @item.darsadeVazni
+                        </td>
+                        <td>
+                            @item.achivement
+                        </td>
+                        <td>
+                            @{ 
+                                long prc = String.IsNullOrEmpty(@item.hazine) ? 0 : Int64.Parse(item.hazine);
+                            }
+                            @String.Format("{0:n0}", prc)
+                        </td>
+                        <td class="btn-grad gradBotton remove" onclick="showRemoveModal(this)" >
+                            حذف
+                        </td>
+
+
+                    </tr>
+                }
+            }
+
+
+
+
+        </tbody>
+    </table>
+
+</main>

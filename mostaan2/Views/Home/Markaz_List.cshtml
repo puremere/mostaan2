@@ -1,0 +1,276 @@
+﻿@model mostaan2.ViewModel.markazListVM
+@{
+
+    ViewBag.Title = "";
+}
+
+
+<div class="morphism">
+    <link href="~/Content/custom.css" rel="stylesheet" />
+
+    <div class="formParent" id="removePopUp">
+        <div class="middlParent " style="">
+            <div id="formHolder">
+                <link href="~/Content/formStyle.css" rel="stylesheet" />
+                <div class="containerr">
+                    <form style="padding:2em">
+                        <p style="font-size:16px; font-weight:500;margin-bottom:20px">آیا از حذف آیتم مورد نظر اطمینان دارید</p>
+                        <div style="display:flex;margin-bottom: -40px;margin-top: 40px;">
+                            <input id="verifyRemove" type="button" value="تایید"><br>
+                            <input id="cancelRemove" type="button" value="لغو"><br>
+
+                        </div>
+
+
+                    </form>
+
+                    <div class="drops">
+                        <div class="drop drop-1"></div>
+                        <div class="drop drop-2"></div>
+                        <div class="drop drop-3"></div>
+                        <div class="drop drop-5"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="formParent" id="mainForm">
+        <div class="middlParent " style="">
+            <div id="formHolder">
+                <link href="~/Content/formStyle.css" rel="stylesheet" />
+                <div class="containerr">
+                    <form>
+                        <p>افزودن مرکز جدید</p>
+                        <div style="display:flex">
+                            <input id="Title" placeholder="عنوان مرکز"><br>
+                            <input style="display:none;" id="markazID"><br>
+                            @Html.DropDownList("bakshDropJ", new SelectList(Model.bakhshList, "ID", "title"), "انتخاب بخش", new { id = "bakhsh" })
+                        </div>
+                        <div>
+                            @Html.DropDownList("bakshDropM", new SelectList(Model.userList, "name", "name"), "مسئول مرکز", new { id = "masool" })
+
+                            @Html.DropDownList("bakshDropJ", new SelectList(Model.userList, "name", "name"), "جانشین مرکز", new { id = "janeshin" })
+
+                        </div>
+
+
+                        <input id="addUserButton" type="button" value="تایید"><br>
+
+                    </form>
+
+                    <div class="drops">
+                        <div class="drop drop-1"></div>
+                        <div class="drop drop-2"></div>
+                        <div class="drop drop-3"></div>
+                        <div class="drop drop-4"></div>
+                        <div class="drop drop-5"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div style="display:flex;height:100%">
+         @{Html.RenderAction("menu", "Home");}
+        <div style="width:80%;padding:20px ">
+            <div style="display:flex;align-items: center;justify-content: space-between;">
+                <h1 class="pageHeading" style="">
+                    لیست مرکزها
+                </h1>
+                <p class="showForm btn-grad">
+                    مرکز جدید
+                </p>
+
+            </div>
+
+
+            <main>
+                <table>
+                    <thead>
+                        <tr>
+
+                            <th>
+                                عنوان
+                            </th>
+                            <th>
+                                مسئول مرکز
+                            </th>
+                            <th>
+                                جانشین مرکز
+                            </th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    @*<tfoot>
+                        <tr>
+                            <th colspan='3'>
+                                Year: 2014
+                            </th>
+                        </tr>
+                    </tfoot>*@
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var item in Model.markazList)
+                            {
+                                <tr id="@item.ID">
+
+                                    <td>
+                                        @item.title
+                                    </td>
+
+                                    <td>
+                                        @item.masoul
+                                    </td>
+                                    <td>
+                                        @item.janeshin
+                                    </td>
+
+                                    <td class="btn-grad gradBotton remove">
+                                        حذف
+                                    </td>
+                                    <td style="width:10px"></td>
+                                    <td class="btn-grad gradBotton edit">
+                                        ویرایش
+                                    </td>
+                                </tr>
+                            }
+                        }
+
+
+
+
+                    </tbody>
+                </table>
+
+            </main>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+@section scripts{
+    <script>
+        $(".remove").click(function () {
+            tobedeleted = $(this).parent().attr('id');
+
+            $("#removePopUp").show();
+        })
+        $("#cancelRemove").click(function () {
+            $("#removePopUp").hide();
+        })
+        $("#verifyRemove").click(function () {
+
+            $.ajax({
+                url: "/home/deletBakhsh",
+                data: {
+                    id: tobedeleted
+                },
+                success: function (obj) {
+                    window.location.reload();
+                }
+
+            })
+        })
+        $(".edit").click(function () {
+            var id = $(this).parent().attr('id');
+
+            $.ajax({
+                url: "/home/getMarkazDetail",
+                data: {
+                    id: id
+                },
+                success: function (obj) {
+
+                    var array = jQuery.parseJSON(obj)
+
+                    var masoul = array.masoul
+                    var janeshin = array.janeshin;
+                    var BakhshID = array.BakhshID;
+
+
+
+                    $("#Title").val(array.title)
+                    $("#markazID").val(array.ID);
+                    $('#masool option[value="' + masoul + '"]').prop('selected', true)
+                    $('#janeshin option[value="' + janeshin + '"]').prop('selected', true)
+                    $('#bakhsh option[value="' + BakhshID + '"]').prop('selected', true)
+
+                    $("#mainForm").toggle();
+
+                }
+
+            })
+
+        })
+        $(".formParent").click(function () {
+            $(this).hide();
+            //$(".formParent").toggle();
+        })
+
+
+        $(".formParent form").click(function () {
+            event.stopPropagation();
+        })
+        $(".showForm").click(function () {
+            $("#bakshTitle").val("");
+            $("#bakshID").val("");
+            $("#mainForm").toggle();
+        })
+        $('.button, .close').on('click', function (e) {
+            e.preventDefault();
+            $('.detail, html, body').toggleClass('open');
+        });
+
+        $("#addUserButton").click(function () {
+            var ID = $("#markazID").val();
+            var title = $("#Title").val();
+            var masool = $("#masool").val();
+            var janeshin = $("#janeshin").val();
+            var bakhsh = $("#bakhsh").val();
+            $.ajax({
+                url: "/Home/addMarkazForm",
+                data: {
+                    ID: ID,
+                    bakhsh: bakhsh,
+                    title: title,
+                    masool: masool,
+                    janeshin: janeshin
+                },
+                success: function (data) {
+
+                    window.location.reload();
+                }
+            })
+        })
+    </script>
+    <script>
+
+        $(".menuItem").each(function () {
+            $(this).removeClass("menuItemActive");
+        })
+        var elm = $("#markaz")
+        elm.addClass("menuItemActive");
+
+    </script>
+}
+
+
+
+
+<link href="~/Content/custom.css" rel="stylesheet" />
+
+
+
+
+
+
