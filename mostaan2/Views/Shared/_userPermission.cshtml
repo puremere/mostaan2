@@ -5,19 +5,80 @@
 <span style="hide"></span>
 <form style="padding:2em">
     <p style="font-size:16px; font-weight:500;margin-bottom:20px">دسترسی مورد نظر را انتخاب کنید</p>
+    <style>
+        .permissionRow {
+            margin-bottom: 5px;
+        }
 
-   
+            .permissionRow div {
+                margin: 5px
+            }
+    </style>
 
-    <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="1" /><span>درآمد</span></div>
-    <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="2" /><span>هزینه</span></div>
-    <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="3" /><span>تامین</span></div>
-    <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="4" /><span>شناسنامه</span></div>
-    <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="5" /><span>کاربر</span></div>
-    <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="6" /><span>بخش</span></div>
-    <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="7" /><span>مرکز</span></div>
-    <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="8" /><span>کمیته</span></div>
-    <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="9" /><span>شماره حساب</span></div>
-    <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="10" /><span>چک</span></div>
+    <div class="permissionRow" style="display:flex">
+        <div style="display:flex">
+            <input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="11" />
+            <span>درآمد مشاهده</span>
+        </div>
+        <div style="display:flex">
+            <input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="12" />
+            <span>درآمد ویرایش</span>
+        </div>
+        <div style="display:flex">
+            <input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="13" />
+            <span>درآمد افزودن</span>
+        </div>
+    </div>
+    <div class="permissionRow" style="display:flex">
+        <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="21" /><span>هزینه مشاهده</span></div>
+        <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="22" /><span>هزینه ویرایش</span></div>
+        <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="23" /><span>هزینه افزودن</span></div>
+
+    </div>
+    <div class="permissionRow" style="display:flex">
+        <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="31" /><span>تامین مشاهده</span></div>
+        <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="32" /><span>تامین ویرایش</span></div>
+        <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="33" /><span>تامین افزودن</span></div>
+
+    </div>
+    <div class="permissionRow" style="display:flex">
+        <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="41" /><span>شناسنامه مشاهده</span></div>
+        <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="42" /><span>شناسنامه ویرایش</span></div>
+        <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="43" /><span>شناسنامه افزودن</span></div>
+
+    </div>
+    <div class="permissionRow" style="display:flex">
+        <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="51" /><span>کاربر مشاهده</span></div>
+        <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="52" /><span>کاربر ویرایش</span></div>
+        <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="53" /><span>کاربر افزودن</span></div>
+
+    </div>
+    <div class="permissionRow" style="display:flex">
+        <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="61" /><span>بخش مشاهده</span></div>
+        <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="62" /><span>بخش ویرایش</span></div>
+        <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="63" /><span>بخش افزودن</span></div>
+
+    </div>
+    <div class="permissionRow" style="display:flex">
+        <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="71" /><span>مرکز مشاهده</span></div>
+        <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="72" /><span>مرکز ویرایش</span></div>
+        <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="73" /><span>مرکز افزودن</span></div>
+    </div>
+    <div class="permissionRow" style="display:flex">
+        <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="81" /><span>کمیته مشاهده</span></div>
+        <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="82" /><span>کمیته ویرایش</span></div>
+        <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="83" /><span>کمیته افزودن</span></div>
+    </div>
+    <div class="permissionRow" style="display:flex">
+        <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="91" /><span>شماره حساب مشاهده</span></div>
+        <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="92" /><span>شماره حساب ویرایش</span></div>
+        <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="93" /><span>شماره حساب افزودن</span></div>
+    </div>
+    <div class="permissionRow" style="display:flex">
+        <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="101" /><span>چک مشاهده</span></div>
+        <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="102" /><span> چک ویرایش</span></div>
+        <div style="display:flex"><input class="permistionInput" style="width:unset; margin:5px" type="checkbox" value="103" /><span>چک افزودن</span></div>
+    </div>
 
     <div style="display:flex;margin-bottom: -40px;margin-top: 40px;">
         <input id="verifyPermision" type="button" value="تایید"><br>
@@ -49,7 +110,7 @@
                 url: "/Home/setPermision",
                 data: {
                     id: id,
-                    userid :'@Model.id' 
+                    userid :'@Model.id'
                 },
                 success: function () {
                     window.location.reload();
@@ -61,10 +122,10 @@
 <script>
     var model = @Html.Raw(Json.Encode(Model.lst));
     var i;
-    
+
     for (i = 0; i < model.length; ++i) {
         $(".permistionInput[value='" + model[i]["serctionID"] +"']").prop('checked', true)
-        
+
     }
-     
+
 </script>

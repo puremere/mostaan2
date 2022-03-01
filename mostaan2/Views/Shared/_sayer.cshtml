@@ -14,7 +14,9 @@
     <table>
         <thead>
             <tr>
-
+                <th>
+                    ردیف
+                </th>
                 <th>
                     عنوان
                 </th>
@@ -49,40 +51,44 @@
             {
                 foreach (var item in Model)
                 {
-                  <tr name="deletSayer" id="@item.ID">
+                    int index = Model.ToList().IndexOf(item) + 1;
 
-                <td>
-                    @item.title
-                </td>
+                    <tr name="deletSayer" id="@item.ID">
+                        <td>
+                            @index
+                        </td>
+                        <td>
+                            @item.title
+                        </td>
 
-                <td>
-                    @item.creatoreCo
-                </td>
-                <td>
-                    @item.count
-                </td>
-                <td>
-                    @String.Format("{0:n0}", @item.vahedPR)
-                  
-                </td>
-                <td>
-                    @String.Format("{0:n0}", @item.kollPR)
-                  
-                </td>
-                <td>
-                    @String.Format("{0:n0}", @item.vahedPD)
-                  
-                </td>
-                <td>
-                    @String.Format("{0:n0}", @item.kollPD)
-                   
-                </td>
-                <td class="btn-grad gradBotton remove" onclick="showRemoveModal(this)">
-                    حذف
-                </td>
+                        <td>
+                            @item.creatoreCo
+                        </td>
+                        <td>
+                            @item.count
+                        </td>
+                        <td>
+                            @String.Format("{0:n0}", @item.vahedPR)
+
+                        </td>
+                        <td>
+                            @String.Format("{0:n0}", @item.kollPR)
+
+                        </td>
+                        <td>
+                            @String.Format("{0:n0}", @item.vahedPD)
+
+                        </td>
+                        <td>
+                            @String.Format("{0:n0}", @item.kollPD)
+
+                        </td>
+                        <td class="btn-grad gradBotton remove" onclick="showRemoveModal(this)">
+                            حذف
+                        </td>
 
 
-            </tr>
+                    </tr>
                 }
             }
 

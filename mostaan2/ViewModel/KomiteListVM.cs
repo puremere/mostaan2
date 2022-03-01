@@ -10,5 +10,7 @@ namespace mostaan2.ViewModel
         public List<Model.markaz> markazList { get; set; }
         public List<Model.komite> komiteList { get; set; }
         public List<Model.user> userList { get; set; }
+        public string edit { get; set; }
+        public string add { get; set; }
     }
 }

@@ -14,6 +14,7 @@
     <table>
         <thead>
             <tr>
+                <th>ردیف</th>
 
                 <th>
                     عنوان
@@ -49,8 +50,12 @@
             {
                 foreach (var item in Model)
                 {
+                    int index = Model.ToList().IndexOf(item) + 1;
                     <tr name="deletMasrafi" id="@item.ID">
 
+                        <td>
+                            @index
+                        </td>
                         <td>
                             @item.title
                         </td>
@@ -63,19 +68,19 @@
                         </td>
                         <td>
                             @String.Format("{0:n0}", @item.vahedPR)
-                          
+
                         </td>
                         <td>
                             @String.Format("{0:n0}", @item.kollPR)
-                       
+
                         </td>
                         <td>
                             @String.Format("{0:n0}", @item.vahedPD)
-                          
+
                         </td>
                         <td>
                             @String.Format("{0:n0}", @item.kollPD)
-                          
+
                         </td>
                         <td class="btn-grad gradBotton remove" onclick="showRemoveModal(this)">
                             حذف

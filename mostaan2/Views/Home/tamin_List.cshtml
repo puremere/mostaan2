@@ -111,9 +111,13 @@
                 <h1 class="pageHeading" style="">
                     لیست اسناد تامین
                 </h1>
-                <p class="showForm btn-grad">
-                    تامین جدید
-                </p>
+                @if (Model.add == "1")
+                {
+                    <p class="showForm btn-grad">
+                        تامین جدید
+                    </p>
+                }
+
 
             </div>
             <div style="display:flex;align-items:center; margin-bottom:10px" >
@@ -130,7 +134,7 @@
                 <table>
                     <thead>
                         <tr>
-
+                            <th>ردیف</th>
                             <th>
                                 شماره سند
                             </th>
@@ -165,40 +169,51 @@
 
                             foreach (var item in Model.taminList)
                             {
-                                <tr id="@item.ID">
+                                int index = Model.taminList.IndexOf(item) + 1;
+                        <tr id="@item.ID">
+                            <td>@index</td>
+                            <td class="shomaresanad">
+                                @item.shomareSanad
+                            </td>
+                            <td>
+                                @item.shnesnameTitle
+                            </td>
+                            <td>
+                                @item.subject
+                            </td>
+                            <td>
+                                @item.radifTitle
+                            </td>
+                            <td>
+                                @item.gam
+                            </td>
+                            <td>
+                                @item.type
+                            </td>
+                            <td>
+                                @String.Format("{0:n0}", @item.mablagh)
+                            </td>
 
-                                    <td class="shomaresanad">
-                                        @item.shomareSanad
-                                    </td>
-                                    <td>
-                                        @item.shnesnameTitle
-                                    </td>
-                                    <td>
-                                        @item.subject
-                                    </td>
-                                    <td>
-                                        @item.radifTitle
-                                    </td>
-                                    <td>
-                                        @item.gam
-                                    </td>
-                                    <td>
-                                        @item.type
-                                    </td>
-                                    <td>
-                                        @String.Format("{0:n0}", @item.mablagh)
-                                    </td>
-
-                                    <td class="btn-grad gradBotton sanad">
-                                        مشاهده سند
-                                    </td>
-                                    <td></td>
-                                    <td class="btn-grad gradBotton remove">
-                                        حذف
-                                    </td>
+                            <td class="btn-grad gradBotton sanad">
+                                مشاهده سند
+                            </td>
+                            <td></td>
+                            @if (Model.edit == "1")
+                            {
+                                <td class="btn-grad gradBotton remove">
+                                    حذف
+                                </td>
+                            }
+                            else
+                            {
+                                <td></td>
+                            }
 
 
-                                </tr>
+
+
+
+                        </tr>
                             }
                         }
 

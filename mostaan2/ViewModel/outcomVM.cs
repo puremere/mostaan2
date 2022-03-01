@@ -9,10 +9,14 @@ namespace mostaan2.ViewModel
     {
         public List<Model.archive> outcomList { get; set; }
         public List<Model.shenasname> shenList { get; set; }
+        public string edit { get; set; }
+        public string add { get; set; }
     }
     public class taminVM
     {
         public List<Model.tamin> taminList { get; set; }
         public List<Model.shenasname> shenList { get; set; }
+        public string edit { get; set; }
+        public string add { get; set; }
     }
 }

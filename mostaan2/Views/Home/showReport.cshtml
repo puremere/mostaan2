@@ -3,21 +3,54 @@
     ViewBag.Title = "check_List";
 }
 <link href="~/Content/persian-datepicker.css" rel="stylesheet" />
-@{ 
+@{
     string disable = Model.isFianl == true ? "none" : "";
 }
 
 <p style="display:none" id="isfinal">@Model.isFianl</p>
+<link href="~/Content/formStyle.css" rel="stylesheet" />
+<div class="formParent" id="productForm">
+    <div class="middlParent " style="">
+        <div id="formHolder">
+          
+            <div class="containerr">
+                <form>
+                    <p>افزودن محصول جدید</p>
+                    <div style="display:flex">
+                        <input id="titleProduct" placeholder="عنوان محصول"><br>
+                        <input id="countProduct" placeholder="تعداد محصول"><br>
+                        <input id="priceProduct" placeholder="قیمت محصول" class="inputnumber"><br>
+                    </div>
+                    
+
+
+                    <input style="display:none;" id="checkID" value="0"><br>
+                    <input onclick="btnProductAdd()" type="button" value="تایید"><br>
+
+                </form>
+
+                <div class="drops">
+                    <div class="drop drop-1"></div>
+                    <div class="drop drop-2"></div>
+                    <div class="drop drop-3"></div>
+                    <div class="drop drop-4"></div>
+                    <div class="drop drop-5"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
 <div class="formParent" id="gamForm">
     <div class="middlParent " style="">
         <div id="formHolder">
-            <link href="~/Content/formStyle.css" rel="stylesheet" />
+
             <div class="containerr">
                 <form>
                     <p>افزودن گام جدید</p>
                     <div style="display:flex">
                         <input id="onvan" placeholder="عنوان اصلی فعالیت"><br>
-                        <input id="gamasli" placeholder="گام اصلی"><br>
+                        <input id="gamasli" placeholder="فاز اصلی"><br>
                         <input id="sharh" placeholder="شرح فعالیت اصلی"><br>
                     </div>
                     <div style="display:flex">
@@ -33,7 +66,7 @@
 
 
                     <input style="display:none;" id="checkID" value="0"><br>
-                    <input  onclick="btncheckAdd()" type="button" value="تایید"><br>
+                    <input onclick="btncheckAdd()" type="button" value="تایید"><br>
 
                 </form>
 
@@ -82,7 +115,7 @@
 <div class="formParent" id="edariForm">
     <div class="middlParent " style="">
         <div id="formHolder">
-            <link href="~/Content/formStyle.css" rel="stylesheet" />
+        
             <div class="containerr">
                 <form>
                     <p>افزودن اداری جدید</p>
@@ -111,7 +144,7 @@
 <div class="formParent" id="sarmayeForm">
     <div class="middlParent " style="">
         <div id="formHolder">
-            <link href="~/Content/formStyle.css" rel="stylesheet" />
+          
             <div class="containerr">
                 <form>
                     <p>افزودن سرمایه جدید</p>
@@ -148,7 +181,7 @@
 <div class="formParent" id="masrafiForm">
     <div class="middlParent " style="">
         <div id="formHolder">
-            <link href="~/Content/formStyle.css" rel="stylesheet" />
+           
             <div class="containerr">
                 <form>
                     <p>افزودن مصرفی جدید</p>
@@ -183,7 +216,7 @@
 <div class="formParent" id="omraniForm">
     <div class="middlParent " style="">
         <div id="formHolder">
-            <link href="~/Content/formStyle.css" rel="stylesheet" />
+            
             <div class="containerr">
                 <form>
                     <p>افزودن عمرانی جدید</p>
@@ -218,7 +251,7 @@
 <div class="formParent" id="gharardadForm">
     <div class="middlParent " style="">
         <div id="formHolder">
-            <link href="~/Content/formStyle.css" rel="stylesheet" />
+          
             <div class="containerr">
                 <form>
                     <p>افزودن قرارداد جدید</p>
@@ -253,7 +286,7 @@
 <div class="formParent" id="mavadForm">
     <div class="middlParent " style="">
         <div id="formHolder">
-            <link href="~/Content/formStyle.css" rel="stylesheet" />
+           
             <div class="containerr">
                 <form>
                     <p>افزودن سایر جدید</p>
@@ -288,7 +321,7 @@
 <div class="formParent" id="sayerForm">
     <div class="middlParent " style="">
         <div id="formHolder">
-            <link href="~/Content/formStyle.css" rel="stylesheet" />
+           
             <div class="containerr">
                 <form>
                     <p>افزودن سایر جدید</p>
@@ -323,7 +356,7 @@
 <div class="formParent" id="tashvighiForm">
     <div class="middlParent " style="">
         <div id="formHolder">
-            <link href="~/Content/formStyle.css" rel="stylesheet" />
+           
             <div class="containerr">
                 <form>
                     <p>افزودن تشویقی جدید</p>
@@ -354,7 +387,7 @@
 <div class="formParent" id="removePopUp">
     <div class="middlParent " style="">
         <div id="formHolder">
-            <link href="~/Content/formStyle.css" rel="stylesheet" />
+           
             <div class="containerr">
                 <form style="padding:2em">
                     <p style="font-size:16px; font-weight:500;margin-bottom:20px">آیا از حذف آیتم مورد نظر اطمینان دارید</p>
@@ -387,7 +420,8 @@
 
 
     <div style="display:flex;height:100%">
-         @{Html.RenderAction("menu", "Home");}
+
+        @{Html.RenderAction("menu", "Home");}
 
 
 
@@ -397,9 +431,12 @@
 
 
         <div style="flex:1; padding:20px ; width:80%">
-
+            <div>
+                <p style="margin:20px;font-size:20px; color:white">@Model.title</p>
+            </div>
             <ul class="nav nav-tabs" style="display:flex; margin-bottom:30px">
                 <li style="float:none" class="active"><a data-toggle="tab" href="#home">تعریف</a></li>
+                <li style="float:none"><a data-toggle="tab" href="#newproductSection">محصولات</a></li>
                 <li style="float:none"><a data-toggle="tab" href="#newgamSection">گام های پروژه</a></li>
                 <li style="float:none"><a data-toggle="tab" href="#ejraeeatSection">اجراییات سازمان</a></li>
                 <li style="float:none"><a data-toggle="tab" href="#personeliSection">پرسنلی</a></li>
@@ -424,14 +461,14 @@
                                         <tr class="formTr">
 
                                             <th>
-                                                هدف
+                                                عنوان
                                             </th>
                                             <th>
-                                                عنوان
+                                                محصول
                                             </th>
 
                                             <th>
-                                                پیش بینی
+                                                پیش بینی زمانی ( تعداد ماه)
                                             </th>
                                             <th>
                                                 مرکز
@@ -444,13 +481,13 @@
                                     <tbody>
                                         <tr class="formTr">
 
-
-                                            <td>
-                                                <input name="hadaf" class="inputForm" value="@Model.hadaf" />
-                                            </td>
                                             <td>
                                                 <input name="title" class="inputForm" value="@Model.title" />
                                             </td>
+                                            <td>
+                                                <input name="hadaf" class="inputForm" value="@Model.hadaf" />
+                                            </td>
+
                                             <td>
                                                 <input name="datePishbini" class="inputForm" value="@Model.datePishbini" />
                                             </td>
@@ -473,11 +510,11 @@
 
 
                                             <th>
-                                                دستگاه
+                                                هزینه نهایی
                                             </th>
 
                                             <th>
-                                                طراح
+                                                مدیر پروژه
                                             </th>
                                             <th>
                                                 تاریخ شروع
@@ -496,7 +533,8 @@
 
 
                                             <td>
-                                                @Html.DropDownList("dastgah", new SelectList(Model.markazList, "ID", "Title"), "انتخاب دستگاه", new { @class = "inputForm", id = "dastgah", name = "dastgah" })
+                                                <input name="dastgah" id="dastgah" class="inputForm inputnumber" value="@Model.dastgah" />
+                                                @*@Html.DropDownList("dastgah", new SelectList(Model.markazList, "ID", "Title"), "انتخاب دستگاه", new { @class = "inputForm", id = "dastgah", name = "dastgah" })*@
                                             </td>
                                             <td>
                                                 @Html.DropDownList("tarah", new SelectList(Model.userlist, "ID", "name"), "طراح", new { @class = "inputForm", id = "tarah", name = "tarah" })
@@ -724,6 +762,14 @@
 
                 </div>
 
+
+                <div id="newproductSection" class="tab-pane fade">
+                    <div id="productsection">
+                        @Html.Partial("/Views/Shared/_product.cshtml", Model.shenasnameproductList)
+
+                    </div>
+                </div>
+
                 <div id="newgamSection" class="tab-pane fade">
                     <div id="gamsection">
                         @Html.Partial("/Views/Shared/_gam.cshtml", Model.shenasnameGamList)
@@ -788,14 +834,17 @@
                     <form id="setFileInfo" method="post" action="/Home/SetFileInfo" style="box-shadow:none" enctype="multipart/form-data">
                         <input name="file" id="fileUplad" type="file" style="display:none" />
                         <input name="itemID" id="itemID" type="text" value="@Model.itemID" style="display:none" />
-
+                        <input name="catName" id="catName" style="display:none" />
                         <main>
                             <table>
                                 <thead>
                                     <tr class="formTr">
 
                                         <th>
-                                            عنوان فایل
+                                            مستندات
+                                        </th>
+                                        <th>
+                                            دارای فایل
                                         </th>
                                         <th>
                                             نمایش
@@ -817,32 +866,242 @@
                                     <tr class="formTr">
 
 
-                                        <td >
-                                            <select id="catName" name="catName" style="margin: 0;font-size: 12px;height: initial;">
-                                                <option> بایگانی موارد </option>
-                                                <option> قرارداد</option>
-                                                <option>متمم </option>
-                                                <option>  پیوست متنی </option>
-                                                <option> لیست مواد </option>
-                                                <option> گانت چارت </option>
-                                                <option>  مجوز ستاد کل</option>
-                                                <option>   گزارش پیشرفت</option>
-                                            </select>
+                                        <td class="rowName">
+                                            بایگانی موارد
                                         </td>
-                                        <td class="btn-grad gradBotton" onclick="showFile()">
+                                        <td>
+                                            @{
+                                                string status = "دارد";
+                                                if (String.IsNullOrEmpty(Model.bayganiFile))
+                                                {
+                                                    status = "ندارد";
+                                                }
+                                                @status
+                                            }
+                                        </td>
+                                        <td class="btn-grad gradBotton" onclick="showFile(this)">
                                             نمایش
                                         </td>
                                         <td style="width:0"></td>
-                                        <td class="btn-grad gradBotton" onclick="showFileUpload()">
+                                        <td class="btn-grad gradBotton" onclick="showFileUpload(this)">
                                             بارگذاری
                                         </td>
                                         <td style="width:0"></td>
-                                        <td class="btn-grad gradBotton" onclick="FileUploadSubmibt()">
+                                        <td class="btn-grad gradBotton" onclick="FileUploadSubmibt(this)">
                                             تایید
                                         </td>
 
                                     </tr>
+                                    <tr class="formTr">
 
+
+                                        <td class="rowName">
+                                            قرارداد
+                                        </td>
+                                        <td>
+                                            @{
+                                                status = "دارد";
+                                                if (String.IsNullOrEmpty(Model.gharardadFile))
+                                                {
+                                                    status = "ندارد";
+                                                }
+                                                @status
+                                            }
+                                        </td>
+                                        <td class="btn-grad gradBotton" onclick="showFile(this)">
+                                            نمایش
+                                        </td>
+                                        <td style="width:0"></td>
+                                        <td class="btn-grad gradBotton" onclick="showFileUpload(this)">
+                                            بارگذاری
+                                        </td>
+                                        <td style="width:0"></td>
+                                        <td class="btn-grad gradBotton" onclick="FileUploadSubmibt(this)">
+                                            تایید
+                                        </td>
+
+                                    </tr>
+                                    <tr class="formTr">
+
+
+                                        <td class="rowName">
+                                            متمم
+                                        </td>
+                                        <td>
+                                            @{
+                                                status = "دارد";
+                                                if (String.IsNullOrEmpty(Model.motamamFile))
+                                                {
+                                                    status = "ندارد";
+                                                }
+                                                @status
+                                            }
+
+                                        </td>
+
+                                        <td class="btn-grad gradBotton" onclick="showFile(this)">
+                                            نمایش
+                                        </td>
+                                        <td style="width:0"></td>
+                                        <td class="btn-grad gradBotton" onclick="showFileUpload(this)">
+                                            بارگذاری
+                                        </td>
+                                        <td style="width:0"></td>
+                                        <td class="btn-grad gradBotton" onclick="FileUploadSubmibt(this)">
+                                            تایید
+                                        </td>
+
+                                    </tr>
+                                    <tr class="formTr">
+
+
+                                        <td class="rowName">
+                                            پیوست متنی
+                                        </td>
+                                        <td>
+                                            @{
+                                                status = "دارد";
+                                                if (String.IsNullOrEmpty(Model.peyvastFile))
+                                                {
+                                                    status = "ندارد";
+                                                }
+                                                @status
+                                            }
+                                        </td>
+
+                                        <td class="btn-grad gradBotton" onclick="showFile(this)">
+                                            نمایش
+                                        </td>
+                                        <td style="width:0"></td>
+                                        <td class="btn-grad gradBotton" onclick="showFileUpload(this)">
+                                            بارگذاری
+                                        </td>
+                                        <td style="width:0"></td>
+                                        <td class="btn-grad gradBotton" onclick="FileUploadSubmibt(this)">
+                                            تایید
+                                        </td>
+
+                                    </tr>
+                                    <tr class="formTr">
+
+
+                                        <td class="rowName">
+                                            لیست مواد
+                                        </td>
+                                        <td>
+                                            @{
+                                                status = "دارد";
+                                                if (String.IsNullOrEmpty(Model.listmavadFile))
+                                                {
+                                                    status = "ندارد";
+                                                }
+                                                @status
+                                            }
+                                        </td>
+
+                                        <td class="btn-grad gradBotton" onclick="showFile(this)">
+                                            نمایش
+                                        </td>
+                                        <td style="width:0"></td>
+                                        <td class="btn-grad gradBotton" onclick="showFileUpload(this)">
+                                            بارگذاری
+                                        </td>
+                                        <td style="width:0"></td>
+                                        <td class="btn-grad gradBotton" onclick="FileUploadSubmibt(this)">
+                                            تایید
+                                        </td>
+
+                                    </tr>
+                                    <tr class="formTr">
+
+
+                                        <td class="rowName">
+                                            گانت چارت
+                                        </td>
+                                        <td>
+                                            @{
+                                                status = "دارد";
+                                                if (String.IsNullOrEmpty(Model.gantFile))
+                                                {
+                                                    status = "ندارد";
+                                                }
+                                                @status
+                                            }
+                                        </td>
+
+                                        <td class="btn-grad gradBotton" onclick="showFile(this)">
+                                            نمایش
+                                        </td>
+                                        <td style="width:0"></td>
+                                        <td class="btn-grad gradBotton" onclick="showFileUpload(this)">
+                                            بارگذاری
+                                        </td>
+                                        <td style="width:0"></td>
+                                        <td class="btn-grad gradBotton" onclick="FileUploadSubmibt(this)">
+                                            تایید
+                                        </td>
+
+                                    </tr>
+                                    <tr class="formTr">
+
+
+                                        <td class="rowName">
+                                            مجوز ستاد کل
+                                        </td>
+                                        <td>
+                                            @{
+                                                status = "دارد";
+                                                if (String.IsNullOrEmpty(Model.mojavezFile))
+                                                {
+                                                    status = "ندارد";
+                                                }
+                                                @status
+                                            }
+                                        </td>
+
+                                        <td class="btn-grad gradBotton" onclick="showFile(this)">
+                                            نمایش
+                                        </td>
+                                        <td style="width:0"></td>
+                                        <td class="btn-grad gradBotton" onclick="showFileUpload(this)">
+                                            بارگذاری
+                                        </td>
+                                        <td style="width:0"></td>
+                                        <td class="btn-grad gradBotton" onclick="FileUploadSubmibt(this)">
+                                            تایید
+                                        </td>
+
+                                    </tr>
+                                    <tr class="formTr">
+
+
+                                        <td class="rowName">
+                                            گزارش پیشرفت>
+                                        </td>
+                                        <td>
+                                            @{
+                                                status = "دارد";
+                                                if (String.IsNullOrEmpty(Model.pishraftFile))
+                                                {
+                                                    status = "ندارد";
+                                                }
+                                                @status
+                                            }
+                                        </td>
+
+                                        <td class="btn-grad gradBotton" onclick="showFile(this)">
+                                            نمایش
+                                        </td>
+                                        <td style="width:0"></td>
+                                        <td class="btn-grad gradBotton" onclick="showFileUpload(this)">
+                                            بارگذاری
+                                        </td>
+                                        <td style="width:0"></td>
+                                        <td class="btn-grad gradBotton" onclick="FileUploadSubmibt(this)">
+                                            تایید
+                                        </td>
+
+                                    </tr>
 
                                 </tbody>
                             </table>
@@ -881,16 +1140,16 @@
     {
 
         <script>
-           
-           
+
+
             toastr.options = {
-            "debug": false,
-            "positionClass": "toast-top-full-width",
-            "onclick": null,
-            "fadeIn": 300,
-            "fadeOut": 1000,
-            "timeOut": 1500,
-            "extendedTimeOut": 1000,
+                "debug": false,
+                "positionClass": "toast-top-full-width",
+                "onclick": null,
+                "fadeIn": 300,
+                "fadeOut": 1000,
+                "timeOut": 1500,
+                "extendedTimeOut": 1000,
             };
             toastr.success(' تغییرات با موفقیت ثبت شد');
         </script>
@@ -932,6 +1191,9 @@
                     $("#removePopUp").hide();
 
                     switch (actionName) {
+                        case "deletProduct":
+                            $("#productsection").html(data);
+                            return;
                         case "deletGam":
                             $("#gamsection").html(data);
                             return;
@@ -987,8 +1249,48 @@
     </script>
     <script>
 
+         function productFormbtn() {
+            if (isFinal == "True" ) {
+                return;
+            }
+            $("#title").val("")
+            $("#count").val("");
+             $("#price").val("0");
+
+             $("#productForm").toggle();
+
+        };
+        function btnProductAdd() {
+             var title = $("#titleProduct").val();
+            var countProduct = $("#countProduct").val();
+            var prcieProduct = $("#priceProduct").val();
+            
+
+            var ID = '@Model.itemID';
+            $.ajax({
+
+                url: "/Home/addProduct",
+                data: {
+                    ID: ID,
+                    title: title,
+                    count: countProduct,
+                    price: prcieProduct,
+                },
+                success: function (data) {
+                    $("#productForm").toggle();
+                    $("#productsection").html(data);
+                    $("#titleProduct").val("");
+                    $("#priceProduct").val("");
+                    $("#countProduct").val("");
+                   
+
+                }
+
+            })
+        }
+
         function gamFormbtn() {
-            if (isFinal == "True") {
+            if (isFinal == "True" ) {
                 return;
             }
             $("#name").val("")
@@ -1078,8 +1380,8 @@
 
     </script>
     <script>
-       
-       
+
+
         function edariFormbtn() {
 
             $("#edariDollary").val("")
@@ -1088,7 +1390,7 @@
             if (isFinal != "True") {
                 $("#edariForm").toggle();
             }
-           
+
         }
         function btnEdariAdd() {
              var dollaryP = $("#edariDollary").val();
@@ -1127,7 +1429,7 @@
             if (isFinal != "True") {
                 $("#sarmayeForm").toggle();
             }
-           
+
 
         }
         function btnSarmayeAdd() {
@@ -1172,7 +1474,7 @@
             if (isFinal != "True") {
                 $("#masrafiForm").toggle();
             }
-        
+
 
         }
         function btnMasrafiAdd() {
@@ -1216,7 +1518,7 @@
             if (isFinal != "True") {
                 $("#omraniForm").toggle();
             }
-           
+
 
         }
         function btnOmraniAdd() {
@@ -1261,7 +1563,7 @@
             if (isFinal != "True") {
                 $("#gharardadForm").toggle();
             }
-            
+
 
         }
         function btnGharardadAdd() {
@@ -1306,7 +1608,7 @@
             if (isFinal != "True") {
                 $("#mavadForm").toggle();
             }
-            
+
 
         }
         function sayerFormbtn() {
@@ -1319,7 +1621,7 @@
             if (isFinal != "True") {
                 $("#sayerForm").toggle();
             }
-           
+
 
         }
         function btnMavadAdd() {
@@ -1394,7 +1696,7 @@
             if (isFinal != "True") {
                 $("#tashvighiForm").toggle();
             }
-           
+
 
         }
         function btnTashvighiAdd() {
@@ -1483,7 +1785,7 @@
             //})
         })
         $("#addNewForm").click(function () {
-           
+
             if (isFinal == "True") {
                 return;
             }
@@ -1511,16 +1813,18 @@
         })
     </script>
     <script>
-        function showFileUpload() {
+        function showFileUpload(element) {
             $("#fileUplad").click();
         }
 
-        function FileUploadSubmibt() {
+        function FileUploadSubmibt(element) {
+            let catName = $(element).parent().find('.rowName').text();
+            $("#catName").val(catName);
             $("#setFileInfo").submit();
         }
 
-        function showFile() {
-            let catName = $("#catName").val();
+        function showFile(element) {
+            let catName = $(element).parent().find('.rowName').text();
             let itemID = $("#itemID").val();
             $.ajax({
                 url: "/Home/showItem",

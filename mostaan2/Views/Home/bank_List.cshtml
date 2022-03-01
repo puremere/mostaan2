@@ -69,16 +69,20 @@
 
     </div>
     <div style="display:flex;height:100%">
-         @{Html.RenderAction("menu", "Home");}
+        @{Html.RenderAction("menu", "Home");}
 
         <div style="width:80%;padding:20px ">
             <div style="display:flex;align-items: center;justify-content: space-between;">
                 <h1 class="pageHeading" style="">
                     لیست بانک ها
                 </h1>
-                <p class="showForm btn-grad">
-                    بانک جدید
-                </p>
+                @if (@ViewBag.add == "1")
+                {
+                    <p class="showForm btn-grad">
+                        بانک جدید
+                    </p>
+                }
+
 
             </div>
 
@@ -86,7 +90,7 @@
                 <table>
                     <thead>
                         <tr>
-
+                            <th>ردیف</th>
                             <th>
                                 نام بانک
                             </th>
@@ -112,27 +116,39 @@
                         {
                             foreach (var item in Model)
                             {
-                                <tr id="@item.ID">
+                                int index = Model.ToList().IndexOf(item) + 1;
+                        <tr id="@item.ID">
+                            <td>
+                                @index
+                            </td>
+                            <td>
+                                @item.title
+                            </td>
+                            <td>
+                                @item.number
+                            </td>
 
-                                    <td>
-                                        @item.title
-                                    </td>
-                                    <td>
-                                        @item.number
-                                    </td>
+                            <td>
+                                @item.type
+                            </td>
+                            @if (@ViewBag.edit == "1")
+                            {
+                                <td class="btn-grad gradBotton remove">
+                                    حذف
+                                </td>
+                                <td style="width:10px"></td>
+                                <td class="btn-grad gradBotton edit">
+                                    ویرایش
+                                </td>
+                            }
+                            else
+                            {
+                                <td></td>
+                                <td></td>
+                            }
 
-                                    <td>
-                                        @item.type
-                                    </td>
-                                    <td class="btn-grad gradBotton remove">
-                                        حذف
-                                    </td>
-                                    <td style="width:10px"></td>
-                                    <td class="btn-grad gradBotton edit">
-                                        ویرایش
-                                    </td>
 
-                                </tr>
+                        </tr>
                             }
                         }
 

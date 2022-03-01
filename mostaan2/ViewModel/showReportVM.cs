@@ -9,6 +9,17 @@ namespace mostaan2.ViewModel
     public class showReportVM
     {
 
+        public string bayganiFile { get; set; }
+        public string gharardadFile { get; set; }
+        public string motamamFile { get; set; }
+        public string peyvastFile { get; set; }
+        public string listmavadFile { get; set; }
+        public string gantFile { get; set; }
+        public string mojavezFile { get; set; }
+        public string pishraftFile { get; set; }
+        public string see { get; set; }
+        public string edit { get; set; }
+        public string add { get; set; }
         public string comment { get; set; }
         public List<markaz> markazList { get; set; }
         public List<shenasnameFounder> lstFounder { get; set; }
@@ -23,6 +34,8 @@ namespace mostaan2.ViewModel
         public List<mavad> mavadlist { get; set; }
         public List<tashvighi> tashvighilist { get; set; }
         public List<shenasnameGam> shenasnameGamList { get; set; }
+        public List<product> shenasnameproductList { get; set; }
+        
         public bool isFianl { get; set; }
         public string itemID { get; set; }
         public string startDate { get; set; }

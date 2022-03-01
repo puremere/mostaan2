@@ -14,7 +14,7 @@
     <table>
         <thead>
             <tr>
-
+                <th>ردیف</th>
                 <th>
                     شرح هزینه
                 </th>
@@ -26,7 +26,7 @@
                     هزینه دلاری
                 </th>
                 <th>
-                   مرحله
+                    مرحله
                 </th>
 
                 <th>
@@ -39,30 +39,35 @@
             {
                 foreach (var item in Model)
                 {
-            <tr name="deletGharardad" id="@item.ID">
+                    int index = Model.ToList().IndexOf(item) + 1;
+
+                    <tr name="deletGharardad" id="@item.ID">
+
+                        
+                        <td>
+                            @index
+                        </td>
+                        <td>
+                            @item.title
+                        </td>
+
+                        <td>
+                            @String.Format("{0:n0}", @item.kollPR)
+
+                        </td>
+                        <td>
+                            @String.Format("{0:n0}", @item.kollPD)
+
+                        </td>
+                        <td>
+                            @item.level
+                        </td>
+                        <td class="btn-grad gradBotton remove" onclick="showRemoveModal(this)">
+                            حذف
+                        </td>
 
 
-                <td>
-                    @item.title
-                </td>
-
-                <td>
-                    @String.Format("{0:n0}", @item.kollPR)
-
-                </td>
-                <td>
-                    @String.Format("{0:n0}", @item.kollPD)
-
-                </td>
-                <td>
-                    @item.level
-                </td>
-                <td class="btn-grad gradBotton remove" onclick="showRemoveModal(this)">
-                    حذف
-                </td>
-
-
-            </tr>
+                    </tr>
                 }
             }
 

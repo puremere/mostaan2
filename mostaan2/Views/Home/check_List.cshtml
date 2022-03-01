@@ -69,16 +69,20 @@
 
     </div>
     <div style="display:flex;height:700px; overflow-y:scroll">
-         @{Html.RenderAction("menu", "Home");}
+        @{Html.RenderAction("menu", "Home");}
 
         <div style="width:80%;padding:20px ">
             <div style="display:flex;align-items: center;justify-content: space-between;">
                 <h1 class="pageHeading" style="">
                     لیست چک ها
                 </h1>
-                <p class="showForm btn-grad">
-                    چک جدید
-                </p>
+                @if (Model.add == "1")
+                {
+                    <p class="showForm btn-grad">
+                        چک جدید
+                    </p>
+                }
+
 
             </div>
 
@@ -86,7 +90,7 @@
                 <table>
                     <thead>
                         <tr>
-
+                            <th>ردیف</th>
                             <th>
                                 شماره چک
                             </th>
@@ -111,8 +115,11 @@
                         {
                             foreach (var item in Model.checklst)
                             {
+                                int index = Model.checklst.IndexOf(item) + 1;
                                 <tr id="@item.ID">
-
+                                    <td>
+                                        @index
+                                    </td>
                                     <td>
                                         @item.checkNumber
                                     </td>
@@ -120,12 +127,19 @@
                                         @item.banktitle
                                     </td>
                                     <td>
-                                       @String.Format("{0:n0}", @item.price)  
+                                        @String.Format("{0:n0}", @item.price)
                                     </td>
+                                    @if (Model.edit == "1")
+                                    {
+                                        <td class="btn-grad gradBotton remove">
+                                            حذف
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td></td>
+                                    }
 
-                                    <td class="btn-grad gradBotton remove">
-                                        حذف
-                                    </td>
 
 
                                 </tr>

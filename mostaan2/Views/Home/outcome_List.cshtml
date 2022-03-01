@@ -67,8 +67,8 @@
                                     <input name="onvanVarizi" id="onvanVarizi" placeholder="چک"><br>
                                 </div>
 
-                                <input style="display:none" name="price"  placeholder="مبلغ" class="inputnumber price"><br>
-                                <input disabled name="priceee"  placeholder="مبلغ" class="inputnumber price"><br>
+                                <input style="display:none" name="price" placeholder="مبلغ" class="inputnumber price"><br>
+                                <input disabled name="priceee" placeholder="مبلغ" class="inputnumber price"><br>
 
                             </div>
                             <div style="display:flex">
@@ -102,16 +102,20 @@
 
     </div>
     <div style="display:flex;height:100%">
-         @{Html.RenderAction("menu", "Home");}
+        @{Html.RenderAction("menu", "Home");}
 
         <div style="width:80%;padding:20px ">
             <div style="display:flex;align-items: center;justify-content: space-between;">
                 <h1 class="pageHeading" style="">
                     لیست اسناد پرداختی
                 </h1>
-                <p class="showForm btn-grad">
-                    پرداختی جدید
-                </p>
+                @if (Model.add == "1")
+                {
+                    <p class="showForm btn-grad">
+                        پرداختی جدید
+                    </p>
+                }
+
 
             </div>
 
@@ -119,7 +123,7 @@
                 <table>
                     <thead>
                         <tr>
-
+                            <th>ردیف</th>
                             <th>
                                 شماره سند
                             </th>
@@ -155,8 +159,12 @@
 
                             foreach (var item in Model.outcomList)
                             {
+                                int index = Model.outcomList.IndexOf(item) + 1;
                                 <tr id="@item.ID">
 
+                                    <td class="shomaresanad">
+                                        @index
+                                    </td>
                                     <td class="shomaresanad">
                                         @item.shomareSanad
                                     </td>
@@ -180,7 +188,7 @@
                                     </td>
                                     <td>
                                         @String.Format("{0:n0}", @item.mablagh)
-                                      
+
                                     </td>
                                     <td>
                                         @item.type
@@ -372,7 +380,7 @@
                             "extendedTimeOut": 1000,
                         };
                         toastr.error('شماره تامین موجود نیست');
-                       
+
                     }
                     else {
                         toastr.options = {
@@ -386,7 +394,7 @@
                         };
                         toastr.success('شماره تامین  صحیح است');
                         $(".price").val(data);
-                        
+
                     }
                 }
             })
@@ -397,7 +405,7 @@
                 success: function (data) {
                     $("#listHolder").html(data);
                     $("#listHolder").show();
-                    $("#formSection").css("display","none");
+                    $("#formSection").css("display", "none");
                 }
             })
         })

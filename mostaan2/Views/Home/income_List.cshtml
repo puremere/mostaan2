@@ -95,9 +95,15 @@
                 <h1 class="pageHeading" style="">
                     لیست فاکتور های دریافتی
                 </h1>
-                <p class="showForm btn-grad">
-                    دریافتی جدید
-                </p>
+                @{
+                    if (Model.add == "1")
+                    {
+                        <p class="showForm btn-grad">
+                            دریافتی جدید
+                        </p>
+                    }
+                }
+
 
             </div>
 
@@ -105,7 +111,7 @@
                 <table>
                     <thead>
                         <tr>
-
+                            <th>ردیف</th>
                             <th>
                                 شماره سند
                             </th>
@@ -131,8 +137,11 @@
                         {
                             foreach (var item in Model.incomeList)
                             {
+                                int index = Model.incomeList.IndexOf(item) + 1;
                                 <tr id="@item.ID">
-
+                                    <td>
+                                        @index
+                                    </td>
                                     <td>
                                         @item.shomareSanad
                                     </td>

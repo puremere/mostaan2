@@ -79,9 +79,13 @@
                 <h1 class="pageHeading" style="">
                     لیست بخش ها
                 </h1>
-                <p class="showForm btn-grad">
-                    بخش جدید
-                </p>
+                @if (Model.add == "1")
+                {
+                    <p class="showForm btn-grad">
+                        بخش جدید
+                    </p>
+                }
+
 
             </div>
 
@@ -90,7 +94,7 @@
                 <table>
                     <thead>
                         <tr>
-
+                            <th>ردیف</th>
                             <th>
                                 عنوان
                             </th>
@@ -116,29 +120,40 @@
                     <tbody>
                         @if (Model != null)
                         {
+
                             foreach (var item in Model.bakhshList)
                             {
-                                <tr id="@item.ID">
+                                int index = Model.bakhshList.IndexOf(item) + 1;
+                        <tr id="@item.ID">
 
-                                    <td>
-                                        @item.title
-                                    </td>
+                            <td>@index</td>
+                            <td>
+                                @item.title
+                            </td>
 
-                                    <td>
-                                        @item.masoul
-                                    </td>
-                                    <td>
-                                        @item.janeshin
-                                    </td>
+                            <td>
+                                @item.masoul
+                            </td>
+                            <td>
+                                @item.janeshin
+                            </td>
+                            @if (Model.edit == "1")
+                            {
+                                <td class="btn-grad gradBotton remove">
+                                    حذف
+                                </td>
+                                <td style="width:10px"></td>
+                                <td class="btn-grad gradBotton edit">
+                                    ویرایش
+                                </td>
+                            }
+                            else
+                            {
+                                <td></td>
+                                <td></td>
+                            }
 
-                                    <td class="btn-grad gradBotton remove">
-                                        حذف
-                                    </td>
-                                    <td style="width:10px"></td>
-                                    <td class="btn-grad gradBotton edit">
-                                        ویرایش
-                                    </td>
-                                </tr>
+                        </tr>
                             }
                         }
 

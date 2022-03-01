@@ -34,6 +34,33 @@
         </div>
 
     </div>
+    <div class="formParent" id="endPopUp">
+        <div class="middlParent " style="">
+            <div id="formHolder">
+                <link href="~/Content/formStyle.css" rel="stylesheet" />
+                <div class="containerr">
+                    <form style="padding:2em">
+                        <p style="font-size:16px; font-weight:500;margin-bottom:20px">آیا از خاتمه شناسنامه  مورد نظر اطمینان دارید</p>
+                        <div style="display:flex;margin-bottom: -40px;margin-top: 40px;">
+                            <input id="verifyend" type="button" value="تایید"><br>
+                            <input id="cancelend" type="button" value="لغو"><br>
+
+                        </div>
+
+
+                    </form>
+
+                    <div class="drops">
+                        <div class="drop drop-1"></div>
+                        <div class="drop drop-2"></div>
+                        <div class="drop drop-3"></div>
+                        <div class="drop drop-5"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
     <div style="display:flex;height:100%">
         @{Html.RenderAction("menu", "Home");}
@@ -54,11 +81,12 @@
                     <thead>
                         <tr>
 
-                            <th >
+                            <th>ردیف</th>
+                            <th>
                                 عنوان
                             </th>
-                            <th >
-                                
+                            <th>
+
                             </th>
                             <th>
                             </th>
@@ -67,6 +95,11 @@
                             <th>
                             </th>
                             <th>
+                            </th>
+                            <th>
+                            </th>
+                            <th>
+
                             </th>
                             <th>
                             </th>
@@ -79,23 +112,27 @@
                     </thead>
 
                     @*<tfoot>
-                        <tr>
-                            <th colspan='3'>
-                                Year: 2014
-                            </th>
-                        </tr>
-                    </tfoot>*@
+                            <tr>
+                                <th colspan='3'>
+                                    Year: 2014
+                                </th>
+                            </tr>
+                        </tfoot>*@
                     <tbody>
                         @if (Model != null)
                         {
                             foreach (var item in Model)
                             {
+                                int index = Model.ToList().IndexOf(item) + 1;
                         <tr id="@item.ID">
 
+                            <td>
+                                @index
+                            </td>
                             <td style="width:30%">
                                 @item.title
                             </td>
-                            <td  style="width:40%"></td>
+                            <td style="width:10%"></td>
                             <td></td>
 
                             <td class="btn-grad gradBotton ViewClones">
@@ -110,6 +147,10 @@
 
                             <td class="btn-grad gradBotton edit">
                                 ویرایش
+                            </td>
+                            <td></td>
+                            <td class="btn-grad gradBotton end">
+                                خاتمه
                             </td>
 
 
@@ -144,16 +185,52 @@
 
     </script>
     <script>
+       
         $(".edit").click(function () {
             tobedeleted = $(this).parent().attr('id');
             window.location.href = "/home/showReport/" + tobedeleted;
         })
         $(".ViewClones").click(function () {
-          
+
             var shenasnameID = $(this).parent().attr('id');
             let url = "/home/showCopies?shenasnameID=" + shenasnameID;
             window.location.href = url;
-         
+
+        })
+        $(".end").click(function () {
+            tobedeleted = $(this).parent().attr('id');
+            $("#endPopUp").show();
+        })
+        $("#cancelend").click(function () {
+            $("#endPopUp").hide();
+        })
+        $("#verifyend").click(function () {
+
+            $.ajax({
+                url: "/home/endReport",
+                data: {
+                    id: tobedeleted
+                },
+                success: function (obj) {
+                    if (obj == "error") {
+                        toastr.options = {
+                            "debug": false,
+                            "positionClass": "toast-top-full-width",
+                            "onclick": null,
+                            "fadeIn": 300,
+                            "fadeOut": 1000,
+                            "timeOut": 1500,
+                            "extendedTimeOut": 1000,
+                        };
+                        toastr.error('امکان حذف آیتم وجود ندارد');
+                    }
+                    else {
+                        window.location.reload();
+                    }
+
+                }
+
+            })
         })
         $(".remove").click(function () {
             tobedeleted = $(this).parent().attr('id');
@@ -186,12 +263,12 @@
                     else {
                         window.location.reload();
                     }
-                   
+
                 }
 
             })
         })
-       
+
         $(".formParent").click(function () {
             $(this).hide();
             //$(".formParent").toggle();
@@ -222,16 +299,16 @@
             $("#mainForm").toggle();
         })
         $(".btncheckAdd").click(function () {
-          
-           
+
+
 
             $.ajax({
                 url: "/Home/addReport",
                 data: {
-                   
+
                 },
                 success: function (data) {
-                    window.location.href = "/Home/showReport?id="+data;
+                    window.location.href = "/Home/showReport?id=" + data;
                 }
             })
         })

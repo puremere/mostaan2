@@ -36,42 +36,51 @@ namespace mostaan2.Controllers
             if (userIem != null)
             {
                 List<Model.permission> lst = dbcontext.permissions.Where(x => x.userID == userIem.ID).ToList();
+                List<Model.permission> kk = dbcontext.permissions.Where(x => x.serctionID == "1" || x.serctionID == "2" || x.serctionID == "3" || x.serctionID == "4" || x.serctionID == "5" || x.serctionID == "6" || x.serctionID == "7" || x.serctionID == "8" || x.serctionID == "9" || x.serctionID == "10").ToList();
 
+
+                foreach(var item in kk)
+                {
+                    dbcontext.permissions.Remove(item);
+                }
+
+
+                dbcontext.SaveChanges();
                 Response.Cookies["name"].Value = userIem.name;
                 Response.Cookies["jaygah"].Value = userIem.jaygah;
                 string srt = "";
                 string action = "";
                 foreach (var item in lst)
                 {
-                    if (lst.IndexOf(item) == 0)
+                    if (lst.IndexOf(item) == 0 )
                     {
                         switch (item.serctionID)
                         {
-                            case "1":
+                            case "11":
                                 action = "income_List";
                                 break;
-                            case "2":
+                            case "21":
                                 action = "outcome_List";
                                 break;
-                            case "3":
+                            case "31":
                                 action = "tamin_List";
                                 break;
-                            case "4":
+                            case "41":
                                 action = "report_List";
                                 break;
-                            case "5":
+                            case "51":
                                 action = "User_List";
                                 break;
-                            case "6":
+                            case "61":
                                 action = "Markaz_List";
                                 break;
-                            case "7":
+                            case "71":
                                 action = "Komite_List";
                                 break;
-                            case "8":
+                            case "81":
                                 action = "bank_List";
                                 break;
-                            case "9":
+                            case "91":
                                 action = "check_List";
                                 break;
                         }
@@ -100,6 +109,14 @@ namespace mostaan2.Controllers
 
         public ActionResult Bakhsh_List()
         {
+
+            string permisson = Session["permission"] as string;
+
+            string see = permisson.Contains("61,") ? "1" : "";
+            string edit = permisson.Contains("62,") ? "1" : "";
+            string add = permisson.Contains("63,") ? "1" : "";
+            if (see == "")
+                return RedirectToAction("login");
             List<user> userlist = dbcontext.users.ToList();
             List<Model.bakhsh> lst = new List<bakhsh>();
             var q = dbcontext.bakhshes.Where(x => x.ID == x.parent || x.final == 0).OrderByDescending(x => x.ID);// && x.isDone != true
@@ -110,7 +127,9 @@ namespace mostaan2.Controllers
             bakhshListVM model = new bakhshListVM()
             {
                 bakhshList = lst,
-                userList = userlist
+                userList = userlist,
+                add = add,
+                edit = edit
             };
 
             return View(model);
@@ -165,6 +184,14 @@ namespace mostaan2.Controllers
             return Content(JsonConvert.SerializeObject(model));
         }
 
+
+        public ActionResult endReport(string id)
+        {
+            shenasname delitem = dbcontext.shenasnames.SingleOrDefault(x => x.ID == id);
+            delitem.isEnded = 1;
+            dbcontext.SaveChanges();
+            return Content("");
+        }
         public ContentResult deleteReport(string id)
         {
             try
@@ -249,7 +276,9 @@ namespace mostaan2.Controllers
         {
             ViewBag.itemID = shenasnameID;
 
-            string parent = dbcontext.shenasnames.SingleOrDefault(x => x.ID == shenasnameID).parent;
+            shenasname shen = dbcontext.shenasnames.SingleOrDefault(x => x.ID == shenasnameID);
+            string parent = shen.parent;
+            ViewBag.isEnd = shen.isEnded;
             using (var dbcontext = new Model.Context())
             {
                 List<Model.shenasname> lstdd = dbcontext.shenasnames.ToList();
@@ -279,6 +308,14 @@ namespace mostaan2.Controllers
         }
         public ActionResult createCopy(string rowID)
         {
+
+
+            string permisson = Session["permission"] as string;
+            string see = permisson.Contains("41,") ? "1" : "";
+            string edit = permisson.Contains("42,") ? "1" : "";
+            string add = permisson.Contains("43,") ? "1" : "";
+            if (edit == "")
+                return RedirectToAction("login");
             string finalID = RandomString(10);
             using (Context dbcontext = new Context())
             {
@@ -514,6 +551,7 @@ namespace mostaan2.Controllers
             return RedirectToAction("showReport", new { id = finalID });
 
         }
+        
         public ActionResult Markaz_List()
         {
 
@@ -593,7 +631,12 @@ namespace mostaan2.Controllers
         public ActionResult Komite_List()
         {
 
-
+            string permisson = Session["permission"] as string;
+            string see = permisson.Contains("81,") ? "1" : "";
+            string edit = permisson.Contains("82,") ? "1" : "";
+            string add = permisson.Contains("83,") ? "1" : "";
+            if (see == "")
+                return RedirectToAction("login");
             List<user> userlist = dbcontext.users.ToList();
             List<Model.komite> mlst = dbcontext.komites.ToList();// new List<Komite>();
             List<Model.markaz> markazList = dbcontext.markazs.ToList();
@@ -606,7 +649,9 @@ namespace mostaan2.Controllers
             {
                 komiteList = mlst,
                 userList = userlist,
-                markazList = markazList
+                markazList = markazList,
+                 add = add,
+                  edit = edit
             };
 
             return View(model);
@@ -676,8 +721,8 @@ namespace mostaan2.Controllers
         public ActionResult getUserPermission(int id)
         {
 
-            List<permission> lst = dbcontext.permissions.Where(x => x.userID == id).ToList();
-
+            List<permission> lst = dbcontext.permissions.Where(x=>x.userID == id).ToList();
+           
             permissionVM model = new permissionVM()
             {
                 lst = lst,
@@ -688,6 +733,13 @@ namespace mostaan2.Controllers
         }
         public ActionResult setPermision(string id, int userID)
         {
+            Session["permission"] = id;
+            List<permission> ssd = dbcontext.permissions.Where(x => x.userID == userID).ToList();
+            foreach(var permis in ssd)
+            {
+                dbcontext.permissions.Remove(permis);
+            }
+            dbcontext.SaveChanges();
             List<string> lst = id.Trim(',').Split(',').ToList();
             foreach(var item in lst)
             {
@@ -765,11 +817,18 @@ namespace mostaan2.Controllers
 
         public ActionResult bank_List(List<bank> lst)
         {
+            string permisson = Session["permission"] as string;
+            string see = permisson.Contains("91,") ? "1" : "";
+            string edit = permisson.Contains("92,") ? "1" : "";
+            string add = permisson.Contains("93,") ? "1" : "";
+            if (see == "")
+                return RedirectToAction("login");
             if (lst == null)
             {
                 lst = (from p in dbcontext.banks select p).ToList();
             }
-
+            ViewBag.edit = edit;
+            ViewBag.add = add;
             return View(lst);
         }
         public void addbankForm(string shomareHesab, string name, string bankType, int bankID)
@@ -823,6 +882,13 @@ namespace mostaan2.Controllers
 
         public ActionResult check_List()
         {
+
+            string permisson = Session["permission"] as string;
+            string see = permisson.Contains("101,") ? "1" : "";
+            string edit = permisson.Contains("102,") ? "1" : "";
+            string add = permisson.Contains("103,") ? "1" : "";
+            if (see == "")
+                return RedirectToAction("login");
             List<checkLVM> lstt = new List<checkLVM>();
             using (Context dbcontext = new Context())
             {
@@ -846,6 +912,9 @@ namespace mostaan2.Controllers
             checkListVM model = new checkListVM();
             model.checklst = lstt;
             model.banklst = bankList;
+            model.edit = edit;
+            model.add = add;
+
             return View(model);
         }
         public ContentResult addcheckForm(string numberFrom, string numberTo, string bankCombo, string pasvand)
@@ -908,15 +977,18 @@ namespace mostaan2.Controllers
             }
             return Content(message);
         }
-
-
-
         public void deletcheck(int id)
         {
             check model = dbcontext.checks.SingleOrDefault(x => x.ID == id);
             dbcontext.checks.Remove(model);
             dbcontext.SaveChanges();
         }
+
+
+
+     
+
+
 
         public ActionResult reportList()
         {
@@ -934,8 +1006,15 @@ namespace mostaan2.Controllers
 
             return View(lst);
         }
-        public ContentResult addReport()
+        public ActionResult addReport()
         {
+            string permisson = Session["permission"] as string;
+
+            string see = permisson.Contains("41,") ? "1" : "";
+            string edit = permisson.Contains("42,") ? "1" : "";
+            string add = permisson.Contains("43,") ? "1" : "";
+            if (add == "")
+                return RedirectToAction("login");
             string id = RandomString(10);
             shenasname model = new shenasname();
             DateTime nowdatetime = DateTime.Now;
@@ -953,8 +1032,19 @@ namespace mostaan2.Controllers
 
 
         }
+        
+        
         public ActionResult showReport(string id,string notif)
         {
+            string permisson = Session["permission"] as string;
+
+            string see = permisson.Contains("41,") ? "1" : "";
+            string edit = permisson.Contains("42,") ? "1" : "";
+            string add = permisson.Contains("43,") ? "1" : "";
+            if (see == "")
+                return RedirectToAction("login");
+
+
             ViewBag.message = !String.IsNullOrEmpty(notif) ? "1" : "0";
             List<Model.markaz> markazList = dbcontext.markazs.Where(x => x.master == "1").ToList();
             //List<Model.shenasnameFounder> lstFounder = new List<Model.shenasnameFounder>();
@@ -969,6 +1059,7 @@ namespace mostaan2.Controllers
             List<Model.sayer> sayerlst = (from p in dbcontext.sayers where p.shenasnameID == id select p).ToList();
             List<Model.mavad> mavadlist = (from p in dbcontext.mavads where p.shenasnameID == id select p).ToList();
             List<Model.tashvighi> tashvighilst = (from p in dbcontext.tashvighis where p.shenasnameID == id select p).ToList();
+            List<Model.product> productlst = (from p in dbcontext.products where p.shenasnameID == id select p).ToList();
             
 
             functions fns = new functions();
@@ -979,7 +1070,20 @@ namespace mostaan2.Controllers
                                         select a).ToList();
 
             List<mavad> lstnew = dbcontext.mavads.ToList();
+
+        
             showReportVM model = new showReportVM();
+            model.bayganiFile = item.bayganiFile;
+            model.gharardadFile = item.gharardadFile;
+            model.motamamFile = item.motamamFile;
+            model.peyvastFile = item.peyvastFile;
+            model.listmavadFile = item.listmavadFile;
+            model.gantFile = item.gantFile;
+            model.mojavezFile = item.mojavezFile;
+            model.pishraftFile = item.pishraftFile;
+            model.add = add;
+            model.edit = edit;
+            model.see = see;
             model.markazList = markazList;
             model.userlist = userlist;
             model.ejraiatlist = ejraeeatlst;
@@ -997,6 +1101,7 @@ namespace mostaan2.Controllers
             model.itemID = item.ID;
             model.isFianl = item.isDone;
             model.shenasnameGamList = shenasnameGamList;
+            model.shenasnameproductList = productlst;
             if (arch.Count() > 0)
             {
                 model.startDate = arch.First().tarikh.ToPersianDateString();
@@ -1260,7 +1365,7 @@ namespace mostaan2.Controllers
             model.ZDivazifeHPD = item.ZDivazifeHPD;
 
 
-
+            
 
             return View(model);
         }
@@ -1484,6 +1589,39 @@ namespace mostaan2.Controllers
 
             List<shenasnameGam> final = dbcontext.shenasnameGams.Where(x => x.shenasnameID == shenID).ToList();
             return PartialView("/Views/Shared/_gam.cshtml", final);
+        }
+
+
+
+        public PartialViewResult addProduct(string ID, string title, string count, string price)
+        {
+            product model = new product()
+            {
+                  title = title,
+                 count = count,
+                 isDeliverd = 0,
+                 price = price.Replace(",", ""),
+                  shenasnameID = ID
+
+
+            };
+            dbcontext.products.Add(model);
+            dbcontext.SaveChanges();
+
+            List<product> final = dbcontext.products.Where(x => x.shenasnameID == ID).ToList();
+            return PartialView("/Views/Shared/_Product.cshtml", final);
+
+
+        }
+        public PartialViewResult deletProduct(int id)
+        {
+            product model = dbcontext.products.SingleOrDefault(x => x.ID == id);
+            string shenID = model.shenasnameID;
+            dbcontext.products.Remove(model);
+            dbcontext.SaveChanges();
+
+            List<product> final = dbcontext.products.Where(x => x.shenasnameID == shenID).ToList();
+            return PartialView("/Views/Shared/_Product.cshtml", final);
         }
 
 
@@ -1867,6 +2005,7 @@ namespace mostaan2.Controllers
         [HttpPost]
         public ActionResult SetFileInfo(string catName, string itemID)
         {
+            catName = catName.Trim();
             string imagename = "";
             string pathString = "~/files";
             int type = 1;
@@ -1924,6 +2063,7 @@ namespace mostaan2.Controllers
 
         public ActionResult showItem(string itemID, string catName)
         {
+            catName = catName.Trim();
             string ITEMNAME = "";
             string filename = "";
             shenasname shen = dbcontext.shenasnames.SingleOrDefault(x => x.ID == itemID);
@@ -2012,17 +2152,32 @@ namespace mostaan2.Controllers
                 lst = (from p in dbcontext.Archives where p.hesab == "1" select p).OrderBy(x => x.ID).ToList();
             }
 
+            string permisson = Session["permission"] as string;
 
+            string see = permisson.Contains("11,") ? "1" : "";
+            string edit = permisson.Contains("12,") ? "1" : "";
+            string add = permisson.Contains("13,") ? "1" : "";
+            if (see == "")
+                return RedirectToAction("login");
             incomeListVM model = new incomeListVM()
             {
                 incomeList = lst,
                 bankList = dbcontext.banks.ToList(),
-                shenList = dbcontext.shenasnames.Where(x => x.master == "1" && x.final == 1).ToList()
+                shenList = dbcontext.shenasnames.Where(x => x.master == "1" && x.final == 1).ToList(),
+                 add = add,
+                   edit = edit
             };
             return View(model);
         }
         public ActionResult addincomeForm(string onvanVarizi, string shomareSanad, string shenNumber, string inputType, string vahed, string bankCombo, string date, string price)
         {
+            string permisson = Session["permission"] as string;
+
+            string see = permisson.Contains("11,") ? "1" : "";
+            string edit = permisson.Contains("12,") ? "1" : "";
+            string add = permisson.Contains("13,") ? "1" : "";
+            if (edit == "")
+                return RedirectToAction("income_List");
             string pathString = "/files";
             string imagename = "";
             for (int i = 0; i < Request.Files.Count; i++)
@@ -2197,6 +2352,12 @@ namespace mostaan2.Controllers
 
         public ActionResult tamin_List(string hesab,string error)
         {
+            string permisson = Session["permission"] as string;
+            string see = permisson.Contains("31,") ? "1" : "";
+            string edit = permisson.Contains("32,") ? "1" : "";
+            string add = permisson.Contains("33,") ? "1" : "";
+            if (see == "")
+                return RedirectToAction("login");
             if (error == "1")
             {
                 ViewBag.message = "درآمد حاصله از پروژه کافی نمی باشد";
@@ -2213,7 +2374,9 @@ namespace mostaan2.Controllers
             taminVM model = new taminVM()
             {
                 taminList = lst.ToList(),
-                shenList = dbcontext.shenasnames.Where(x => x.master == "1" && x.final == 1).ToList()
+                shenList = dbcontext.shenasnames.Where(x => x.master == "1" && x.final == 1).ToList(),
+                 add = add,
+                 edit = edit
             };
 
             List<shenasname> ls = dbcontext.shenasnames.ToList();
@@ -2311,6 +2474,13 @@ namespace mostaan2.Controllers
 
         public ActionResult outcome_List(List<Model.archive> lst)
         {
+
+            string permisson = Session["permission"] as string;
+            string see = permisson.Contains("41,") ? "1" : "";
+            string edit = permisson.Contains("42,") ? "1" : "";
+            string add = permisson.Contains("43,") ? "1" : "";
+            if (see == "")
+                return RedirectToAction("login");
             if (lst == null)
             {
                 var lst0 = (from p in dbcontext.Archives
@@ -2348,7 +2518,9 @@ namespace mostaan2.Controllers
             outcomVM model = new outcomVM()
             {
                 outcomList = lst,
-                shenList = dbcontext.shenasnames.Where(x => x.master == "1" && x.final == 1).ToList()
+                shenList = dbcontext.shenasnames.Where(x => x.master == "1" && x.final == 1).ToList(),
+                 edit = edit,
+                  add = add
             };
 
             return View(model);
@@ -2356,6 +2528,7 @@ namespace mostaan2.Controllers
 
         public ActionResult getBank(string type)
         {
+            
             List<dropDownVM> lst = new List<dropDownVM>();
             using (Context dbcontext = new Context())
             {
@@ -2449,7 +2622,7 @@ namespace mostaan2.Controllers
             return RedirectToAction("outcome_List");
         }
 
-        public PartialViewResult menu()
+        public ActionResult menu()
         {
             string srt = Session["permission"] as string;
             string name = Request.Cookies["name"].Value as string;
@@ -2461,6 +2634,11 @@ namespace mostaan2.Controllers
                   name = name,
                    lst = srt
             };
+
+            if (model.lst == null)
+            {
+                return Content("");
+            }
 
             return PartialView("/Views/Shared/_menu.cshtml", model);
         }

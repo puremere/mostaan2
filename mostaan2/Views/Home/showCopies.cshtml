@@ -48,6 +48,8 @@
     </div>
 
     <div style="display:flex;height:100%">
+       
+
          @{Html.RenderAction("menu", "Home");}
 
         <div style="flex:1; padding:20px ">
@@ -56,19 +58,22 @@
                     لیست نسخه ها
                 </h1>
 
-                <p class="btncheckAdd btn-grad" id="addNewItem">
+                @if (ViewBag.isEnd != 1)
+                {
+                    <p class="btncheckAdd btn-grad" id="addNewItem">
+                        نسخه جدید
+                    </p>
+                }
 
-                    نسخه جدید
-                </p>
             </div>
 
             <main>
                 <table>
                     <thead>
                         <tr>
-
+                            <th>ردیف</th>
                             <th>
-                                ردیف
+                                شناسه
                             </th>
                             <th>
                                 نسخه
@@ -94,10 +99,13 @@
                     <tbody>
                         @if (Model != null)
                         {
+
                             foreach (var item in Model)
                             {
+                                int index = Model.ToList().IndexOf(item) + 1;
                                 <tr id="@item.ID">
 
+                                    <td>@index</td>
                                     <td>
                                         @item.ID
                                     </td>

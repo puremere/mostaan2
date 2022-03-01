@@ -10,6 +10,8 @@ namespace mostaan2.ViewModel
     {
         public List<Model.bakhsh> bakhshList { get; set; }
         public List<Model.user> userList { get; set; }
-        
+
+        public string add { get; set; }
+        public string edit { get; set; }
     }
 }

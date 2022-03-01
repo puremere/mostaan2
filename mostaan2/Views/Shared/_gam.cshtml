@@ -14,13 +14,14 @@
     <table>
         <thead>
             <tr>
-
+                <th>ردیف</th>
+                <th>
+                    فاز اصلی
+                </th>
                 <th>
                     عنوان اصلی فعالیت
                 </th>
-                <th>
-                    گام اصلی
-                </th>
+
 
                 <th>
                     شرح فعالیت
@@ -55,40 +56,44 @@
             {
                 foreach (var item in Model)
                 {
-                    <tr name="deletGam" id="@item.ID">
+                    int index = Model.ToList().IndexOf(item) + 1;
+            <tr name="deletGam" id="@item.ID">
+
+                <td>
+                    @index
+                </td>
+                <td>
+                    @item.gamAsli
+                </td>
+                <td>
+                    @item.title
+                </td>
 
 
-                        <td>
-                            @item.title
-                        </td>
-
-                        <td>
-                            @item.gamAsli
-                        </td>
-                        <td>
-                            @item.description
-                        </td>
-                        <td>
-                            @item.duration
-                        </td>
-                        <td>
-                            @item.darsadeVazni
-                        </td>
-                        <td>
-                            @item.achivement
-                        </td>
-                        <td>
-                            @{ 
-                                long prc = String.IsNullOrEmpty(@item.hazine) ? 0 : Int64.Parse(item.hazine);
-                            }
-                            @String.Format("{0:n0}", prc)
-                        </td>
-                        <td class="btn-grad gradBotton remove" onclick="showRemoveModal(this)" >
-                            حذف
-                        </td>
+                <td>
+                    @item.description
+                </td>
+                <td>
+                    @item.duration
+                </td>
+                <td>
+                    @item.darsadeVazni
+                </td>
+                <td>
+                    @item.achivement
+                </td>
+                <td>
+                    @{
+                        long prc = String.IsNullOrEmpty(@item.hazine) ? 0 : Int64.Parse(item.hazine);
+                    }
+                    @String.Format("{0:n0}", prc)
+                </td>
+                <td class="btn-grad gradBotton remove" onclick="showRemoveModal(this)">
+                    حذف
+                </td>
 
 
-                    </tr>
+            </tr>
                 }
             }
 

@@ -44,6 +44,7 @@ namespace mostaan2.Model
         public DbSet<check> checks { get; set; }
         public DbSet<permission> permissions { get; set; }
         public DbSet<section> sections { get; set; }
+        public DbSet<product> products { get; set; }
          
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -251,6 +252,21 @@ namespace mostaan2.Model
         public int kollPD { get; set; }
         public string shenasnameID { get; set; }
     }
+
+
+
+
+    public class product
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ID { get; set; }
+        public string  title { get; set; }
+        public string count { get; set; }
+        public string price { get; set; }
+        public int  isDeliverd { get; set; }
+        public string shenasnameID { get; set; }
+    }
     public class sayer
     {
         [Key]
@@ -377,7 +393,7 @@ namespace mostaan2.Model
     }
     public class shenasname
     {
-
+        public int isEnded { get; set; }
         public string bayganiFile { get; set; }
         public string gharardadFile { get; set; }
         public string motamamFile { get; set; }

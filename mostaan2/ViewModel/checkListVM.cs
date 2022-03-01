@@ -20,5 +20,7 @@ namespace mostaan2.ViewModel
         
        public List<checkLVM> checklst { get; set; }
         public List<bank> banklst { get; set; }
+        public string  edit { get; set; }
+        public string  add { get; set; }
     }
 }

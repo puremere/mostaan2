@@ -22,6 +22,10 @@ namespace mostaan2.Classes
                 if (c < '0' || c > '9')
                     return false;
             }
+            if (str == "")
+            {
+                return false;
+            }
 
             return true;
         }

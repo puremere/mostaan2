@@ -14,7 +14,7 @@
     <table>
         <thead>
             <tr>
-
+                <th>ردیف</th>
                 <th>
                     شرح ساختمان
                 </th>
@@ -39,20 +39,23 @@
             {
                 foreach (var item in Model)
                 {
+                    int index = Model.ToList().IndexOf(item) + 1;
             <tr name="deletOmrani" id="@item.ID">
 
-
+                <td>
+                    @index
+                </td>
                 <td>
                     @item.title
                 </td>
 
                 <td>
                     @String.Format("{0:n0}", @item.kollPR)
-                  
+
                 </td>
                 <td>
                     @String.Format("{0:n0}", @item.kollPD)
-                   
+
                 </td>
                 <td>
                     @item.zirbana

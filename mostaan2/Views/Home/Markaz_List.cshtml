@@ -90,7 +90,7 @@
                 <table>
                     <thead>
                         <tr>
-
+                            <th>ردیف</th>
                             <th>
                                 عنوان
                             </th>
@@ -118,8 +118,10 @@
                         {
                             foreach (var item in Model.markazList)
                             {
+                                int index = Model.markazList.IndexOf(item) + 1;
                                 <tr id="@item.ID">
 
+                                    <td>@index</td>
                                     <td>
                                         @item.title
                                     </td>

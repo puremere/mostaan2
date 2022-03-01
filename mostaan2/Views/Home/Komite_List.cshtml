@@ -74,16 +74,20 @@
 
 
     <div style="display:flex;height:100%">
-         @{Html.RenderAction("menu", "Home");}
+        @{Html.RenderAction("menu", "Home");}
 
         <div style="width:80%;padding:20px ">
             <div style="display:flex;align-items: center;justify-content: space-between;">
                 <h1 class="pageHeading" style="">
                     لیست کمیته ها
                 </h1>
-                <p data-toggle="modal" data-target="#exampleModal" class="showForm btn-grad">
-                    کمیته جدید
-                </p>
+                @if (Model.add == "1")
+                {
+                    <p data-toggle="modal" data-target="#exampleModal" class="showForm btn-grad">
+                        کمیته جدید
+                    </p>
+                }
+
 
             </div>
 
@@ -91,7 +95,7 @@
                 <table>
                     <thead>
                         <tr>
-
+                            <th>ردیف</th>
                             <th>
                                 عنوان
                             </th>
@@ -119,8 +123,9 @@
                         {
                             foreach (var item in Model.komiteList)
                             {
+                                int index = Model.komiteList.IndexOf(item) + 1;
                                 <tr id="@item.ID">
-
+                                    <td>@index</td>
                                     <td>
                                         @item.title
                                     </td>
@@ -131,17 +136,25 @@
                                     <td>
                                         @item.janeshin
                                     </td>
+                                    @if (Model.edit == "1")
+                                    {
+                                        <td class='edit'>
+                                            <a id="" class='button' href='#'>
+                                                ویرایش
+                                            </a>
+                                        </td>
+                                        <td class='remove'>
+                                            <a class='button' href='#'>
+                                                حذف
+                                            </a>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td></td>
+                                        <td></td>
+                                    }
 
-                                    <td class='edit'>
-                                        <a id="" class='button' href='#'>
-                                            ویرایش
-                                        </a>
-                                    </td>
-                                    <td class='remove'>
-                                        <a class='button' href='#'>
-                                            حذف
-                                        </a>
-                                    </td>
                                 </tr>
                             }
                         }

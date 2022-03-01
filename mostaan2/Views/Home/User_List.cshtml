@@ -111,7 +111,7 @@
                 <table>
                     <thead>
                         <tr>
-
+                            <td>ردیف</td>
                             <th>
                                 کد پاسداری
                             </th>
@@ -139,8 +139,10 @@
                         {
                             foreach (var item in Model)
                             {
-                                <tr id="@item.ID">
+                                int index = Model.ToList().IndexOf(item) + 1;
 
+                                <tr id="@item.ID">
+                                    <td>@index</td>
                                     <td>
                                         @item.pasdari_Code
                                     </td>
