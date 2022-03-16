@@ -19,4 +19,12 @@ namespace mostaan2.ViewModel
         public string edit { get; set; }
         public string add { get; set; }
     }
+    public class graphVM
+    {
+        public List<Model.shenasname> shenList { get; set; }
+        public List<string> names { get; set; }
+        public List<long> daramad { get; set; }
+        public List<long> hazine { get; set; }
+    }
+
 }

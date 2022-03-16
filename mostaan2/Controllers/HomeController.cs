@@ -1624,7 +1624,7 @@ namespace mostaan2.Controllers
             return PartialView("/Views/Shared/_Product.cshtml", final);
         }
 
-
+        
         public PartialViewResult addejraeeat(string dollaryP, string riallyP, string ejratitle, string ID)
         {
 
@@ -2641,6 +2641,107 @@ namespace mostaan2.Controllers
             }
 
             return PartialView("/Views/Shared/_menu.cshtml", model);
+        }
+
+        public ActionResult graph()
+        {
+            
+           
+
+            string permisson = Session["permission"] as string;
+            string see = permisson.Contains("111,") ? "1" : "";
+            if (see == "")
+                return RedirectToAction("login");
+
+
+            List<string> name = new List<string>();
+            List<long> daramad = new List<long>();
+            List<long> hazine = new List<long>();
+            List<DateTime> datelist = new List<DateTime>();
+
+            List<archive> darlist = dbcontext.Archives.Where(x => x.hesab == "1").ToList();
+            List<archive> hazlist = dbcontext.Archives.Where(x => x.hesab == "0").ToList();
+            //foreach (var haz in hazlist)
+            //{
+            //    haz.tarikh = DateTime.Now.AddMonths(-9);
+            //}
+            //dbcontext.SaveChanges();
+
+            var dargroupList = dbcontext.Archives.Where(x => x.hesab == "1").GroupBy(x => new { month = x.tarikh.Month }).ToList();
+            var hazgroupList = dbcontext.Archives.Where(x => x.hesab == "0").GroupBy(x => new { month = x.tarikh.Month }).ToList();
+            foreach (var item in dargroupList)
+            {
+                string time = (item.Last().tarikh).ToPersianDateString();
+                List<string> datList = time.Split('/').ToList();
+                time = datList[0] + "/" + datList[1];
+                if (!name.Contains(time))
+                {
+                    name.Add(time);
+                }
+            }
+            foreach (var item in hazgroupList)
+            {
+
+                string time = (item.Last().tarikh).ToPersianDateString();
+                List<string> datList = time.Split('/').ToList();
+                time = datList[0] + "/" + datList[1];
+                if (!name.Contains(time))
+                {
+                    name.Add(time);
+                }
+
+            }
+            long finaldaramad = 0;
+            long finalhazine = 0;
+
+            foreach (var trkh in name.OrderBy(x => x))
+            {
+                foreach (var item in dargroupList)
+                {
+                    string time = (item.Last().tarikh).ToPersianDateString();
+                    List<string> datList = time.Split('/').ToList();
+                    time = datList[0] + "/" + datList[1];
+                    if (trkh == time)
+                    {
+                        long sum = item.Sum(x => x.mablagh);
+                        finaldaramad += sum;
+
+                    }
+                }
+                foreach (var item in hazgroupList)
+                {
+
+                    string time = (item.Last().tarikh).ToPersianDateString();
+                    List<string> datList = time.Split('/').ToList();
+                    time = datList[0] + "/" + datList[1];
+                    if (trkh == time)
+                    {
+                        long sum = item.Sum(x => x.mablagh);
+                        finalhazine += sum;
+
+                    }
+
+                }
+
+                daramad.Add(finaldaramad);
+                hazine.Add(finalhazine);
+            }
+
+
+
+
+            graphVM model = new graphVM()
+            {
+                shenList = dbcontext.shenasnames.Where(x => x.master == "1" && x.final == 1).ToList(),
+             daramad = daramad,
+              hazine = hazine,
+               names = name.OrderBy(x=>x).ToList()
+            };
+
+           
+
+            return View(model);
+
         }
 
 

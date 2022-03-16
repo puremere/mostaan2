@@ -1,0 +1,365 @@
+﻿
+@model mostaan2.ViewModel.graphVM
+    ViewBag.Title = "check_List";
+}
+<link href="~/Content/persian-datepicker.css" rel="stylesheet" />
+
+@section scripts{
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.js"></script>
+    <script>
+        window.onload = function () {
+
+            const ctx = document.getElementById('myChart').getContext("2d");
+
+            Chart.defaults.global.animation.duration = 500;   //مدت زمان بالا امدن چارت
+            var myArray = [];
+            var darArray = [];
+             var hazArray = [];
+
+            @foreach (var d in Model.names)
+            {
+                @:myArray.push("@d");
+            };
+             @foreach (var da in Model.daramad)
+            {
+                @:darArray.push("@da");
+            };
+             @foreach (var ha in Model.hazine)
+            {
+                @:hazArray.push("@ha");
+            };
+
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: myArray, //["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL"]
+                    datasets: [{
+                        label: 'هزینه', // Name the series
+                        fill: false,
+                        lineTension: 0.1, //برای منحنی کردن شکستگی ها
+                        borderColor: 'rgba(75,75,192,0.9)', // Add custom color border
+                        borderCapStyle: 'butt',
+                        borderDash: [],
+                        borderDashOffset: 0.0,
+                        borderJoinStyle: 'miter',
+                        pointBorderColor: 'rgba(75,72,192,1)',
+                        pointBackgroundColor: '#fff',
+                        pointBorderWidth: 5,
+                        pointHoverRadius: 5,
+                        pointHoverBackgroundColor: 'rgba(75,75,192,0.9)',
+                        pointHoverBorderColor: 'rgba(75,75,192,0.9)',
+                        pointHoverBorderWidth: 2,
+                        pointRadius: 1,
+                        pointHitRadius: 10,
+                        // backgroundColor: 'rgba(75,75,192,0.4)', // Add custom color background (Points and Fill)
+                        data: hazArray ,// [5, 59, 80, 81, 16, 55, 40, 50], // Specify the data values array
+                    },
+                    {
+                        label: 'درآمد', // Name the series
+                        fill: false,
+                        lineTension: 0.1, //برای منحنی کردن شکستگی ها
+                        borderColor: 'rgba(220,220,220,1)', // Add custom color border
+                        borderCapStyle: 'butt',
+                        borderDash: [],
+                        borderDashOffset: 0.0,
+                        borderJoinStyle: 'miter',
+                        pointBorderColor: 'rgba(220,220,220,1)',
+                        pointBackgroundColor: '#fff',
+                        pointBorderWidth: 5,
+                        pointHoverRadius: 5,
+                        pointHoverBackgroundColor: 'rgba(220,220,220,1)',
+                        pointHoverBorderColor: 'rgba(220,220,220,1)',
+                        pointHoverBorderWidth: 2,
+                        pointRadius: 1,
+                        pointHitRadius: 10,
+                        // backgroundColor: 'rgba(75,75,192,0.4)', // Add custom color background (Points and Fill)
+                        data: darArray,//[5, 56, 80, 61, 86, 55, 40, 96], // Specify the data values array
+                    }],
+
+                },
+                options: {
+
+                    responsive: true, // Instruct chart js to respond nicely.
+                    maintainAspectRatio: true, // Add to prevent default behaviour of full-width/height
+
+                    title: {
+                        display: true,
+                        text: ""
+                    },
+
+                    legend: {
+                        position: "bottom"
+                    },
+                    showLines: true, //حذف خطوط چارت
+                    scales: {
+                        yAxes: [{
+
+                            display: true,
+                            //type: 'linear',
+                            position: "left",
+
+                            scaleLabel: {
+                                display: true,
+                                labelString: '',
+                                fontSize: 16,
+                                fontColor: "red",
+                            },
+
+
+                            ticks: {
+                                reverse: false,
+                                fontColor: "rgba(0,0,0,0.5)",
+                                fontStyle: "bold",
+                                beginAtZero: true,
+                                maxTicksLimit: 30,
+                                padding: 20
+
+                            },
+                            gridLines: {
+                                drawTicks: true,
+                                display: true,
+                            }
+
+                        }],
+                        xAxes: [{
+
+                            display: true,
+                            //type: 'linear',
+                            position: "left",
+
+                            scaleLabel: {
+                                display: true,
+                                labelString: '',
+                                fontSize: 16,
+                                fontColor: "red",
+                            },
+
+                            gridLines: {
+                                //zeroLineColor: "transparent"
+                            },
+                            ticks: {
+                                padding: 20,
+                                fontColor: "rgba(0,0,0,0.5)",
+                                fontStyle: "bold",
+                                beginAtZero: true,
+                                maxTicksLimit: 15,
+                                padding: 20
+                            }
+                        }]
+                    }
+                }
+            });
+
+
+
+
+
+
+        }
+    </script>
+    <script src="~/js/persian-date.min.js"></script>
+    <script src="~/js/persian-datepicker.js"></script>
+
+    <script>
+        if ('@ViewBag.message' != "") {
+            toastr.options = {
+                "debug": false,
+                "positionClass": "toast-top-full-width",
+                "onclick": null,
+                "fadeIn": 300,
+                "fadeOut": 1000,
+                "timeOut": 1500,
+                "extendedTimeOut": 1000,
+            };
+            toastr.error('@ViewBag.message');
+        }
+    </script>
+    <script>
+        $(function () {
+            $(".datePicker").pDatepicker({
+                format: 'YYYY/MM/DD',
+                autoClose: true
+                // options & callbacks here
+            });
+        });
+    </script>
+    <script>
+
+
+        $(".formParent").click(function () {
+            $(this).hide();
+            //$(".formParent").toggle();
+        })
+
+
+        $(".formParent form").click(function () {
+            event.stopPropagation();
+        })
+        $(".showForm").click(function () {
+            $("#name").val("")
+            $("#shomareHesab").val("");
+            $("#checkID").val("0");
+            $("#mainForm").toggle();
+        })
+        $('.button, .close').on('click', function (e) {
+            e.preventDefault();
+            $('.detail, html, body').toggleClass('open');
+        });
+
+        $("#btncheckAdd").click(function () {
+            $("#addTaminForm").submit();
+        })
+
+
+
+        $("#shenNumber").on("change", function () {
+            var id = $(this).val();
+            $.ajax({
+                url: "getGam",
+                data: {
+                    id: id
+                }, success: function (data) {
+                    $("#gamHolder").html(data)
+                }
+            });
+
+        })
+        $("#exType").on("change", function () {
+            var type = $(this).find("option:selected").text();
+            var id = $("#shenNumber").val();
+
+            $.ajax({
+                url: "getDetail",
+                data: {
+                    id: id,
+                    type: type
+                }, success: function (data) {
+                    $("#detailHolder").html(data)
+                }
+            });
+
+        })
+
+    </script>
+
+    <script>
+
+        $(".menuItem").each(function () {
+            $(this).removeClass("menuItemActive");
+        })
+        var elm = $("#tamin")
+        elm.addClass("menuItemActive");
+
+    </script>
+    <script>
+        $("#hesabStatus").change(function () {
+            let i = $(this).val();
+            window.location.href = "/Home/tamin_List?hesab="+i
+        })
+
+
+
+        $('#hesabStatus option[value="' + @ViewBag.hesab + '"]').prop('selected', true)
+
+
+    </script>
+
+
+}
+
+<div class="morphism">
+    <link href="~/Content/custom.css" rel="stylesheet" />
+
+
+    <div class="formParent" id="mainForm">
+        <div class="middlParent " style="">
+            <div id="formHolder">
+                <link href="~/Content/formStyle.css" rel="stylesheet" />
+                <div class="containerr">
+
+
+                    <form id="addTaminForm" method="post" action="addTaminForm" enctype="multipart/form-data">
+                        <p>انتخاب اطلاعات نمودار</p>
+                        <div style="display:flex">
+                            @Html.DropDownList("shenNumber", new SelectList(Model.shenList, "ID", "Title"), "انتخاب پروژه", new { id = "shenNumber", name = "shenNumber" })
+                            <select name="exType" id="exType">
+                                <option>نوع هزینه</option>
+                                <option>اجراییات</option>
+                                <option>سرمایه</option>
+                                <option>قرارداد</option>
+                                <option>عمرانی</option>
+                                <option>اداری</option>
+                                <option>مصرفی</option>
+                                <option>مواد اولیه</option>
+                                <option>تشویقی</option>
+                                <option>سایر هزینه ها</option>
+                            </select>
+                        </div>
+                        @*<div style="display:flex">
+                                <div id="detailHolder">
+                                    <input name="detailHolder" id="onvanVarizi" placeholder="عنوان واریزی"><br>
+                                </div>
+
+                                <div id="gamHolder">
+                                    <input name="onvanVarizi" id="onvanVarizi" placeholder="عنوان واریزی"><br>
+                                </div>
+
+                            </div>*@
+
+                        <div style="display:flex">
+                            <select name="vahed" id="vahed">
+                                <option>ریال</option>
+                                <option>دلار</option>
+
+                            </select>
+                            <input placeholder="تاریخ از" name="date" id="date" class="inputForm datePicker" />
+
+                        </div>
+                        <div style="display:flex">
+
+                            <input placeholder="تاریخ تا" name="date" id="date" class="inputForm datePicker" />
+
+                        </div>
+                        <input id="btncheckAdd" type="button" value="تایید">
+
+                    </form>
+
+                    <div class="drops">
+                        <div class="drop drop-1"></div>
+                        <div class="drop drop-2"></div>
+                        <div class="drop drop-3"></div>
+                        <div class="drop drop-4"></div>
+                        <div class="drop drop-5"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div style="display:flex;height:100%">
+        @{Html.RenderAction("menu", "Home");}
+
+
+
+        <div style="width:80%;padding:20px ">
+            <div class="row">
+                <div>
+                    <p class="showForm btn-grad">
+                        اطلاعات فیلتر
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <canvas id='myChart'> </canvas>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+</div>

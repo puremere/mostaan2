@@ -309,6 +309,7 @@
     <Content Include="Views\Shared\_mavad.cshtml" />
     <Content Include="Views\Shared\_userPermission.cshtml" />
     <Content Include="Views\Shared\_product.cshtml" />
+    <Content Include="Views\Home\graph.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
